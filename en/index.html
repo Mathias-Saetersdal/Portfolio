@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mathias Sætersdal, interaction designer</title>
+  <meta name="description" content="Interaction designer in Bergen. Works with accessibility and WCAG, and writes the frontend himself.">
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="alternate" hreflang="nb" href="../index.html">
+  <link rel="alternate" hreflang="en" href="index.html">
+  <link rel="alternate" hreflang="x-default" href="../index.html">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header wrap">
+    <nav aria-label="Main navigation">
+      <a href="about.html">About</a>
+      <a href="../index.html" lang="nb" hreflang="nb">Norsk</a>
+    </nav>
+  </header>
+
+  <main id="main" class="wrap">
+    <section class="hero" aria-label="Introduction">
+      <h1>Mathias Sætersdal</h1>
+      <p class="lede">Interaction designer in Bergen.</p>
+      <p>I work with accessibility and write the frontend myself.
+         This site is built to WCAG 2.2, and the focus indicator is part of the design.</p>
+    </section>
+
+    <p class="tab-hint" id="tab-hint">Press Tab. The whole site works with a keyboard.</p>
+
+    <section aria-labelledby="projects-heading">
+      <h2 id="projects-heading">Projects</h2>
+      <ol class="projects" id="project-list" data-source="../data/projects.json"></ol>
+      <noscript>
+        <p>The project list needs JavaScript.
+           Go straight to <a href="work/secret-library.html">The Secret Library</a>.</p>
+      </noscript>
+    </section>
+
+    <section aria-labelledby="contact-heading">
+      <h2 id="contact-heading">Contact</h2>
+      <!-- TODO: replace with the real address once it is decided. -->
+      <p>Send an email to <a href="mailto:TODO-EMAIL@example.com">TODO-EMAIL@example.com</a>.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer wrap">
+    <p>Mathias Sætersdal · <a href="../index.html" lang="nb" hreflang="nb">Norsk</a></p>
+  </footer>
+
+  <script src="../js/focus-ring.js" defer></script>
+  <script src="../js/projects.js" defer></script>
+  <script src="../js/motion.js" defer></script>
+</body>
+</html>
