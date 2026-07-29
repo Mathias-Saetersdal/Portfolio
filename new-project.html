@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<!-- Internt verktøy. Lenkes ikke fra siden. Åpnes via lokal server. -->
+<html lang="nb">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nytt prosjekt · verktøy</title>
+  <meta name="description" content="Skjema som lager et gyldig JSON-objekt for data/projects.json. Lagrer ingenting.">
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Hopp til innholdet</a>
+
+  <header class="site-header wrap">
+    <nav aria-label="Hovednavigasjon">
+      <a href="index.html">Hjem</a>
+    </nav>
+  </header>
+
+  <main id="main" class="wrap">
+    <h1>Nytt prosjekt</h1>
+    <p>Fyll ut skjemaet og kopier JSON-objektet inn i listen
+       <code>projects</code> i <code>data/projects.json</code>.
+       Skjemaet lagrer ingenting og sender ingenting.</p>
+
+    <form id="project-form" novalidate>
+      <fieldset>
+        <legend>Grunnlag</legend>
+        <div class="field">
+          <label for="f-id">id</label>
+          <p class="hint" id="id-hint">Små bokstaver a til z, tall og bindestrek. Eksempel: secret-library</p>
+          <input id="f-id" name="id" type="text" required aria-describedby="id-hint">
+        </div>
+        <div class="field">
+          <label for="f-year">År</label>
+          <input id="f-year" name="year" type="number" inputmode="numeric" required>
+        </div>
+        <div class="field">
+          <label for="f-status">Status</label>
+          <p class="hint" id="status-hint">draft holder prosjektet borte fra forsiden.</p>
+          <select id="f-status" name="status" aria-describedby="status-hint">
+            <option value="draft">draft</option>
+            <option value="published">published</option>
+          </select>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Tekst, begge språk</legend>
+        <div class="form-grid">
+          <div class="field">
+            <label for="f-title-nb">Tittel, norsk</label>
+            <input id="f-title-nb" name="title_nb" type="text" required>
+          </div>
+          <div class="field">
+            <label for="f-title-en">Tittel, engelsk</label>
+            <input id="f-title-en" name="title_en" type="text" required>
+          </div>
+          <div class="field">
+            <label for="f-role-nb">Rolle, norsk</label>
+            <input id="f-role-nb" name="role_nb" type="text">
+          </div>
+          <div class="field">
+            <label for="f-role-en">Rolle, engelsk</label>
+            <input id="f-role-en" name="role_en" type="text">
+          </div>
+          <div class="field">
+            <label for="f-summary-nb">Sammendrag, norsk</label>
+            <textarea id="f-summary-nb" name="summary_nb" rows="3" required></textarea>
+          </div>
+          <div class="field">
+            <label for="f-summary-en">Sammendrag, engelsk</label>
+            <textarea id="f-summary-en" name="summary_en" rows="3" required></textarea>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Bilde og lenker</legend>
+        <div class="field">
+          <label for="f-tags">Tagger</label>
+          <p class="hint" id="tags-hint">Skilles med komma. Eksempel: accessibility, frontend</p>
+          <input id="f-tags" name="tags" type="text" aria-describedby="tags-hint">
+        </div>
+        <div class="field">
+          <label for="f-thumb">Bilde, sti</label>
+          <p class="hint" id="thumb-hint">Eksempel: img/prosjekt.png. Tomt felt gir en ren tekstoppføring.</p>
+          <input id="f-thumb" name="thumb" type="text" aria-describedby="thumb-hint">
+        </div>
+        <div class="form-grid">
+          <div class="field">
+            <label for="f-alt-nb">Alt-tekst, norsk</label>
+            <p class="hint" id="alt-hint">Skrives av Mathias, aldri generert. Kreves når bilde er satt.</p>
+            <input id="f-alt-nb" name="alt_nb" type="text" aria-describedby="alt-hint">
+          </div>
+          <div class="field">
+            <label for="f-alt-en">Alt-tekst, engelsk</label>
+            <input id="f-alt-en" name="alt_en" type="text">
+          </div>
+        </div>
+        <div class="field">
+          <label for="f-href">Kasusstudie, sti</label>
+          <p class="hint" id="href-hint">Relativ til siden som leser den. Eksempel: work/prosjekt.html</p>
+          <input id="f-href" name="href" type="text" required aria-describedby="href-hint">
+        </div>
+        <div class="form-grid">
+          <div class="field">
+            <label for="f-live">Live-adresse</label>
+            <input id="f-live" name="live" type="url">
+          </div>
+          <div class="field">
+            <label for="f-repo">Kildekode-adresse</label>
+            <input id="f-repo" name="repo" type="url">
+          </div>
+        </div>
+      </fieldset>
+
+      <button class="button" type="submit">Lag JSON</button>
+    </form>
+
+    <section aria-labelledby="out-heading">
+      <h2 id="out-heading">Resultat</h2>
+      <div class="form-errors" id="form-errors" role="alert"></div>
+      <p id="copy-status" role="status"></p>
+      <pre class="json-out" id="json-out" tabindex="0" aria-label="JSON-resultat" hidden></pre>
+      <p><button class="button" type="button" id="copy-json" hidden>Kopier JSON</button></p>
+    </section>
+  </main>
+
+  <footer class="site-footer wrap">
+    <p>Mathias Sætersdal</p>
+  </footer>
+
+  <script src="js/focus-ring.js" defer></script>
+  <script src="js/new-project.js" defer></script>
+</body>
+</html>
