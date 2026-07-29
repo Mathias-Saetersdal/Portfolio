@@ -1,10 +1,13 @@
 <!DOCTYPE html>
+<!-- Bygget fra farge-og-hukommelse-utkast-v2.md.
+     Utkast, versjon 2. Punkter merket MANGLER eller BEKREFT ligger som
+     HTML-kommentarer der de sto i utkastet. -->
 <html lang="nb">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Fargeprosjekt, utkast · Mathias Sætersdal</title>
-  <meta name="description" content="Utkast til kasusstudie om et emneprosjekt om farge. Siden er ikke ferdig.">
+  <title>Farge og hukommelse · Mathias Sætersdal</title>
+  <meta name="description" content="Kasusstudie: et eksperiment på om farge gjør det lettere å huske hverdagsobjekter, presentert på AIC 2025 i Taipei.">
   <link rel="stylesheet" href="../css/main.css">
   <link rel="alternate" hreflang="nb" href="color.html">
   <link rel="alternate" hreflang="en" href="../en/work/color.html">
@@ -23,55 +26,119 @@
 
   <main id="main" class="wrap">
     <article class="case-study">
-      <h1>Fargeprosjekt, arbeidstittel</h1>
-      <p class="placeholder">Utkast. Siden er ikke ferdig og skal ikke
-         publiseres. Prosjektet står som draft i data/projects.json og vises
-         ikke på forsiden. Alt i klammer under mangler og kan bare skrives av
-         Mathias. Kjente fakta: et emneprosjekt på universitetet, karakter A,
-         presentert på en fargekonferanse i Taiwan. Mer finnes ikke.</p>
+      <h1>Farge og hukommelse</h1>
+      <p class="project-meta">2025 · Utforming, pilottesting, gjennomføring og førsteutkast</p>
 
       <section aria-labelledby="what-heading">
         <h2 id="what-heading">Hva det er</h2>
-        <p class="placeholder">[Mangler: to setninger om hva prosjektet er,
-           og ett bilde med alt-tekst skrevet av Mathias. Prosjektets
-           virkelige tittel mangler også.]</p>
+        <p>Et eksperiment på om farge gjør det lettere å huske
+           hverdagsobjekter. Arbeidet startet som en oppgave i emnet IMT4315
+           Colour in interface design ved NTNU våren 2025. Veileder Phil
+           Green valgte teksten ut for AIC 2025, vi bearbeidet den sammen,
+           og han holdt presentasjonen i Taipei.</p>
+        <p>AIC, International Colour Association, samler de nasjonale
+           fargevitenskapelige foreningene. AIC 2025 var organisasjonens
+           16. kongress, arrangert av Color Association of Taiwan.</p>
+        <!-- Bilde: fargestimuliet fra artikkelen.
+             Alt-tekst skrives når bildet er valgt. -->
       </section>
 
       <section aria-labelledby="brief-heading">
-        <h2 id="brief-heading">Oppdraget</h2>
-        <p class="placeholder">[Mangler: hvilket emne, hva oppgaven ba om,
-           og hvilke rammer som gjaldt.]</p>
+        <h2 id="brief-heading">Oppgaven</h2>
+        <!-- MANGLER: hva semesteroppgaven i emnet faktisk ba om. -->
+        <p>Tidligere forskning på farge og hukommelse spriker. Noen studier
+           finner bedre gjenkalling med fargekodet informasjon, andre finner
+           ingen effekt. Mye av spriket kan skyldes forsøksdesign: stimuli
+           med innbyrdes sammenheng lar deltakerne gjette seg til glemte
+           objekter, og tiden i hver fase er ofte dårlig kontrollert.
+           Spørsmålet ble derfor: hjelper farge gjenkallingen når muligheten
+           til å gjette ut fra sammenheng fjernes?</p>
       </section>
 
       <section aria-labelledby="did-heading">
         <h2 id="did-heading">Hva jeg gjorde</h2>
-        <p class="placeholder">[Mangler: beslutningene i rekkefølge. For hver:
-           problemet, alternativene, valget og grunnen.]</p>
+        <p>Testdesignet bygde på Kim's Game, en klassisk hukommelsesøvelse.
+           En tidligere variant brukte to kjente scener, en markedsbod og et
+           kontor. Jeg pilottestet den varianten først. Deltakerne
+           resonnerte seg frem til glemte objekter ut fra dem de husket,
+           fordi objektene i hver scene hørte sammen. Scenene ble derfor
+           byttet ut med KI-genererte bilder av hverdagsobjekter uten
+           innbyrdes sammenheng, ett i farger og ett i gråtoner.</p>
+        <p>Tjue unge voksne deltok, i alderen 20 til 28 år. Alle
+           gjennomførte Ishihara-testen for fargesyn.</p>
+        <p>Jeg kjørte alle rundene selv, med samme løp hver gang. Femten
+           sekunder eksponering for bildet. Ti sekunder baklengs telling,
+           for å blokkere indre repetisjon. Seksti sekunder muntlig
+           gjenkalling, tatt opp på lyd. Bare eksakte treff ble regnet som
+           riktige, og rekkefølgen på farge og gråtoner ble randomisert
+           mellom deltakerne.</p>
+        <p>For fargebildet målte jeg fire egenskaper per objekt: lyshet,
+           kroma, relativ størrelse og entropi. RGB-verdier ble konvertert
+           til CIELCh, og hver egenskap ble korrelert mot andelen som husket
+           objektet.</p>
+        <p>Resultatet gikk mot forventningen. Deltakerne husket i snitt 45
+           prosent av objektene, likt for farge og gråtoner. Ingen av
+           fargeegenskapene korrelerte med gjenkalling. Relativ størrelse
+           gjorde det, med en korrelasjon på 0,53. For disse bildene betydde
+           plass mer enn farge.</p>
       </section>
 
-      <section aria-labelledby="looks-heading">
-        <h2 id="looks-heading">Hvordan det ser ut</h2>
-        <p class="placeholder">[Mangler: bilder med bildetekster som sier noe
-           bildet ikke kan. Alt-tekst skrives av Mathias.]</p>
-      </section>
+      <!-- Seksjonen "Hvordan det ser ut" blir synlig når figurene er
+           hentet ut av artikkelen. De tre bildeplassene fra utkastet:
+
+           Bilde: fargestimuliet, figur 1 i artikkelen.
+           Bildetekst: Tjue hverdagsobjekter generert med KI, uten
+           innbyrdes sammenheng, slik at ingen kan gjettes ut fra de andre.
+
+           Bilde: gråtonestimuliet, figur 2.
+           Bildetekst: Gråtonebildet endte med 17 unike objekter mot
+           fargebildets 20. Den skjevheten er omtalt under.
+
+           Bilde: figur 3, gjenkalling per fargetone.
+           Bildetekst: Ingen sammenheng mellom fargetone og gjenkalling.
+           Tomaten var unntaket som peker mot diagnostisk farge, farge som
+           hører til objektet. -->
 
       <section aria-labelledby="change-heading">
         <h2 id="change-heading">Hva jeg ville endret</h2>
-        <p class="placeholder">[Mangler: to eller tre konkrete ting.]</p>
+        <p>Samme objekter i begge betingelser. De to bildene inneholdt ulike
+           objekter, og gråtonebildet hadde 17 unike mot fargebildets 20. Da
+           måles ikke bare fargen, men også objektene. Neste versjon ville
+           brukt samme bilde i en farge- og en gråtoneversjon.</p>
+        <p>Flere deltakere og flere runder. Med 20 deltakere og ett bilde
+           per betingelse er utvalget for lite til å avskrive små effekter.
+           Konklusjonen står for denne studien, ikke for spørsmålet som
+           helhet.</p>
+        <p>Kontroll på plassering. Vestlige deltakere leser et bilde i et
+           Z-mønster, og objekter øverst til venstre har en fordel.
+           Plassering burde vært balansert eller målt som egen variabel.</p>
       </section>
 
       <section aria-labelledby="facts-heading">
         <h2 id="facts-heading">Fakta</h2>
         <dl class="facts">
-          <dt>Karakter</dt>
-          <dd>A</dd>
-          <dt>Presentert</dt>
-          <dd>På en fargekonferanse i Taiwan.
-              <span class="placeholder">[Mangler: konferansens navn og år.]</span></dd>
           <dt>Rolle</dt>
-          <dd><span class="placeholder">[Mangler: rolle, eventuelle
-              samarbeidspartnere, verktøy og år.]</span></dd>
+          <dd>Utforming, pilottesting, gjennomføring og førsteutkast,
+              Mathias Sætersdal. Veiledning og revisjon, Phil Green,
+              medforfatter.</dd>
+          <dt>Emne</dt>
+          <dd>IMT4315 Colour in interface design, NTNU, våren 2025.
+              Karakter A.</dd>
+          <dt>Utvalgt</dt>
+          <dd>Teksten var en av to fra emnet som ble valgt ut til AIC 2025.</dd>
+          <dt>Presentert</dt>
+          <dd>På AIC 2025, 16. kongress i International Colour Association,
+              Taipei, 19. til 24. oktober 2025. Phil Green holdt
+              presentasjonen. Jeg reiste ikke.</dd>
+          <!-- BEKREFT: var det et foredrag eller en posterpresentasjon?
+               Lysbildene tyder på foredrag. -->
+          <!-- BEKREFT: er artikkelen med i kongressens publiserte
+               proceedings, og finnes det en lenke eller sidereferanse? -->
         </dl>
+        <p>
+          <a class="button" href="../files/AIC2025_full%20paper_MS-final.pdf" target="_blank" rel="noopener">Les artikkelen (PDF, åpnes i ny fane)</a>
+          <a class="button" href="../files/AIC2025-Mathias.pdf" target="_blank" rel="noopener">Se presentasjonen (PDF, åpnes i ny fane)</a>
+        </p>
       </section>
     </article>
   </main>

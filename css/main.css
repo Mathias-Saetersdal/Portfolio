@@ -376,6 +376,13 @@ textarea {
   }
 }
 
+a.button {
+  display: inline-block;
+  text-decoration: none;
+  margin-inline-end: 0.75rem;
+  margin-block-end: 0.5rem;
+}
+
 .button {
   font: inherit;
   font-family: var(--font-display);

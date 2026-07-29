@@ -19,12 +19,15 @@
     },
     {
       "id": "color",
-      "title": { "nb": "Fargeprosjekt, arbeidstittel", "en": "Color project, working title" },
-      "year": null,
-      "role": { "nb": "", "en": "" },
+      "title": { "nb": "Farge og hukommelse", "en": "Colour and memory" },
+      "year": 2025,
+      "role": {
+        "nb": "Utforming, pilottesting, gjennomføring og førsteutkast",
+        "en": "Design, pilot testing, execution and first draft"
+      },
       "summary": {
-        "nb": "Emneprosjekt om farge. Siden er et utkast og mangler innhold fra Mathias.",
-        "en": "A university course project about color. The page is a draft and needs content from Mathias."
+        "nb": "Et eksperiment på om farge gjør det lettere å huske hverdagsobjekter. Semesteroppgave ved NTNU, valgt ut til AIC 2025 og presentert i Taipei.",
+        "en": "An experiment on whether colour makes everyday objects easier to remember. A course paper at NTNU, selected for AIC 2025 and presented in Taipei."
       },
       "tags": ["color"],
       "thumb": "",
@@ -32,7 +35,7 @@
       "href": "work/color.html",
       "live": "",
       "repo": "",
-      "status": "draft"
+      "status": "published"
     }
   ]
 }
