@@ -13,6 +13,8 @@
   --muted:  #4a5a57; /* metadata         6.05:1  on --ground */
   --signal: #4a2e8c; /* links + focus ring 8.49:1 on --ground (text and non-text) */
   --surface:#dfe3dc; /* hover tint, non-text, no contrast claim */
+  --ok:     #17693c; /* correct state in the memory test 5.61:1 on --ground */
+  --err:    #a62639; /* wrong state in the memory test   5.92:1 on --ground */
 }
 
 @media (prefers-color-scheme: dark) {
@@ -22,6 +24,8 @@
     --muted:  #9fafa8; /* metadata         7.72:1  on --ground */
     --signal: #b7a5ef; /* links + focus ring 8.12:1 on --ground (text and non-text) */
     --surface:#1c2420; /* hover tint, non-text, no contrast claim */
+    --ok:     #7ed09a; /* correct state in the memory test 9.58:1 on --ground */
+    --err:    #f2a3a8; /* wrong state in the memory test   8.91:1 on --ground */
   }
 }
 
@@ -410,6 +414,151 @@ a.button {
   font-size: var(--t-1);
 }
 
+/* ---------- Memory test (work/color.html) ---------- */
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.mt-panel h3 {
+  margin-block-start: 0;
+}
+
+.mt-panel h3:focus {
+  outline: none; /* the panel heading is a focus target, not a control;
+                    focus-ring.js and :focus-visible never match here
+                    because focus() is programmatic */
+}
+
+.mt-timer {
+  font-family: var(--font-display);
+  font-weight: 650;
+  font-size: var(--t1);
+}
+
+.mt-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 0.5rem;
+}
+
+.mt-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+  margin-block: 1rem;
+}
+
+.mt-controls .button {
+  margin: 0;
+}
+
+.button.mt-quiet {
+  background: transparent;
+  color: var(--signal); /* 8.49:1 light, 8.12:1 dark */
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+  padding-inline: 0.25rem;
+}
+
+.mt-form {
+  display: flex;
+  gap: 0.75rem;
+  margin-block: 0.5rem 1rem;
+}
+
+.mt-form input {
+  flex: 1;
+  min-width: 0;
+}
+
+.mt-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.mt-list li {
+  padding-block: 0.15rem;
+}
+
+/* Result entries. The word and the mark carry the meaning, color is
+   an addition. Ratios are on the --ok and --err tokens. */
+.mt-entries li {
+  opacity: 1;
+}
+
+.mt-entries li.mt-pending {
+  opacity: 0.5;
+}
+
+.mt-entries .mt-verdict {
+  font-family: var(--font-display);
+  font-size: var(--t-1);
+  margin-inline-start: 0.5rem;
+}
+
+.mt-entries li.mt-ok .mt-verdict { color: var(--ok); }
+.mt-entries li.mt-err .mt-verdict { color: var(--err); }
+.mt-entries li.mt-dup .mt-verdict { color: var(--muted); }
+
+.mt-entries li.mt-ok.mt-animate {
+  animation: mt-rise 250ms ease-out;
+}
+
+.mt-entries li.mt-err.mt-animate {
+  animation: mt-shake 250ms ease-in-out;
+}
+
+@keyframes mt-rise {
+  from { transform: translateY(4px); }
+  to   { transform: translateY(0); }
+}
+
+@keyframes mt-shake {
+  0%   { transform: translateX(0); }
+  20%  { transform: translateX(-3px); }
+  45%  { transform: translateX(3px); }
+  70%  { transform: translateX(-3px); }
+  100% { transform: translateX(0); }
+}
+
+.mt-chart {
+  width: 100%;
+  height: auto;
+  margin-block: 1rem;
+}
+
+.mt-chart text {
+  font-family: var(--font-body);
+  font-size: 14px;
+  fill: var(--ink);
+}
+
+.mt-objects {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.mt-objects li {
+  margin-block-end: 0.5rem;
+}
+
+.mt-objects .mt-accepted {
+  display: block;
+  font-size: var(--t-1);
+  color: var(--muted);
+}
+
 /* ---------- Footer ---------- */
 
 .site-footer {
@@ -440,5 +589,10 @@ a.button {
     opacity: 1;
     transform: none;
     transition: none;
+  }
+
+  .mt-entries li.mt-ok.mt-animate,
+  .mt-entries li.mt-err.mt-animate {
+    animation: none;
   }
 }

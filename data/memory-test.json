@@ -1,0 +1,75 @@
+{
+  "_comment": "Answer key and study figures for the browser memory test. Verify accept_nb lists against the recordings before publishing. Recall figures from Farge_test_med_prosent__1_.xlsx.",
+  "_keyRules": {
+    "blyant": "Maps to greyscale item 9 (pencils) only. Bare 'blyant' does not match item 11.",
+    "tusj": "Maps to greyscale item 10 (marker) only.",
+    "crayon": "Greyscale item 11 requires an explicit term. Nobody recalled it in the study.",
+    "confirm": "Mathias to confirm these three rules.",
+    "altText": "alt_nb on each condition was drafted by Claude and needs sign-off from Mathias. Image paths were corrected to the actual filenames on disk."
+  },
+  "timings": {
+    "exposureSeconds": 15,
+    "distractorSeconds": 10,
+    "recallSeconds": 90,
+    "_note": "Study used 60 seconds of spoken recall. 90 is used here because typing is slower. Disclosed on the page."
+  },
+  "conditions": [
+    {
+      "id": "colour",
+      "participants": 20,
+      "objectCount": 20,
+      "meanRecallPercent": 46.5,
+      "image": "img/color_test.jpeg",
+      "alt_nb": "KI-generert bilde av hverdagsobjekter i farger på nøytral bakgrunn.",
+      "items": [
+        { "id": 1, "en": "Blue mug", "nb": "Blå kopp", "recallPercent": 75, "accept_nb": ["blå kopp", "kopp", "krus", "kaffekopp"], "accept_en": ["blue mug", "mug", "cup", "coffee mug"] },
+        { "id": 2, "en": "Remote control", "nb": "Fjernkontroll", "recallPercent": 50, "accept_nb": ["fjernkontroll", "kontroll"], "accept_en": ["remote control", "remote", "tv remote"] },
+        { "id": 3, "en": "Wall clock", "nb": "Veggur", "recallPercent": 60, "accept_nb": ["veggur", "klokke", "ur", "veggklokke"], "accept_en": ["wall clock", "clock"] },
+        { "id": 4, "en": "Rope", "nb": "Tau", "recallPercent": 55, "accept_nb": ["tau", "rep", "taustump"], "accept_en": ["rope", "coil of rope"] },
+        { "id": 5, "en": "Bottle", "nb": "Såpeflaske", "recallPercent": 45, "accept_nb": ["såpeflaske", "flaske", "pumpeflaske", "dispenser", "såpedispenser"], "accept_en": ["bottle", "soap bottle", "pump bottle", "dispenser"] },
+        { "id": 6, "en": "Money", "nb": "Penger", "recallPercent": 65, "accept_nb": ["penger", "seddel", "sedler", "pengeseddel", "pengesedler"], "accept_en": ["money", "banknote", "banknotes", "bill", "cash"] },
+        { "id": 7, "en": "Post it", "nb": "Post-it-lapper", "recallPercent": 75, "accept_nb": ["post-it", "postit", "lapper", "huskelapper", "notatlapper", "klistrelapper", "gule lapper"], "accept_en": ["post it", "post-its", "sticky notes", "notes"] },
+        { "id": 8, "en": "Wrench", "nb": "Skiftenøkkel", "recallPercent": 40, "accept_nb": ["skiftenøkkel", "fastnøkkel", "skrunøkkel"], "accept_en": ["wrench", "spanner", "adjustable wrench"] },
+        { "id": 9, "en": "Light bulb", "nb": "Lyspære", "recallPercent": 25, "accept_nb": ["lyspære", "pære", "glødepære"], "accept_en": ["light bulb", "lightbulb", "bulb"] },
+        { "id": 10, "en": "Picture frame", "nb": "Bilderamme", "recallPercent": 35, "accept_nb": ["bilderamme", "ramme", "fotoramme"], "accept_en": ["picture frame", "frame", "photo frame"] },
+        { "id": 11, "en": "Wine cork", "nb": "Vinkork", "recallPercent": 70, "accept_nb": ["vinkork", "kork", "korker", "flaskekork"], "accept_en": ["wine cork", "cork", "corks"] },
+        { "id": 12, "en": "Pencil sharpener", "nb": "Blyantspisser", "recallPercent": 5, "accept_nb": ["blyantspisser", "spisser", "blyantkvesser"], "accept_en": ["pencil sharpener", "sharpener"] },
+        { "id": 13, "en": "Baseball", "nb": "Baseball", "recallPercent": 45, "accept_nb": ["baseball", "ball", "baseballball"], "accept_en": ["baseball", "ball"] },
+        { "id": 14, "en": "Small brown tray", "nb": "Lite brunt brett", "recallPercent": 45, "accept_nb": ["brett", "brunt brett", "lite brett", "fat", "skål"], "accept_en": ["small brown tray", "tray", "brown tray", "dish"] },
+        { "id": 15, "en": "Yellow notebook", "nb": "Gul notatbok", "recallPercent": 30, "accept_nb": ["gul notatbok", "notatbok", "notisbok", "bok", "gul bok"], "accept_en": ["yellow notebook", "notebook", "book"] },
+        { "id": 16, "en": "Spool of thread", "nb": "Trådsnelle", "recallPercent": 35, "accept_nb": ["trådsnelle", "snelle", "tråd", "garn", "garnsnelle"], "accept_en": ["spool of thread", "thread", "spool", "reel of thread"] },
+        { "id": 17, "en": "Tomato", "nb": "Tomat", "recallPercent": 65, "accept_nb": ["tomat"], "accept_en": ["tomato"] },
+        { "id": 18, "en": "Paperclip", "nb": "Binders", "recallPercent": 30, "accept_nb": ["binders", "papirklips"], "accept_en": ["paperclip", "paper clip"] },
+        { "id": 19, "en": "Pencil", "nb": "Blyant", "recallPercent": 50, "accept_nb": ["blyant", "blå blyant"], "accept_en": ["pencil"] },
+        { "id": 20, "en": "Yellow plate", "nb": "Gul tallerken", "recallPercent": 30, "accept_nb": ["gul tallerken", "tallerken", "asjett", "fat"], "accept_en": ["yellow plate", "plate", "saucer", "dish"] }
+      ]
+    },
+    {
+      "id": "greyscale",
+      "participants": 20,
+      "objectCount": 17,
+      "meanRecallPercent": 38.2,
+      "image": "img/grayscale_test.jpeg",
+      "alt_nb": "KI-generert bilde av hverdagsobjekter i gråtoner på nøytral bakgrunn.",
+      "items": [
+        { "id": 1, "en": "Piggy bank", "nb": "Sparegris", "recallPercent": 60, "accept_nb": ["sparegris", "gris", "sparebøsse"], "accept_en": ["piggy bank", "pig"] },
+        { "id": 2, "en": "Flashlight", "nb": "Lommelykt", "recallPercent": 45, "accept_nb": ["lommelykt", "lykt"], "accept_en": ["flashlight", "torch"] },
+        { "id": 3, "en": "Small bowl", "nb": "Liten skål", "recallPercent": 30, "accept_nb": ["liten skål", "skål", "bolle"], "accept_en": ["small bowl", "bowl"] },
+        { "id": 4, "en": "Pine cone", "nb": "Kongle", "recallPercent": 35, "accept_nb": ["kongle", "furukongle", "grankongle"], "accept_en": ["pine cone", "pinecone", "cone"] },
+        { "id": 5, "en": "Crumpled paper", "nb": "Krøllet papir", "recallPercent": 55, "accept_nb": ["krøllet papir", "papirball", "papir", "sammenkrøllet papir"], "accept_en": ["crumpled paper", "paper", "paper ball"] },
+        { "id": 6, "en": "Button", "nb": "Knapp", "recallPercent": 10, "accept_nb": ["knapp"], "accept_en": ["button"] },
+        { "id": 7, "en": "Apple", "nb": "Eple", "recallPercent": 80, "accept_nb": ["eple"], "accept_en": ["apple"] },
+        { "id": 8, "en": "Scissors", "nb": "Saks", "recallPercent": 0, "accept_nb": ["saks"], "accept_en": ["scissors"] },
+        { "id": 9, "en": "Pencils", "nb": "Blyanter", "recallPercent": 55, "accept_nb": ["blyanter", "blyant", "fire blyanter", "hvite blyanter"], "accept_en": ["pencils", "pencil"] },
+        { "id": 10, "en": "Marker", "nb": "Tusj", "recallPercent": 10, "accept_nb": ["tusj", "tusjpenn", "merkepenn"], "accept_en": ["marker", "marker pen", "highlighter"] },
+        { "id": 11, "en": "Crayon", "nb": "Fargeblyant", "recallPercent": 0, "accept_nb": ["fargeblyant", "voksstift", "kritt", "crayon", "svart blyant"], "accept_en": ["crayon", "wax crayon"] },
+        { "id": 12, "en": "Baby sock", "nb": "Babysokk", "recallPercent": 80, "accept_nb": ["babysokk", "sokk", "ullsokk", "liten sokk"], "accept_en": ["baby sock", "sock"] },
+        { "id": 13, "en": "Binder clip", "nb": "Papirklemme", "recallPercent": 40, "accept_nb": ["papirklemme", "klemme", "binderklemme", "klype"], "accept_en": ["binder clip", "clip", "bulldog clip"] },
+        { "id": 14, "en": "Keyring with two keys", "nb": "Nøkkelknippe", "recallPercent": 35, "accept_nb": ["nøkkelknippe", "nøkler", "nøkkelring", "nøkkel"], "accept_en": ["keyring", "keys", "keychain"] },
+        { "id": 15, "en": "Coaster", "nb": "Glassbrikke", "recallPercent": 20, "accept_nb": ["glassbrikke", "brikke", "underlag", "matte"], "accept_en": ["coaster", "mat", "square mat"] },
+        { "id": 16, "en": "Wooden spoon", "nb": "Treskje", "recallPercent": 40, "accept_nb": ["treskje", "skje"], "accept_en": ["wooden spoon", "spoon"] },
+        { "id": 17, "en": "Smartphone", "nb": "Smarttelefon", "recallPercent": 55, "accept_nb": ["smarttelefon", "mobil", "telefon", "mobiltelefon"], "accept_en": ["smartphone", "phone", "mobile phone"] }
+      ]
+    }
+  ]
+}
