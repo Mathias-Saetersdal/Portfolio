@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="nb">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mathias Sætersdal, interaksjonsdesigner</title>
+  <meta name="description" content="Interaksjonsdesigner i Bergen. Jobber med universell utforming og WCAG, og skriver frontenden selv.">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="alternate" hreflang="nb" href="index.html">
+  <link rel="alternate" hreflang="en" href="en/index.html">
+  <link rel="alternate" hreflang="x-default" href="index.html">
+</head>
+<body>
+  <a class="skip-link" href="#main">Hopp til innholdet</a>
+
+  <header class="site-header wrap">
+    <nav aria-label="Hovednavigasjon">
+      <a href="about.html">Om meg</a>
+      <a href="en/index.html" lang="en" hreflang="en">English</a>
+    </nav>
+  </header>
+
+  <main id="main" class="wrap">
+    <section class="hero" aria-label="Introduksjon">
+      <h1>Mathias Sætersdal</h1>
+      <p class="lede">Interaksjonsdesigner i Bergen.</p>
+      <p>Jeg jobber med universell utforming og skriver frontenden selv.
+         Denne siden er bygget etter WCAG 2.2, og fokusmarkøren er en del av designet.</p>
+    </section>
+
+    <p class="tab-hint" id="tab-hint">Trykk Tab. Hele siden kan brukes med tastatur.</p>
+
+    <section aria-labelledby="projects-heading">
+      <h2 id="projects-heading">Prosjekter</h2>
+      <ol class="projects" id="project-list">
+        <!-- TODO: denne listen skal rendres fra data/projects.json av js/projects.js.
+             Oppføringen under er midlertidig statisk til de filene finnes. -->
+        <li class="project">
+          <h3><a href="work/secret-library.html">Det hemmelige biblioteket</a></h3>
+          <p class="project-meta">2026 · Design og utvikling, alene</p>
+          <p>Et personlig kunnskapsbibliotek for designarbeid.
+             Én JSON-fil vises som fem visninger: hylle, graf, ferdighetstre, bok og indeks.</p>
+        </li>
+      </ol>
+    </section>
+
+    <section aria-labelledby="contact-heading">
+      <h2 id="contact-heading">Kontakt</h2>
+      <!-- TODO: bytt til ekte adresse når den er bestemt. -->
+      <p>Send en e-post til <a href="mailto:TODO-EMAIL@example.com">TODO-EMAIL@example.com</a>.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer wrap">
+    <p>Mathias Sætersdal · <a href="en/index.html" lang="en" hreflang="en">English</a></p>
+  </footer>
+
+  <script src="js/focus-ring.js" defer></script>
+</body>
+</html>
