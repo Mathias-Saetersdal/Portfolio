@@ -1,0 +1,38 @@
+{
+  "projects": [
+    {
+      "id": "secret-library",
+      "title": { "nb": "Det hemmelige biblioteket", "en": "The Secret Library" },
+      "year": 2026,
+      "role": { "nb": "Design og utvikling, alene", "en": "Design and build, solo" },
+      "summary": {
+        "nb": "Et personlig kunnskapsbibliotek for designarbeid. Én JSON-fil vises som fem visninger: hylle, graf, ferdighetstre, bok og indeks.",
+        "en": "A personal knowledge library for design work. One JSON file rendered as five views: shelf, graph, skill tree, book and index."
+      },
+      "tags": ["accessibility", "information architecture", "frontend"],
+      "thumb": "",
+      "alt": { "nb": "", "en": "" },
+      "href": "work/secret-library.html",
+      "live": "https://mathias-saetersdal.github.io",
+      "repo": "https://github.com/Mathias-Saetersdal/Mathias-Saetersdal.github.io",
+      "status": "published"
+    },
+    {
+      "id": "color",
+      "title": { "nb": "Fargeprosjekt, arbeidstittel", "en": "Color project, working title" },
+      "year": null,
+      "role": { "nb": "", "en": "" },
+      "summary": {
+        "nb": "Emneprosjekt om farge. Siden er et utkast og mangler innhold fra Mathias.",
+        "en": "A university course project about color. The page is a draft and needs content from Mathias."
+      },
+      "tags": ["color"],
+      "thumb": "",
+      "alt": { "nb": "", "en": "" },
+      "href": "work/color.html",
+      "live": "",
+      "repo": "",
+      "status": "draft"
+    }
+  ]
+}

@@ -32,16 +32,11 @@
 
     <section aria-labelledby="projects-heading">
       <h2 id="projects-heading">Prosjekter</h2>
-      <ol class="projects" id="project-list">
-        <!-- TODO: denne listen skal rendres fra data/projects.json av js/projects.js.
-             Oppføringen under er midlertidig statisk til de filene finnes. -->
-        <li class="project">
-          <h3><a href="work/secret-library.html">Det hemmelige biblioteket</a></h3>
-          <p class="project-meta">2026 · Design og utvikling, alene</p>
-          <p>Et personlig kunnskapsbibliotek for designarbeid.
-             Én JSON-fil vises som fem visninger: hylle, graf, ferdighetstre, bok og indeks.</p>
-        </li>
-      </ol>
+      <ol class="projects" id="project-list" data-source="data/projects.json"></ol>
+      <noscript>
+        <p>Prosjektlisten trenger JavaScript.
+           Se <a href="work/secret-library.html">Det hemmelige biblioteket</a> direkte.</p>
+      </noscript>
     </section>
 
     <section aria-labelledby="contact-heading">
@@ -56,5 +51,7 @@
   </footer>
 
   <script src="js/focus-ring.js" defer></script>
+  <script src="js/projects.js" defer></script>
+  <script src="js/motion.js" defer></script>
 </body>
 </html>
