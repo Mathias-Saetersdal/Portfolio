@@ -33,10 +33,8 @@
         if (!url || !label) {
           return;
         }
-        if (mount.childNodes.length) {
-          mount.appendChild(document.createTextNode(' · '));
-        }
         var link = document.createElement('a');
+        link.className = 'button';
         link.href = url;
         link.target = '_blank';
         link.rel = 'noopener';

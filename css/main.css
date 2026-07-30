@@ -387,6 +387,18 @@ a.button {
   margin-block-end: 0.5rem;
 }
 
+/* The action links under a case study's first section. */
+.button-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-block: 0 3.5rem;
+}
+
+.button-group .button {
+  margin: 0;
+}
+
 .button {
   font: inherit;
   font-family: var(--font-display);
