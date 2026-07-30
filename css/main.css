@@ -490,6 +490,16 @@ a.button {
   padding-block: 0.15rem;
 }
 
+/* The distractor's number chain. The last number is the current one. */
+.mt-chain {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 0.75rem;
+  font-family: var(--font-display);
+  font-weight: 650;
+  font-size: var(--t1);
+}
+
 /* Result entries. The word and the mark carry the meaning, color is
    an addition. Ratios are on the --ok and --err tokens. */
 .mt-entries li {

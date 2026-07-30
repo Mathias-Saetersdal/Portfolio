@@ -276,29 +276,32 @@
   }
 
   function distractor() {
-    var from = Math.floor(Math.random() * 900) + 100;
+    var current = Math.floor(Math.random() * 60) + 40; /* 40 to 99 */
     var timerEl = el('p', { 'class': 'mt-timer', text: '' });
     var input = el('input', { type: 'text', inputmode: 'numeric', autocomplete: 'off', 'aria-label': 'Neste tall' });
     var add = el('button', { 'class': 'button', type: 'submit', text: 'Legg til' });
-    var list = el('ul', { 'class': 'mt-list' });
+    var chain = el('ul', { 'class': 'mt-list mt-chain' }, [
+      el('li', { text: String(current) })
+    ]);
     var form = el('form', { 'class': 'mt-form' }, [input, add]);
 
     form.addEventListener('submit', function (e) {
       e.preventDefault();
-      var value = input.value.trim();
-      if (!value) {
-        return;
-      }
-      list.appendChild(el('li', { text: value }));
+      var value = parseInt(input.value.trim(), 10);
       input.value = '';
+      if (value === current - 1) {
+        current = value;
+        chain.appendChild(el('li', { text: String(value) }));
+      }
+      /* a wrong number changes nothing, this phase is not a test */
       input.focus();
     });
 
     setPanel('Tell baklengs', [
-      el('p', { text: 'Tell baklengs fra ' + from + '. Trekk fra 3 hver gang, og skriv hvert tall.' }),
+      el('p', { text: 'Tell baklengs fra tallet under, ett tall om gangen. Dette er ikke en del av testen. Det er der for å hindre at du repeterer objektene inni deg.' }),
+      chain,
       timerEl,
       form,
-      list,
       el('div', { 'class': 'mt-controls' }, [timeButton(), abortButton()])
     ]);
     startTimer(data.timings.distractorSeconds, timerEl, recall);
