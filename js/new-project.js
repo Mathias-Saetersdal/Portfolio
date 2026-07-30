@@ -106,8 +106,8 @@
       thumb: val('thumb'),
       alt: { nb: val('alt_nb'), en: val('alt_en') },
       href: val('href'),
-      live: val('live'),
-      repo: val('repo'),
+      liveUrl: val('live'),
+      repoUrl: val('repo'),
       status: status
     };
 
