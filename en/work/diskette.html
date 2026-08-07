@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Diskette · Mathias Sætersdal</title>
+  <meta name="description" content="Case study: four lists of ten entries, where each entry appears as the object it was released as.">
+  <link rel="stylesheet" href="../../css/main.css">
+  <link rel="alternate" hreflang="nb" href="../../work/diskette.html">
+  <link rel="alternate" hreflang="en" href="diskette.html">
+  <link rel="alternate" hreflang="x-default" href="../../work/diskette.html">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header wrap">
+    <nav aria-label="Main navigation">
+      <a href="../index.html">Home</a>
+      <a href="../about.html">About</a>
+      <a href="../../work/diskette.html" lang="nb" hreflang="nb">Norsk</a>
+    </nav>
+  </header>
+
+  <main id="main" class="wrap">
+    <article class="case-study">
+      <h1>Diskette</h1>
+      <p class="project-meta">2026 · Design and build, solo</p>
+
+      <section aria-labelledby="what-heading">
+        <h2 id="what-heading">What it is</h2>
+        <p>Four lists of ten entries: films, series, albums, games. Each
+           entry appears as the object it was released as. A DVD case, a
+           Blu-ray case, a CD cover, a game case. The case opens on its
+           hinge, the disc lifts out of the tray and spins.</p>
+      </section>
+
+      <div class="button-group" role="group" aria-label="Project links">
+        <a class="button" href="https://mathias-saetersdal.github.io/diskette/" target="_blank" rel="noopener noreferrer">Open Diskette (opens in a new tab)</a>
+        <a class="button" href="https://github.com/Mathias-Saetersdal/diskette" target="_blank" rel="noopener noreferrer">View the source on GitHub (opens in a new tab)</a>
+      </div>
+
+      <!-- TODO image: hero, an open Blu-ray case with the disc lifted out. Needs alt text in English. -->
+
+      <section aria-labelledby="brief-heading">
+        <h2 id="brief-heading">The brief</h2>
+        <p>The brief was my own. Letterboxd, Backloggd and Topsters already
+           handle ranking, and all of them show the same flat grid of cover
+           art. I wanted to see if the object itself could carry the list.
+           The constraints were fixed from the start: frontend only, no
+           backend, no database. The lists live in a TypeScript file I edit
+           by hand. Every image is fetched once, processed and committed to
+           the repo. CSS transforms before WebGL. Anything that works with
+           a mouse has to work with touch.</p>
+      </section>
+
+      <section aria-labelledby="did-heading">
+        <h2 id="did-heading">What I did</h2>
+
+        <h3>Case type follows release year</h3>
+        <p>A film I know from DVD and a film I know from Blu-ray are two
+           different objects. I chose the format I actually owned, not the
+           newest release. Films from 2008 onward get Blu-ray, older films
+           get DVD. The year is an approximation, but it matches my shelf
+           better than a rule based on the canonical release.</p>
+
+        <h3>Three sources for the disc</h3>
+        <p>Every entry resolves its disc in the same order. First, a scan
+           of the actual disc. Then a generated disc: the cover is cropped
+           to a circle, the hole and the clear inner ring are punched out,
+           and a sheen is laid over it. Last, a burned disc. That last
+           option is also a choice I can set by hand. The Life of Pablo,
+           Rocket League and Cuphead never existed on a disc I owned, and
+           there a burned CD-R is more accurate than a scan of something
+           else.</p>
+
+        <h3>The burned disc</h3>
+        <p>A silver base, rainbow diffraction, a printed ring near the hub
+           in small type, and the title written across it in Permanent
+           Marker. The disc sits two to five degrees off and slightly
+           off-centre. A perfectly clean blank disc looks like a rendering
+           error. A blank disc with a ring of illegible small print looks
+           like something from a spindle.</p>
+
+        <h3>The hinge, and the spine that wasn't there</h3>
+        <p>The case opens with a single rotation on the Y axis, on an
+           element with <code>preserve-3d</code>, with the pivot on the
+           spine edge. The first version produced a visible spine that
+           wasn't in the model. I measured six corner coordinates before
+           touching the code, and the error was in
+           <code>transform-origin</code>: the pivot sat in the middle of
+           the face instead of on the edge, so the wall got drawn where the
+           spine should have been. The cause sits as a comment in the file,
+           along with the state before the fix.</p>
+
+        <h3>Millimetres in the code</h3>
+        <p>The measurements are real millimetres used as ratios. The
+           Blu-ray case is 148 × 128.5 × 12 mm. I had 171 × 135 in the spec
+           at first, from a source I hadn't checked against a real case.
+           Every number carries a comment on where it comes from, so the
+           next version of me doesn't reverse the correction.</p>
+
+        <h3>Livery per console generation</h3>
+        <p>PS2, PS3, PS4 and PS5 share geometry but not appearance. Each
+           generation has its own header bar, colour and logo placement.
+           Sly 3 gets the black PS2 bar, Dark Souls III the blue PS4 bar,
+           Elden Ring Nightreign the white PS5 bar. Without this every game
+           reads as the same case, and that's wrong for all four.</p>
+
+        <h3>The images are fetched once</h3>
+        <p>A script fetches covers and disc scans, normalises them to a
+           fixed size and centre, and writes them to the repo. Nothing is
+           fetched from an API while the site runs. The script uses
+           <code>curl</code> instead of <code>fetch</code>, because
+           archive.org's CDN answers unreliably to the latter, and a
+           <code>--only</code> flag lets me re-run a single entry without
+           burning through the quota on the nineteen that already worked.
+           The sources are TMDB, fanart.tv, MusicBrainz with the Cover Art
+           Archive, and GameTDB. All of them require credit. Every file
+           gets a row in <code>credits.json</code> with its source and
+           terms, and that list is shown on the site.</p>
+
+        <h3>Motion that can be turned off</h3>
+        <p>With <code>prefers-reduced-motion</code> the disc stops spinning
+           and the hinge switches state without rotating. Keyboard focus is
+           visible, and every case and every disc can be reached with
+           tab.</p>
+
+        <h3>The note</h3>
+        <p>Every entry has two sentences on why it's there, written by me.
+           Forty objects with no text is a tech demo. Forty objects with
+           two honest sentences each is a personal site.</p>
+      </section>
+
+      <section aria-labelledby="looks-heading">
+        <h2 id="looks-heading">What it looks like</h2>
+        <p>The starting point is a shelf of closed cases shown as spines in
+           a row: blue for Blu-ray, black for DVD, a narrow bare edge for
+           the game cases. A row unfolds to full front covers on touch,
+           with real cover art for the films and albums and generated disc
+           art for the games that never had a retail scan.</p>
+        <p>The four PlayStation liveries read as distinct even at this
+           size. PS2 has a black bar with white text. PS3 has a
+           grey-to-black gradient with a thin red rule under it. PS4 has a
+           blue bar. PS5 has the only light bar of the four, white. Sly 3
+           and Lego Star Wars: The Complete Saga also use real retail cover
+           art instead of generated art, visible as a different print
+           sharpness from the rest of the games row.</p>
+        <!-- TODO: 3 to 4 images with captions once they exist. Suggested
+             subjects: closed case against open case, the three disc
+             sources side by side, the four console generations. Captions
+             should say something the image cannot. -->
+      </section>
+
+      <section aria-labelledby="change-heading">
+        <h2 id="change-heading">What I would change</h2>
+        <p>Keyboard doesn't open a case yet. With a case focused, neither
+           Enter nor space did anything in my testing, only an actual
+           mouse click unfolded the row. That breaks the rule I set myself,
+           that anything that works with a mouse has to work with touch
+           and keyboard, and it's the first thing I'd fix.</p>
+        <p>The button's accessible name doesn't change. It reads
+           <code>Open case: title</code> regardless of state, so a screen
+           reader gets no confirmation that anything actually opened, even
+           when the mouse click works.</p>
+        <p>The hinge and the disc described above exist as their own
+           component, but the list currently uses a simpler flat case that
+           just enlarges in place. Wiring the full mechanism into all forty
+           entries without killing performance on a mid-range phone is the
+           work that's left.</p>
+      </section>
+
+      <section aria-labelledby="facts-heading">
+        <h2 id="facts-heading">Facts</h2>
+        <dl class="facts">
+          <dt>Role</dt>
+          <dd>Design and build, solo</dd>
+          <dt>Year</dt>
+          <dd>2026</dd>
+          <dt>Tools</dt>
+          <dd>TypeScript, React and Vite. sharp for image processing. No
+              backend, no database.</dd>
+        </dl>
+        <!-- TODO: History, commit count. The number doesn't exist yet.
+             Don't guess. -->
+      </section>
+    </article>
+  </main>
+
+  <footer class="site-footer wrap">
+    <p>Mathias Sætersdal · <a href="../../work/diskette.html" lang="nb" hreflang="nb">Norsk</a></p>
+  </footer>
+
+  <script src="../../js/focus-ring.js" defer></script>
+</body>
+</html>

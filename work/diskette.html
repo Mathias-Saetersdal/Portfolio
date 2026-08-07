@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="nb">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Diskette · Mathias Sætersdal</title>
+  <meta name="description" content="Kasusstudie: fire lister på ti oppføringer der hver oppføring vises som gjenstanden den ble utgitt som.">
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="alternate" hreflang="nb" href="diskette.html">
+  <link rel="alternate" hreflang="en" href="../en/work/diskette.html">
+  <link rel="alternate" hreflang="x-default" href="diskette.html">
+</head>
+<body>
+  <a class="skip-link" href="#main">Hopp til innholdet</a>
+
+  <header class="site-header wrap">
+    <nav aria-label="Hovednavigasjon">
+      <a href="../index.html">Hjem</a>
+      <a href="../about.html">Om meg</a>
+      <a href="../en/work/diskette.html" lang="en" hreflang="en">English</a>
+    </nav>
+  </header>
+
+  <main id="main" class="wrap">
+    <article class="case-study">
+      <h1>Diskette</h1>
+      <p class="project-meta">2026 · Design og utvikling, alene</p>
+
+      <section aria-labelledby="what-heading">
+        <h2 id="what-heading">Hva det er</h2>
+        <p>Fire lister på ti oppføringer: film, serie, album, spill. Hver
+           oppføring vises som gjenstanden den ble utgitt som. En DVD-kasse,
+           en Blu-ray-kasse, et CD-cover, en spillkasse. Kassen åpnes på
+           hengselet, platen løftes ut av brettet og snurrer.</p>
+      </section>
+
+      <div class="button-group" role="group" aria-label="Prosjektlenker">
+        <a class="button" href="https://mathias-saetersdal.github.io/diskette/" target="_blank" rel="noopener noreferrer">Åpne Diskette (åpnes i ny fane)</a>
+        <a class="button" href="https://github.com/Mathias-Saetersdal/diskette" target="_blank" rel="noopener noreferrer">Se kilden på GitHub (åpnes i ny fane)</a>
+      </div>
+
+      <!-- TODO image: hero, en åpen Blu-ray-kasse med platen løftet ut. Trenger alt-tekst på norsk. -->
+
+      <section aria-labelledby="brief-heading">
+        <h2 id="brief-heading">Oppdraget</h2>
+        <p>Oppdraget var mitt eget. Letterboxd, Backloggd og Topsters
+           håndterer rangering allerede, og alle viser det samme flate
+           rutenettet med omslagsbilder. Jeg ville se om selve gjenstanden
+           kunne bære listen. Rammene var faste fra start: bare frontend,
+           ingen backend, ingen database. Listene ligger i en TypeScript-fil
+           jeg redigerer for hånd. Alle bilder hentes én gang, behandles og
+           legges i repoet. CSS-transformasjoner før WebGL. Alt som virker
+           med mus skal virke med berøring.</p>
+      </section>
+
+      <section aria-labelledby="did-heading">
+        <h2 id="did-heading">Hva jeg gjorde</h2>
+
+        <h3>Kassetypen følger utgivelsesåret</h3>
+        <p>En film jeg kjenner fra DVD og en film jeg kjenner fra Blu-ray er
+           to forskjellige gjenstander. Jeg valgte formatet jeg faktisk eide,
+           ikke den nyeste utgivelsen. Filmer fra 2008 og senere får
+           Blu-ray, eldre filmer får DVD. Årstallet er en tilnærming, men det
+           treffer hyllen min bedre enn en regel om kanonisk utgivelse.</p>
+
+        <h3>Tre kilder til platen</h3>
+        <p>Hver oppføring løser platen i samme rekkefølge. Først skann av
+           den faktiske platen. Så en generert plate: omslaget beskjæres til
+           en sirkel, hullet og den klare indre ringen stanses ut, og et
+           lysstrøk legges over. Til slutt en brent plate. Den siste er også
+           et valg jeg kan sette for hånd. The Life of Pablo, Rocket League
+           og Cuphead kom aldri på en plate jeg eide, og da er en brent
+           CD-R riktigere enn en skann av noe annet.</p>
+
+        <h3>Den brente platen</h3>
+        <p>Sølvbunn, regnbuebrytning, en trykt ring nær navet med små
+           bokstaver, og tittelen skrevet på tvers i Permanent Marker.
+           Platen står to til fem grader skjevt og litt av senter. En helt
+           ren blank plate ser ut som en feil i renderingen. En blank plate
+           med en ring med uleselig småtrykk ser ut som noe fra en
+           spindel.</p>
+
+        <h3>Hengselet, og ryggen som ikke fantes</h3>
+        <p>Kassen åpnes med én rotasjon om Y-aksen på et element med
+           <code>preserve-3d</code>, med rotasjonspunktet på ryggkanten.
+           Første versjon ga en synlig rygg som ikke lå i modellen. Jeg
+           målte seks hjørnekoordinater før jeg rørte koden, og feilen lå i
+           <code>transform-origin</code>: pivoten sto på midten av flaten i
+           stedet for på kanten, så veggen ble tegnet der ryggen skulle
+           vært. Årsaken ligger som kommentar i filen, sammen med tilstanden
+           før fiksen.</p>
+
+        <h3>Millimeter i koden</h3>
+        <p>Målene er ekte millimeter brukt som forhold. Blu-ray-kassen er
+           148 × 128,5 × 12 mm. Jeg hadde 171 × 135 i spesifikasjonen først,
+           fra en kilde jeg ikke hadde sjekket mot en kasse. Hvert tall står
+           med en kommentar om hvor det kommer fra, slik at neste versjon av
+           meg ikke reverserer rettelsen.</p>
+
+        <h3>Livery per konsollgenerasjon</h3>
+        <p>PS2, PS3, PS4 og PS5 deler geometri, men ikke utseende. Hver
+           generasjon har sin egen toppbord, farge og plassering av logo.
+           Sly 3 får den svarte PS2-borden, Dark Souls III den blå
+           PS4-borden, Elden Ring Nightreign den hvite PS5-borden. Uten
+           dette leser alle spillene som samme kasse, og det er feil for
+           alle fire.</p>
+
+        <h3>Bildene hentes én gang</h3>
+        <p>Et script henter omslag og plateskann, normaliserer dem til fast
+           størrelse og senter, og skriver dem til repoet. Ingenting hentes
+           fra et API mens siden kjører. Scriptet bruker <code>curl</code> i
+           stedet for <code>fetch</code>, fordi CDN-en hos archive.org
+           svarer ustabilt på det siste, og et <code>--only</code>-flagg lar
+           meg kjøre én oppføring på nytt uten å bruke opp kvoten på de
+           nitten som virket. Kildene er TMDB, fanart.tv, MusicBrainz med
+           Cover Art Archive, og GameTDB. Alle krever kreditering. Hver fil
+           får en rad i <code>credits.json</code> med kilde og vilkår, og
+           den listen vises på siden.</p>
+
+        <h3>Bevegelse som kan velges bort</h3>
+        <p>Med <code>prefers-reduced-motion</code> stopper platen å snurre
+           og hengselet bytter tilstand uten rotasjon. Tastaturfokus er
+           synlig, og hver kasse og hver plate kan nås med tab.</p>
+
+        <h3>Notatet</h3>
+        <p>Hver oppføring har to setninger om hvorfor den står der, skrevet
+           av meg. Førti gjenstander uten tekst er en teknisk demo. Førti
+           gjenstander med to ærlige setninger hver er en personlig side.</p>
+      </section>
+
+      <section aria-labelledby="looks-heading">
+        <h2 id="looks-heading">Hva det ser ut som</h2>
+        <p>Utgangspunktet er en hylle med lukkede kasser vist som rygger på
+           rad: blått for Blu-ray, svart for DVD, en smal blank kant for
+           spillkassene. Raden folder seg ut til fulle forsider ved
+           berøring, med ekte omslagskunst for filmene og albumene og
+           generert platekunst for spillene der ingen retail-skann
+           fantes.</p>
+        <p>De fire PlayStation-liveriene skiller seg tydelig selv i denne
+           størrelsen. PS2 har et svart bord med hvit tekst. PS3 har en
+           grå-til-svart gradient med en tynn rød strek under. PS4 har et
+           blått bord. PS5 har det eneste lyse bordet av de fire, hvitt.
+           Sly 3 og Lego Star Wars: The Complete Saga bruker i tillegg ekte
+           retail-omslag i stedet for generert kunst, synlig som en annen
+           trykkskarphet enn resten av spillraden.</p>
+        <!-- TODO: 3 til 4 bilder med bildetekst når de finnes. Foreslåtte
+             motiv: lukket kasse mot åpen kasse, de tre platekildene ved
+             siden av hverandre, de fire konsollgenerasjonene. Bildetekst
+             skal si noe bildet ikke sier. -->
+      </section>
+
+      <section aria-labelledby="change-heading">
+        <h2 id="change-heading">Hva jeg ville endret</h2>
+        <p>Tastaturet åpner ingen kasse ennå. Med fokus på en kasse gjorde
+           verken Enter eller mellomrom noe i testingen min, bare et
+           faktisk museklikk fikk raden til å folde seg ut. Det bryter med
+           regelen jeg satte selv, at alt som virker med mus skal virke med
+           berøring og tastatur, og det er det første jeg vil fikse.</p>
+        <p>Knappens tilgjengelige navn endrer seg ikke. Den heter
+           <code>Open case: tittel</code> uansett tilstand, så en
+           skjermleser får ingen bekreftelse på at noe faktisk åpnet seg,
+           selv når museklikket virker.</p>
+        <p>Hengselet og platen beskrevet over finnes som egen komponent,
+           men listen bruker foreløpig en enklere, flat kasse som bare
+           forstørres på stedet. Å koble den fulle mekanikken til alle
+           førti oppføringene uten å drepe ytelsen på en middels telefon er
+           arbeidet som gjenstår.</p>
+      </section>
+
+      <section aria-labelledby="facts-heading">
+        <h2 id="facts-heading">Fakta</h2>
+        <dl class="facts">
+          <dt>Rolle</dt>
+          <dd>Design og utvikling, alene</dd>
+          <dt>År</dt>
+          <dd>2026</dd>
+          <dt>Verktøy</dt>
+          <dd>TypeScript, React og Vite. sharp for bildebehandling. Ingen
+              backend, ingen database.</dd>
+        </dl>
+        <!-- TODO: Historikk, antall commits. Tallet finnes ikke ennå. Ikke
+             gjett. -->
+      </section>
+    </article>
+  </main>
+
+  <footer class="site-footer wrap">
+    <p>Mathias Sætersdal · <a href="../en/work/diskette.html" lang="en" hreflang="en">English</a></p>
+  </footer>
+
+  <script src="../js/focus-ring.js" defer></script>
+</body>
+</html>

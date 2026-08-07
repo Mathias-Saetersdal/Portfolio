@@ -83,6 +83,35 @@
       "liveUrl": "",
       "repoUrl": "",
       "status": "published"
+    },
+    {
+      "id": "diskette",
+      "title": {
+        "nb": "Diskette",
+        "en": "Diskette"
+      },
+      "year": 2026,
+      "role": {
+        "nb": "Design og utvikling, alene",
+        "en": "Design and build, solo"
+      },
+      "summary": {
+        "nb": "Fire lister på ti oppføringer, der hver oppføring vises som gjenstanden den ble utgitt som. Kassen åpnes, platen løftes ut og snurrer.",
+        "en": "Four lists of ten entries, where each entry appears as the object it was released as. The case opens, the disc lifts out and spins."
+      },
+      "tags": [
+        "frontend",
+        "interaction design",
+        "accessibility"
+      ],
+      "alt": {
+        "nb": "",
+        "en": ""
+      },
+      "href": "work/diskette.html",
+      "liveUrl": "https://mathias-saetersdal.github.io/diskette/",
+      "repoUrl": "https://github.com/Mathias-Saetersdal/diskette",
+      "status": "published"
     }
   ]
 }
