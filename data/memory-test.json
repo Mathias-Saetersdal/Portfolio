@@ -21,6 +21,7 @@
       "meanRecallPercent": 46.5,
       "image": "img/color_test.jpeg",
       "alt_nb": "KI-generert bilde av hverdagsobjekter i farger på nøytral bakgrunn.",
+      "alt_en": "AI-generated image of everyday objects in colour on a neutral background.",
       "items": [
         { "id": 1, "en": "Blue mug", "nb": "Blå kopp", "recallPercent": 75, "accept_nb": ["blå kopp", "kopp", "krus", "kaffekopp"], "accept_en": ["blue mug", "mug", "cup", "coffee mug"] },
         { "id": 2, "en": "Remote control", "nb": "Fjernkontroll", "recallPercent": 50, "accept_nb": ["fjernkontroll", "kontroll"], "accept_en": ["remote control", "remote", "tv remote"] },
@@ -51,6 +52,7 @@
       "meanRecallPercent": 38.2,
       "image": "img/grayscale_test.jpeg",
       "alt_nb": "KI-generert bilde av hverdagsobjekter i gråtoner på nøytral bakgrunn.",
+      "alt_en": "AI-generated image of everyday objects in greyscale on a neutral background.",
       "items": [
         { "id": 1, "en": "Piggy bank", "nb": "Sparegris", "recallPercent": 60, "accept_nb": ["sparegris", "gris", "sparebøsse"], "accept_en": ["piggy bank", "pig"] },
         { "id": 2, "en": "Flashlight", "nb": "Lommelykt", "recallPercent": 45, "accept_nb": ["lommelykt", "lykt"], "accept_en": ["flashlight", "torch"] },

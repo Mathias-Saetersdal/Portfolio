@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Color project, draft · Mathias Sætersdal</title>
-  <meta name="description" content="Draft case study about a university course project on color. The page is not finished.">
+  <title>Colour and memory · Mathias Sætersdal</title>
+  <meta name="description" content="Case study: an experiment on whether colour makes everyday objects easier to remember, presented at AIC 2025 in Taipei.">
   <link rel="stylesheet" href="../../css/main.css">
   <link rel="alternate" hreflang="nb" href="../../work/color.html">
   <link rel="alternate" hreflang="en" href="color.html">
@@ -23,55 +23,139 @@
 
   <main id="main" class="wrap">
     <article class="case-study">
-      <h1>Color project, working title</h1>
-      <p class="placeholder">Draft. This page is not finished and must not be
-         published. The project is set to draft in data/projects.json and
-         does not appear on the front page. Everything in brackets below is
-         missing and can only be written by Mathias. Known facts: a
-         university course project, graded A, presented at a color
-         convention in Taiwan. Nothing else exists.</p>
+      <h1>Colour and memory</h1>
+      <p class="project-meta">2025 · Design, pilot testing, execution and first draft</p>
 
       <section aria-labelledby="what-heading">
         <h2 id="what-heading">What it is</h2>
-        <p class="placeholder">[Missing: two sentences on what the project
-           is, and one image with alt text written by Mathias. The real
-           title is missing too.]</p>
+        <p>An experiment on whether colour makes everyday objects easier to
+           remember. The work started as an assignment in the course
+           IMT4315 Colour in interface design at NTNU in spring 2025.
+           Supervisor Phil Green selected the paper for AIC 2025, we
+           revised it together, and he gave the presentation in Taipei.</p>
+        <p>AIC, the International Colour Association, brings together the
+           national colour science societies. AIC 2025 was the
+           organisation's 16th congress, hosted by the Color Association
+           of Taiwan.</p>
+        <!-- Image: the colour stimulus from the paper.
+             Alt text to be written once the image is chosen. -->
       </section>
+
+      <div class="button-group" role="group" aria-label="Project links">
+        <a class="button" href="../../files/AIC2025_full%20paper_MS-final.pdf" target="_blank" rel="noopener">Read the paper (PDF, opens in a new tab)</a>
+        <a class="button" href="../../files/AIC2025-Mathias.pdf" target="_blank" rel="noopener">See the presentation (PDF, opens in a new tab)</a>
+        <a class="button" href="#test-heading">Take the test yourself</a>
+      </div>
 
       <section aria-labelledby="brief-heading">
         <h2 id="brief-heading">The brief</h2>
-        <p class="placeholder">[Missing: which course, what the assignment
-           asked for, and what the constraints were.]</p>
+        <!-- MISSING: what the course assignment actually asked for. -->
+        <p>Prior research on colour and memory is inconsistent. Some
+           studies find better recall with colour-coded information,
+           others find no effect. Much of the inconsistency may come down
+           to experimental design: stimuli with an internal relationship
+           let participants guess forgotten objects from the ones they
+           remember, and the time in each phase is often poorly
+           controlled. The question became: does colour help recall once
+           the chance to guess from context is removed?</p>
+      </section>
+
+      <section aria-labelledby="test-heading">
+        <h2 id="test-heading" tabindex="-1">Try the test</h2>
+        <div id="memory-test" data-source="../../data/memory-test.json" data-base="../../">
+          <noscript>
+            <p>The test needs JavaScript. The rest of the page doesn't.</p>
+          </noscript>
+        </div>
       </section>
 
       <section aria-labelledby="did-heading">
         <h2 id="did-heading">What I did</h2>
-        <p class="placeholder">[Missing: the decisions in order. For each:
-           the problem, the options, the choice and the reason.]</p>
+        <p>The test design built on Kim's Game, a classic memory exercise.
+           An earlier variant used two familiar scenes, a market stall and
+           an office. I piloted that variant first. Participants reasoned
+           their way to forgotten objects from the ones they remembered,
+           because the objects in each scene belonged together. The scenes
+           were therefore replaced with AI-generated images of everyday
+           objects with no relationship to each other, one in colour and
+           one in greyscale.</p>
+        <p>Twenty young adults took part, aged 20 to 28. All of them
+           completed the Ishihara test for colour vision.</p>
+        <p>I ran every round myself, with the same sequence each time.
+           Fifteen seconds of exposure to the image. Ten seconds of
+           counting backward, to block internal rehearsal. Sixty seconds
+           of spoken recall, recorded on audio. Only exact matches counted
+           as correct, and the order of colour and greyscale was
+           randomised between participants.</p>
+        <p>For the colour image I measured four properties per object:
+           lightness, chroma, relative size and entropy. RGB values were
+           converted to CIELCh, and each property was correlated against
+           the proportion who remembered the object.</p>
+        <p>The result went against expectation. Participants remembered 45
+           percent of the objects on average, the same for colour and
+           greyscale. None of the colour properties correlated with
+           recall. Relative size did, with a correlation of 0.53. For
+           these images, space mattered more than colour.</p>
       </section>
 
-      <section aria-labelledby="looks-heading">
-        <h2 id="looks-heading">What it looks like</h2>
-        <p class="placeholder">[Missing: images with captions that say
-           something the image cannot. Alt text written by Mathias.]</p>
-      </section>
+      <!-- The "What it looks like" section becomes visible once the
+           figures are pulled from the paper. The three image slots from
+           the draft:
+
+           Image: the colour stimulus, figure 1 in the paper.
+           Caption: Twenty everyday objects generated with AI, with no
+           relationship to each other, so none can be guessed from the
+           others.
+
+           Image: the greyscale stimulus, figure 2.
+           Caption: The greyscale image ended up with 17 unique objects
+           against the colour image's 20. That mismatch is discussed
+           below.
+
+           Image: figure 3, recall per colour.
+           Caption: No relationship between hue and recall. The tomato was
+           the exception that points to diagnostic colour, colour that
+           belongs to the object. -->
 
       <section aria-labelledby="change-heading">
         <h2 id="change-heading">What I would change</h2>
-        <p class="placeholder">[Missing: two or three specific things.]</p>
+        <p>The same objects in both conditions. The two images contained
+           different objects, and the greyscale image had 17 unique ones
+           against the colour image's 20. That means the measurement
+           isn't just of colour, but of the objects too. The next version
+           would use the same image in a colour and a greyscale
+           version.</p>
+        <p>More participants and more rounds. With 20 participants and one
+           image per condition, the sample is too small to rule out small
+           effects. The conclusion holds for this study, not for the
+           question as a whole.</p>
+        <p>Control for placement. Western participants read an image in a
+           Z pattern, and objects in the top left have an advantage.
+           Placement should have been balanced or measured as its own
+           variable.</p>
       </section>
 
       <section aria-labelledby="facts-heading">
         <h2 id="facts-heading">Facts</h2>
         <dl class="facts">
-          <dt>Grade</dt>
-          <dd>A</dd>
-          <dt>Presented</dt>
-          <dd>At a color convention in Taiwan.
-              <span class="placeholder">[Missing: the convention's name and year.]</span></dd>
           <dt>Role</dt>
-          <dd><span class="placeholder">[Missing: role, any collaborators,
-              tools and year.]</span></dd>
+          <dd>Design, pilot testing, execution and first draft, Mathias
+              Sætersdal. Supervision and revision, Phil Green,
+              co-author.</dd>
+          <dt>Course</dt>
+          <dd>IMT4315 Colour in interface design, NTNU, spring 2025.
+              Grade A.</dd>
+          <dt>Selected</dt>
+          <dd>The paper was one of two from the course selected for
+              AIC 2025.</dd>
+          <dt>Presented</dt>
+          <dd>At AIC 2025, the 16th congress of the International Colour
+              Association, Taipei, 19 to 24 October 2025. Phil Green gave
+              the presentation. I did not travel.</dd>
+          <!-- CONFIRM: was it a talk or a poster presentation? The slides
+               suggest a talk. -->
+          <!-- CONFIRM: is the paper included in the congress's published
+               proceedings, is there a link or page reference? -->
         </dl>
       </section>
     </article>
@@ -82,5 +166,6 @@
   </footer>
 
   <script src="../../js/focus-ring.js" defer></script>
+  <script src="../../js/memory-test.js" defer></script>
 </body>
 </html>

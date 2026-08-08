@@ -1,7 +1,9 @@
 /* memory-test.js
    Browser version of the colour and memory experiment, mounted in
-   work/color.html. Objects, accepted answers, recall figures and
-   timings all come from data/memory-test.json. Norwegian only. */
+   work/color.html and en/work/color.html. Objects, accepted answers,
+   recall figures and timings all come from data/memory-test.json.
+   Language comes from the document, same as js/projects.js, and picks
+   the matching accept_nb/accept_en list and nb/en item names. */
 
 (function () {
   'use strict';
@@ -14,19 +16,96 @@
   var SRC = root.getAttribute('data-source');
   var BASE = root.getAttribute('data-base') || '';
   var STORE_KEY = 'mathias-portfolio-memory-test';
+  var lang = (document.documentElement.lang || 'nb').toLowerCase().indexOf('en') === 0 ? 'en' : 'nb';
+  var acceptField = 'accept_' + lang;
+  var altField = 'alt_' + lang;
 
-  var COPY = {
-    intro: [
-      'Denne testen er en forenklet versjon av studien. Du får se et bilde i 15 sekunder, teller baklengs i 10 sekunder, og skriver deretter ned det du husker i 90 sekunder.',
-      'Deltakerne i studien snakket i 60 sekunder. Her skriver du i 90, fordi skriving tar lengre tid. Sammenligningen er veiledende, ikke lik.',
-      'Testen er ikke overvåket, og fargesynet ditt er ikke kontrollert.',
-      'Testen bygger på bilder og kan ikke gjennomføres uten syn.'
-    ],
-    resultCaveat: 'Ett resultat sier ingenting om farge og hukommelse. Studien fant ingen sammenheng mellom fargeegenskaper og gjenkalling. Relativ størrelse var den eneste egenskapen som hang sammen med hvor ofte et objekt ble husket.',
-    repeatNote: 'Andre forsøk kan ikke sammenlignes med det første.'
+  var STR = {
+    nb: {
+      intro: [
+        'Denne testen er en forenklet versjon av studien. Du får se et bilde i 15 sekunder, teller baklengs i 10 sekunder, og skriver deretter ned det du husker i 90 sekunder.',
+        'Deltakerne i studien snakket i 60 sekunder. Her skriver du i 90, fordi skriving tar lengre tid. Sammenligningen er veiledende, ikke lik.',
+        'Testen er ikke overvåket, og fargesynet ditt er ikke kontrollert.',
+        'Testen bygger på bilder og kan ikke gjennomføres uten syn.'
+      ],
+      resultCaveat: 'Ett resultat sier ingenting om farge og hukommelse. Studien fant ingen sammenheng mellom fargeegenskaper og gjenkalling. Relativ størrelse var den eneste egenskapen som hang sammen med hvor ofte et objekt ble husket.',
+      repeatNote: 'Andre forsøk kan ikke sammenlignes med det første.',
+      labels: { colour: 'Farge, snitt', greyscale: 'Gråtoner, snitt' },
+      verdicts: { ok: '✓ Riktig', err: '✕ Feil', dup: 'Duplikat' },
+      timeLeftLabel: 'Hvor lang tid igjen?',
+      cancel: 'Avbryt',
+      beforeYouStart: 'Før du starter',
+      startTest: 'Start testen',
+      lookAtImage: 'Se på bildet',
+      countBackward: 'Tell baklengs',
+      countBackwardBody: 'Tell baklengs fra tallet under, ett tall om gangen. Dette er ikke en del av testen. Det er der for å hindre at du repeterer objektene inni deg.',
+      nextNumber: 'Neste tall',
+      add: 'Legg til',
+      writeWhatYouRemember: 'Skriv det du husker',
+      writeOneAtATime: 'Skriv ett objekt om gangen.',
+      objectYouRemember: 'Objekt du husker',
+      finishEarly: 'Avslutt tidlig',
+      secondsLeft: function (n) { return n + ' sekunder igjen'; },
+      result: 'Resultat',
+      takeAgain: 'Ta testen på nytt',
+      backToCaseStudy: 'Tilbake til kasusstudien',
+      score: function (count, total, percent) {
+        return 'Du husket ' + count + ' av ' + total + ' objekter, ' + percent + ' prosent.';
+      },
+      allObjects: 'Alle objektene',
+      remembered: 'Husket',
+      notRemembered: 'Ikke husket',
+      accepted: function (list) { return 'Godtas: ' + list; },
+      barChart: 'Søylediagram. ',
+      loadFailed: 'Testen kunne ikke lastes. Last siden på nytt.',
+      decimalSeparator: ',',
+      yourResult: 'Ditt resultat',
+      percentWord: ' prosent'
+    },
+    en: {
+      intro: [
+        'This test is a simplified version of the study. You get 15 seconds to look at an image, count backward for 10 seconds, then write down what you remember for 90 seconds.',
+        'Participants in the study spoke for 60 seconds. Here you write for 90, because typing takes longer. The comparison is indicative, not equal.',
+        'The test is not supervised, and your colour vision is not checked.',
+        'The test relies on images and cannot be completed without sight.'
+      ],
+      resultCaveat: 'One result says nothing about colour and memory. The study found no relationship between colour properties and recall. Relative size was the only property that correlated with how often an object was remembered.',
+      repeatNote: 'A second attempt cannot be compared with the first.',
+      labels: { colour: 'Colour, mean', greyscale: 'Greyscale, mean' },
+      verdicts: { ok: '✓ Correct', err: '✕ Wrong', dup: 'Duplicate' },
+      timeLeftLabel: 'How much time is left?',
+      cancel: 'Cancel',
+      beforeYouStart: 'Before you start',
+      startTest: 'Start the test',
+      lookAtImage: 'Look at the image',
+      countBackward: 'Count backward',
+      countBackwardBody: 'Count backward from the number below, one number at a time. This isn\'t part of the test. It\'s there to stop you rehearsing the objects in your head.',
+      nextNumber: 'Next number',
+      add: 'Add',
+      writeWhatYouRemember: 'Write what you remember',
+      writeOneAtATime: 'Write one object at a time.',
+      objectYouRemember: 'Object you remember',
+      finishEarly: 'Finish early',
+      secondsLeft: function (n) { return n + ' seconds left'; },
+      result: 'Result',
+      takeAgain: 'Take the test again',
+      backToCaseStudy: 'Back to the case study',
+      score: function (count, total, percent) {
+        return 'You remembered ' + count + ' of ' + total + ' objects, ' + percent + ' percent.';
+      },
+      allObjects: 'All the objects',
+      remembered: 'Remembered',
+      notRemembered: 'Not remembered',
+      accepted: function (list) { return 'Accepted: ' + list; },
+      barChart: 'Bar chart. ',
+      loadFailed: 'The test could not be loaded. Reload the page.',
+      decimalSeparator: '.',
+      yourResult: 'Your result',
+      percentWord: ' percent'
+    }
   };
 
-  var LABELS = { colour: 'Farge, snitt', greyscale: 'Gråtoner, snitt' };
+  var T = STR[lang];
 
   var data = null;
   var run = null;
@@ -118,10 +197,10 @@
   function startTimer(seconds, display, onDone) {
     timerDeadline = Date.now() + seconds * 1000;
     announceBucket = Math.ceil(seconds / 15);
-    display.textContent = seconds + ' sekunder igjen';
+    display.textContent = T.secondsLeft(seconds);
     timerInterval = window.setInterval(function () {
       var remaining = remainingNow();
-      display.textContent = remaining + ' sekunder igjen';
+      display.textContent = T.secondsLeft(remaining);
       if (remaining <= 0) {
         stopTimer();
         onDone();
@@ -131,7 +210,7 @@
       var bucket = Math.ceil(remaining / 15);
       if (bucket < announceBucket) {
         announceBucket = bucket;
-        announce(remaining + ' sekunder igjen');
+        announce(T.secondsLeft(remaining));
       }
     }, 1000);
   }
@@ -144,15 +223,15 @@
   }
 
   function timeButton() {
-    var btn = el('button', { 'class': 'button mt-quiet', type: 'button', text: 'Hvor lang tid igjen?' });
+    var btn = el('button', { 'class': 'button mt-quiet', type: 'button', text: T.timeLeftLabel });
     btn.addEventListener('click', function () {
-      announce(remainingNow() + ' sekunder igjen');
+      announce(T.secondsLeft(remainingNow()));
     });
     return btn;
   }
 
   function abortButton() {
-    var btn = el('button', { 'class': 'button mt-quiet', type: 'button', text: 'Avbryt' });
+    var btn = el('button', { 'class': 'button mt-quiet', type: 'button', text: T.cancel });
     btn.addEventListener('click', intro);
     return btn;
   }
@@ -206,7 +285,7 @@
   function matchEntry(norm) {
     var items = run.condition.items;
     for (var i = 0; i < items.length; i += 1) {
-      var accepts = items[i].accept_nb;
+      var accepts = items[i][acceptField];
       for (var j = 0; j < accepts.length; j += 1) {
         var accepted = normalize(accepts[j]);
         if (norm === accepted) {
@@ -243,18 +322,18 @@
   }
 
   function formatPercent(value) {
-    return value.toFixed(1).replace('.', ',');
+    return value.toFixed(1).replace('.', T.decimalSeparator);
   }
 
   /* ---------- phases ---------- */
 
   function intro() {
-    var start = el('button', { 'class': 'button', type: 'button', text: 'Start testen' });
+    var start = el('button', { 'class': 'button', type: 'button', text: T.startTest });
     start.addEventListener('click', function () {
       run = pickCondition();
       exposure();
     });
-    setPanel('Før du starter', COPY.intro.map(function (text) {
+    setPanel(T.beforeYouStart, T.intro.map(function (text) {
       return el('p', { text: text });
     }).concat([el('p', { 'class': 'mt-controls' }, [start])]));
   }
@@ -265,9 +344,9 @@
     var img = el('img', {
       'class': 'mt-image',
       src: BASE + cond.image,
-      alt: cond.alt_nb || ''
+      alt: cond[altField] || ''
     });
-    setPanel('Se på bildet', [
+    setPanel(T.lookAtImage, [
       timerEl,
       img,
       el('div', { 'class': 'mt-controls' }, [timeButton(), abortButton()])
@@ -278,8 +357,8 @@
   function distractor() {
     var current = Math.floor(Math.random() * 60) + 40; /* 40 to 99 */
     var timerEl = el('p', { 'class': 'mt-timer', text: '' });
-    var input = el('input', { type: 'text', inputmode: 'numeric', autocomplete: 'off', 'aria-label': 'Neste tall' });
-    var add = el('button', { 'class': 'button', type: 'submit', text: 'Legg til' });
+    var input = el('input', { type: 'text', inputmode: 'numeric', autocomplete: 'off', 'aria-label': T.nextNumber });
+    var add = el('button', { 'class': 'button', type: 'submit', text: T.add });
     var chain = el('ul', { 'class': 'mt-list mt-chain' }, [
       el('li', { text: String(current) })
     ]);
@@ -297,8 +376,8 @@
       input.focus();
     });
 
-    setPanel('Tell baklengs', [
-      el('p', { text: 'Tell baklengs fra tallet under, ett tall om gangen. Dette er ikke en del av testen. Det er der for å hindre at du repeterer objektene inni deg.' }),
+    setPanel(T.countBackward, [
+      el('p', { text: T.countBackwardBody }),
       chain,
       timerEl,
       form,
@@ -309,11 +388,11 @@
 
   function recall() {
     var timerEl = el('p', { 'class': 'mt-timer', text: '' });
-    var input = el('input', { type: 'text', autocomplete: 'off', 'aria-label': 'Objekt du husker' });
-    var add = el('button', { 'class': 'button', type: 'submit', text: 'Legg til' });
+    var input = el('input', { type: 'text', autocomplete: 'off', 'aria-label': T.objectYouRemember });
+    var add = el('button', { 'class': 'button', type: 'submit', text: T.add });
     var list = el('ul', { 'class': 'mt-list' });
     var form = el('form', { 'class': 'mt-form' }, [input, add]);
-    var done = el('button', { 'class': 'button mt-quiet', type: 'button', text: 'Avslutt tidlig' });
+    var done = el('button', { 'class': 'button mt-quiet', type: 'button', text: T.finishEarly });
 
     form.addEventListener('submit', function (e) {
       e.preventDefault();
@@ -330,8 +409,8 @@
 
     /* The timer sits directly above the input so both stay in view
        when a phone keyboard takes the lower half of the screen. */
-    setPanel('Skriv det du husker', [
-      el('p', { text: 'Skriv ett objekt om gangen.' }),
+    setPanel(T.writeWhatYouRemember, [
+      el('p', { text: T.writeOneAtATime }),
       timerEl,
       form,
       list,
@@ -352,8 +431,6 @@
 
   /* ---------- result ---------- */
 
-  var VERDICTS = { ok: '✓ Riktig', err: '✕ Feil', dup: 'Duplikat' };
-
   function buildEntryList(results) {
     var listEl = el('ol', { 'class': 'mt-entries' });
     var rows = results.map(function (res) {
@@ -372,7 +449,7 @@
       if (animate) {
         entry.row.classList.add('mt-animate');
       }
-      entry.verdict.textContent = VERDICTS[entry.res.status];
+      entry.verdict.textContent = T.verdicts[entry.res.status];
     }
 
     if (reduceMotion()) {
@@ -399,13 +476,13 @@
   }
 
   function buildChart(userPercent) {
-    var bars = [{ label: 'Ditt resultat', value: userPercent, user: true }]
+    var bars = [{ label: T.yourResult, value: userPercent, user: true }]
       .concat(data.conditions.map(function (c) {
-        return { label: LABELS[c.id] || c.id, value: c.meanRecallPercent, user: false };
+        return { label: T.labels[c.id] || c.id, value: c.meanRecallPercent, user: false };
       }));
 
-    var alt = 'Søylediagram. ' + bars.map(function (b) {
-      return b.label + ' ' + formatPercent(b.value) + ' prosent';
+    var alt = T.barChart + bars.map(function (b) {
+      return b.label + ' ' + formatPercent(b.value) + T.percentWord;
     }).join('. ') + '.';
 
     var svg = svgEl('svg', {
@@ -444,11 +521,11 @@
   function buildObjectList(matched) {
     var listEl = el('ul', { 'class': 'mt-objects' });
     run.condition.items.forEach(function (item) {
-      var status = matched[item.id] ? 'Husket' : 'Ikke husket';
+      var status = matched[item.id] ? T.remembered : T.notRemembered;
       listEl.appendChild(el('li', {}, [
-        el('strong', { text: item.nb }),
+        el('strong', { text: item[lang] }),
         el('span', { text: ' · ' + status }),
-        el('span', { 'class': 'mt-accepted', text: 'Godtas: ' + item.accept_nb.join(', ') })
+        el('span', { 'class': 'mt-accepted', text: T.accepted(item[acceptField].join(', ')) })
       ]));
     });
     return listEl;
@@ -456,36 +533,35 @@
 
   function result() {
     var score = scoreRun();
-    var retake = el('button', { 'class': 'button', type: 'button', text: 'Ta testen på nytt' });
+    var retake = el('button', { 'class': 'button', type: 'button', text: T.takeAgain });
     retake.addEventListener('click', intro);
 
     var children = [];
     if (run.repeat) {
-      children.push(el('p', { text: COPY.repeatNote }));
+      children.push(el('p', { text: T.repeatNote }));
     }
     children.push(buildEntryList(score.results));
-    children.push(el('p', { text: COPY.resultCaveat }));
+    children.push(el('p', { text: T.resultCaveat }));
     children.push(el('p', {
       'class': 'mt-score',
-      text: 'Du husket ' + score.count + ' av ' + run.condition.objectCount +
-            ' objekter, ' + formatPercent(score.percent) + ' prosent.'
+      text: T.score(score.count, run.condition.objectCount, formatPercent(score.percent))
     }));
     children.push(buildChart(score.percent));
-    children.push(el('h4', { text: 'Alle objektene' }));
+    children.push(el('h4', { text: T.allObjects }));
     children.push(buildObjectList(score.matched));
     children.push(el('div', { 'class': 'mt-controls' }, [
       retake,
-      el('a', { href: '#main', text: 'Tilbake til kasusstudien' })
+      el('a', { href: '#main', text: T.backToCaseStudy })
     ]));
 
-    setPanel('Resultat', children);
+    setPanel(T.result, children);
   }
 
   /* ---------- load ---------- */
 
   function loadFailed() {
     stage.textContent = '';
-    stage.appendChild(el('p', { text: 'Testen kunne ikke lastes. Last siden på nytt.' }));
+    stage.appendChild(el('p', { text: T.loadFailed }));
   }
 
   if (window.location.protocol === 'file:') {
