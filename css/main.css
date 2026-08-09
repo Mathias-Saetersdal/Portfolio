@@ -41,6 +41,8 @@
   --t3:  2.197rem;  /* large display */
   --t4:  clamp(2.197rem, 1.4rem + 3.5vw, 2.747rem); /* h1, fluid */
 
+  --bar-height: 3.5rem; /* sticky bar, all viewport widths */
+
   /* Recommended faces (see README.md): Familjen Grotesk for display,
      Literata for body. Both OFL. Until the files exist in fonts/,
      these stacks are the deliberate system fallback, not a default. */
@@ -154,6 +156,13 @@ a:hover {
   outline-color: transparent;
 }
 
+/* 2.4.11 Focus Not Obscured: every heading and every focusable element
+   clears the sticky bar by its height plus 8px, from --bar-height. */
+:is(h1, h2, h3, h4, a, button, input, select, textarea, summary, [tabindex]),
+#main {
+  scroll-margin-top: calc(var(--bar-height) + 0.5rem);
+}
+
 /* The travelling ring itself (created by js/focus-ring.js). */
 .focus-ring {
   position: absolute;
@@ -184,6 +193,7 @@ a:hover {
   position: absolute;
   top: 0.5rem;
   left: 0.5rem;
+  z-index: 20; /* above .site-header (10): a focused skip link is never covered */
   padding: 0.5rem 1rem;
   background: var(--signal);
   color: var(--ground); /* 8.49:1 light, 8.12:1 dark */
@@ -195,18 +205,53 @@ a:hover {
   transform: none;
 }
 
-/* ---------- Header ---------- */
+/* ---------- Header ----------
+   Sticky bar: fixed height, opaque background, always present in the
+   DOM whether or not the handoff animation runs. .bar-title sits on
+   --ink over --ground, the same measured pair as body text: 11.24:1
+   light, 14.49:1 dark. */
 
 .site-header {
-  padding-block: 1.5rem 4rem;
+  position: sticky;
+  top: 0;
+  z-index: 10; /* above page content, below .focus-ring (100) */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  height: var(--bar-height);
+  background: var(--ground);
+}
+
+.bar-title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 650;
+  font-size: var(--t-1);
+  color: var(--ink);
+  opacity: 1; /* baseline: always visible without view-timeline support */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .site-header nav {
   display: flex;
   gap: 1.5rem;
-  justify-content: flex-end;
   font-family: var(--font-display);
   font-size: var(--t-1);
+}
+
+/* 1.4.10 Reflow: on a short viewport a fixed sticky bar costs too much
+   vertical space. Drop back to a static, in-flow bar. */
+@media (max-height: 26rem) {
+  .site-header {
+    position: static;
+  }
+}
+
+#main {
+  padding-block-start: 3.5rem; /* replaces the space the old header padding gave the hero */
 }
 
 /* ---------- Hero ---------- */
@@ -232,6 +277,83 @@ a:hover {
   from {
     opacity: 0;
     transform: translateY(0.5rem);
+  }
+}
+
+/* ---------- Bar title / hero handoff ----------
+   Named view timeline: view-timeline-name lives on the h1, timeline-scope
+   on body makes --hero reachable by .bar-title even though the two are
+   not related by ancestry. Everything here is guarded: outside the
+   guard the complete baseline already applies (sticky bar, .bar-title
+   always visible, static h1), which is what Firefox gets. */
+
+@supports (animation-timeline: view()) {
+  body {
+    timeline-scope: --hero;
+  }
+
+  h1 {
+    view-timeline-name: --hero;
+    animation-name: hero-exit;
+    animation-timeline: --hero;
+    animation-range: exit;
+    animation-fill-mode: both;
+  }
+
+  /* index.html / en/index.html: the h1 already runs the load-in
+     stagger above (.hero > *, moment 2). That rule has higher
+     specificity than a bare h1 rule, so without this it would win
+     and silently drop hero-exit. List both animations explicitly
+     instead, values unchanged from .hero > * and from the h1 rule
+     above. */
+  .hero > h1 {
+    animation-name: hero-rise, hero-exit;
+    animation-duration: 480ms, auto;
+    animation-timing-function: cubic-bezier(0.2, 0.7, 0.3, 1), ease;
+    animation-fill-mode: backwards, both;
+    animation-timeline: auto, --hero;
+    animation-range: normal, exit;
+  }
+
+  .bar-title {
+    opacity: 0;
+    animation-name: bar-title-in;
+    animation-timeline: --hero;
+    animation-range: exit;
+    animation-fill-mode: both;
+  }
+
+  @keyframes hero-exit {
+    to {
+      opacity: 0;
+      transform: translateY(-0.5rem) scale(0.92);
+    }
+  }
+
+  @keyframes bar-title-in {
+    from {
+      opacity: 0;
+      transform: translateY(0.25rem);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    h1 {
+      animation: none;
+    }
+
+    .hero > h1 {
+      animation: none; /* also cancels the load stagger for supporting browsers */
+    }
+
+    .bar-title {
+      animation: none;
+      opacity: 1;
+    }
   }
 }
 
