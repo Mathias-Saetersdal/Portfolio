@@ -5,17 +5,20 @@
      2. Kopier en/work/_template.html til en/work/<id>.html.
      3. Bytt ut alle TODO-TITTEL og TODO-ID under, i begge filene.
      4. Fyll de seks seksjonene. En seksjon uten ekte innhold kuttes,
-        den fylles ikke med utenomsnakk. -->
+        den fylles ikke med utenomsnakk. Placeholderne under står som
+        HTML-kommentarer nettopp så en halvferdig side aldri viser
+        ordet TODO til en besøkende. -->
 <html lang="nb">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>TODO-TITTEL · Mathias Sætersdal</title>
-  <meta name="description" content="TODO: én setning om hva prosjektet er.">
+  <meta name="description" content="TODO: én setning i førsteperson om hva jeg bygde.">
   <link rel="icon" href="../img/icon.svg" type="image/svg+xml">
   <link rel="icon" href="../img/icon-32.png" sizes="32x32">
   <link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
   <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/pointer-glow.css">
   <link rel="alternate" hreflang="nb" href="TODO-ID.html">
   <link rel="alternate" hreflang="en" href="../en/work/TODO-ID.html">
   <link rel="alternate" hreflang="x-default" href="TODO-ID.html">
@@ -35,32 +38,33 @@
   <main id="main" class="wrap">
     <article class="case-study">
       <h1>TODO-TITTEL</h1>
-      <p class="project-meta">TODO: år · rolle</p>
+      <!-- TODO: årstall og rolle, samme format som de andre kasusstudiene.
+           Eksempel: <p class="project-meta">2026 · Design og utvikling, alene</p> -->
 
       <section aria-labelledby="what-heading">
         <h2 id="what-heading">Hva det er</h2>
-        <p>TODO: to setninger, deretter et bilde med alt-tekst fra Mathias.</p>
+        <!-- TODO: to setninger, deretter et bilde med alt-tekst fra Mathias. -->
       </section>
 
       <section aria-labelledby="brief-heading">
         <h2 id="brief-heading">Oppdraget</h2>
-        <p>TODO: hva som ble bedt om, av hvem, under hvilke rammer.</p>
+        <!-- TODO: hva som ble bedt om, av hvem, under hvilke rammer. -->
       </section>
 
       <section aria-labelledby="did-heading">
         <h2 id="did-heading">Hva jeg gjorde</h2>
-        <p>TODO: beslutningene i rekkefølge. For hver: problemet,
-           alternativene, valget og grunnen.</p>
+        <!-- TODO: beslutningene i rekkefølge. For hver: problemet,
+             alternativene, valget og grunnen. -->
       </section>
 
       <section aria-labelledby="looks-heading">
         <h2 id="looks-heading">Hvordan det ser ut</h2>
-        <p>TODO: bilder med bildetekster som sier noe bildet ikke kan.</p>
+        <!-- TODO: bilder med bildetekster som sier noe bildet ikke kan. -->
       </section>
 
       <section aria-labelledby="change-heading">
         <h2 id="change-heading">Hva jeg ville endret</h2>
-        <p>TODO: to eller tre konkrete ting.</p>
+        <!-- TODO: to eller tre konkrete ting. -->
       </section>
 
       <section aria-labelledby="facts-heading">
@@ -76,13 +80,23 @@
           <dd>TODO</dd>
         </dl>
       </section>
+
+      <div class="button-group" role="group" aria-label="Flere lenker">
+        <a class="button" href="../index.html">Alle prosjekter</a>
+        <!-- TODO: lenke til det live prosjektet, hvis det finnes ett. Ikke
+             gjett adressen. Eksempel, samme stil som lenken over:
+             <a class="button" href="TODO-live-url" target="_blank" rel="noopener">Se prosjektet</a> -->
+      </div>
     </article>
   </main>
 
   <footer class="site-footer wrap">
-    <p>Mathias Sætersdal · <a href="../en/work/TODO-ID.html" lang="en" hreflang="en">English</a></p>
+    <p>Mathias Sætersdal · <a href="../en/work/TODO-ID.html" lang="en" hreflang="en">English</a> ·
+       <a href="https://github.com/Mathias-Saetersdal">GitHub</a></p>
+    <!-- TODO: lenke til CV når den finnes. -->
   </footer>
 
   <script src="../js/focus-ring.js" defer></script>
+  <script src="../js/pointer-glow.js" defer></script>
 </body>
 </html>

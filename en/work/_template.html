@@ -5,17 +5,19 @@
      2. Copy work/_template.html to work/<id>.html.
      3. Replace every TODO-TITLE and TODO-ID below, in both files.
      4. Fill the six sections. A section with nothing real in it is cut,
-        not padded. -->
+        not padded. The placeholders below sit as HTML comments precisely
+        so a half-filled page never shows the word TODO to a visitor. -->
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>TODO-TITLE · Mathias Sætersdal</title>
-  <meta name="description" content="TODO: one sentence on what the project is.">
+  <meta name="description" content="TODO: one first-person sentence on what I built.">
   <link rel="icon" href="../../img/icon.svg" type="image/svg+xml">
   <link rel="icon" href="../../img/icon-32.png" sizes="32x32">
   <link rel="apple-touch-icon" href="../../img/apple-touch-icon.png">
   <link rel="stylesheet" href="../../css/main.css">
+  <link rel="stylesheet" href="../../css/pointer-glow.css">
   <link rel="alternate" hreflang="nb" href="../../work/TODO-ID.html">
   <link rel="alternate" hreflang="en" href="TODO-ID.html">
   <link rel="alternate" hreflang="x-default" href="../../work/TODO-ID.html">
@@ -35,32 +37,33 @@
   <main id="main" class="wrap">
     <article class="case-study">
       <h1>TODO-TITLE</h1>
-      <p class="project-meta">TODO: year · role</p>
+      <!-- TODO: year and role, same format as the other case studies.
+           Example: <p class="project-meta">2026 · Design and build, solo</p> -->
 
       <section aria-labelledby="what-heading">
         <h2 id="what-heading">What it is</h2>
-        <p>TODO: two sentences, then an image with alt text from Mathias.</p>
+        <!-- TODO: two sentences, then an image with alt text from Mathias. -->
       </section>
 
       <section aria-labelledby="brief-heading">
         <h2 id="brief-heading">The brief</h2>
-        <p>TODO: what was asked for, by whom, under what constraint.</p>
+        <!-- TODO: what was asked for, by whom, under what constraint. -->
       </section>
 
       <section aria-labelledby="did-heading">
         <h2 id="did-heading">What I did</h2>
-        <p>TODO: the decisions in order. For each: the problem, the options,
-           the choice and the reason.</p>
+        <!-- TODO: the decisions in order. For each: the problem, the options,
+             the choice and the reason. -->
       </section>
 
       <section aria-labelledby="looks-heading">
         <h2 id="looks-heading">What it looks like</h2>
-        <p>TODO: images with captions that say something the image cannot.</p>
+        <!-- TODO: images with captions that say something the image cannot. -->
       </section>
 
       <section aria-labelledby="change-heading">
         <h2 id="change-heading">What I would change</h2>
-        <p>TODO: two or three specific things.</p>
+        <!-- TODO: two or three specific things. -->
       </section>
 
       <section aria-labelledby="facts-heading">
@@ -76,13 +79,23 @@
           <dd>TODO</dd>
         </dl>
       </section>
+
+      <div class="button-group" role="group" aria-label="More links">
+        <a class="button" href="../index.html">All projects</a>
+        <!-- TODO: link to the live project, if there is one. Don't guess
+             the address. Example, same style as the link above:
+             <a class="button" href="TODO-live-url" target="_blank" rel="noopener">See the project</a> -->
+      </div>
     </article>
   </main>
 
   <footer class="site-footer wrap">
-    <p>Mathias Sætersdal · <a href="../../work/TODO-ID.html" lang="nb" hreflang="nb">Norsk</a></p>
+    <p>Mathias Sætersdal · <a href="../../work/TODO-ID.html" lang="nb" hreflang="nb">Norsk</a> ·
+       <a href="https://github.com/Mathias-Saetersdal">GitHub</a></p>
+    <!-- TODO: link to the CV once it exists. -->
   </footer>
 
   <script src="../../js/focus-ring.js" defer></script>
+  <script src="../../js/pointer-glow.js" defer></script>
 </body>
 </html>
