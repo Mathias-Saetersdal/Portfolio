@@ -1,5 +1,6 @@
 /* pointer-glow.css
-   Two layers on cards, one on buttons, matching the ShapeBlur
+   Two layers on cards, one on buttons - case-study action buttons and
+   the memory test's own buttons alike - matching the ShapeBlur
    variation 0 shader in plain CSS. All driven by --glow-x, --glow-y
    and --glow-strength, written once per rAF frame by
    js/pointer-glow.js. Neither layer takes pointer events.
@@ -38,7 +39,8 @@
 
 @media (hover: hover) and (pointer: fine) and (min-width: 64rem) {
   .project,
-  .button-group .button {
+  .button-group .button,
+  #memory-test .button {
     isolation: isolate; /* contains both layers' z-index to this
                             element's own stacking context */
     /* Declared here, on the real element, not inside the ::before/
@@ -61,7 +63,8 @@
      border/click-target change). .button never does elsewhere, so the
      glow layer needs its own containing block here or inset resolves
      against the initial containing block instead of the button. */
-  .button-group .button {
+  .button-group .button,
+  #memory-test .button {
     position: relative;
   }
 
@@ -73,7 +76,8 @@
   /* ---------- Stroke (::before), cards and buttons ---------- */
 
   .project::before,
-  .button-group .button::before {
+  .button-group .button::before,
+  #memory-test .button::before {
     content: "";
     position: absolute;
     inset: var(--glow-bleed);
@@ -138,7 +142,8 @@
       drop-shadow(0 0 var(--glow-bloom) var(--glow-colour));
   }
 
-  .button-group .button::before {
+  .button-group .button::before,
+  #memory-test .button::before {
     /* No blur, no bloom, no fill. The plain masked stroke, bled
        outside the button, is the whole effect here. */
     opacity: calc(var(--glow-strength, 0) * 0.5);
@@ -163,8 +168,12 @@
 
   /* Two stroke layers, bled -12px outward, still land 8px apart at
      the closest approach inside this gap: 32px - 12px - 12px = 8px.
-     No overlap. See REVERT-pointer-glow.md for the full check. */
-  .button-group {
+     No overlap. See REVERT-pointer-glow.md for the full check.
+     .mt-controls needs the same widening: js/memory-test.js puts up
+     to three buttons in one (done, timeButton, abortButton during
+     recall), at the same -12px bleed. */
+  .button-group,
+  .mt-controls {
     gap: 2rem;
   }
 }

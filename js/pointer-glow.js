@@ -1,8 +1,11 @@
 /* pointer-glow.js
-   Drives the radial glow behind project cards and case-study action
-   buttons. Delegated: one listener per container (.projects or
-   .button-group), not one per card or button, so cards added later by
-   js/projects.js are covered without rebinding.
+   Drives the radial glow behind project cards, case-study action
+   buttons, and the memory test's own buttons (#memory-test). Delegated:
+   one listener per container (.projects, .button-group or
+   #memory-test), not one per card or button, so cards added later by
+   js/projects.js are covered without rebinding - and so is
+   #memory-test, whose buttons js/memory-test.js replaces wholesale on
+   every phase change.
    Desktop only, and off under reduced motion: a pointer-tracked glow
    is exactly the motion prefers-reduced-motion exists to remove.
 
@@ -25,7 +28,7 @@
   var desktop = window.matchMedia(MEDIA);
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
-  var containers = document.querySelectorAll('.projects, .button-group');
+  var containers = document.querySelectorAll('.projects, .button-group, #memory-test');
   if (!containers.length) {
     return;
   }
