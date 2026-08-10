@@ -479,6 +479,89 @@ a:hover {
   font-size: var(--t-1);
 }
 
+/* ---------- CV (cv.html) ---------- */
+
+.cv > section {
+  margin-block-end: 3.5rem;
+}
+
+.cv-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Dated entries: a real list, not a table. Two columns from grid on a
+   wide screen, one column below the breakpoint, same breakpoint as
+   .form-grid uses elsewhere in this file. */
+.cv-entry {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.15rem;
+  margin-block-end: 1.5rem;
+}
+
+.cv-entry:last-child {
+  margin-block-end: 0;
+}
+
+.cv-entry h3 {
+  font-size: var(--t0);
+  margin-block-end: 0.25em;
+}
+
+.cv-entry-body :last-child {
+  margin-block-end: 0;
+}
+
+.cv-dates {
+  font-family: var(--font-display);
+  font-size: var(--t-1);
+  color: var(--muted);
+  margin: 0;
+}
+
+@media (min-width: 40rem) {
+  .cv-entry {
+    grid-template-columns: 8rem 1fr;
+    gap: 0 1.5rem;
+  }
+}
+
+/* Kompetanse: genuinely tabular, so a real table. Wrapped in its own
+   scroll container rather than letting it force the whole page wider
+   at 320px and 400% zoom (1.4.10 Reflow); the table is exempt from
+   reflow itself because a category-to-items mapping is exactly the
+   two-dimensional relationship 1.4.10 carves out. */
+.cv-table-wrap {
+  overflow-x: auto;
+}
+
+.cv table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.cv caption {
+  text-align: left;
+  font-size: var(--t-1);
+  color: var(--muted);
+  margin-block-end: 0.5rem;
+}
+
+.cv th,
+.cv td {
+  text-align: left;
+  vertical-align: top;
+  padding: 0.5rem 1rem 0.5rem 0;
+  border-block-end: 1px solid var(--muted);
+}
+
+.cv th {
+  font-family: var(--font-display);
+  font-weight: 650;
+}
+
 /* ---------- Forms (new-project.html) ---------- */
 
 fieldset {
@@ -772,5 +855,36 @@ a.button {
   .mt-entries li.mt-ok.mt-animate,
   .mt-entries li.mt-err.mt-animate {
     animation: none;
+  }
+}
+
+/* ---------- Print ----------
+   For cv.html: chrome stripped out, ink-only colors so it doesn't
+   burn a cartridge printing a violet outline nobody asked for, and
+   entries kept whole across a page break. Not scoped to .cv, since
+   none of this is wrong for any other page printed either. */
+
+@media print {
+  .site-header,
+  .site-footer,
+  .skip-link,
+  .focus-ring {
+    display: none;
+  }
+
+  * {
+    background: #fff !important;
+    color: #000 !important;
+    box-shadow: none !important;
+  }
+
+  a {
+    color: #000;
+    text-decoration: underline;
+  }
+
+  .cv-entry {
+    break-inside: avoid;
+    page-break-inside: avoid;
   }
 }
