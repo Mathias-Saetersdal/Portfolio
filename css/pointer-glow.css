@@ -1,0 +1,170 @@
+/* pointer-glow.css
+   Two layers on cards, one on buttons, matching the ShapeBlur
+   variation 0 shader in plain CSS. All driven by --glow-x, --glow-y
+   and --glow-strength, written once per rAF frame by
+   js/pointer-glow.js. Neither layer takes pointer events.
+
+   ::before, cards and buttons: a masked rounded-rect stroke
+   (sdRoundRect + strokeAA, sdfCircle at the pointer as the edge
+   term) — always visible at full opacity while the pointer is on the
+   element. On cards only, filter: drop-shadow() adds a bloom around
+   that base stroke, widest at the pointer. drop-shadow leaves its
+   source crisp and draws a blurred copy behind it, so the base
+   stroke can never wash out the way filter: blur() did when it was
+   tried here — blur spreads a thin line's alpha across its whole
+   blur radius and dilutes it near to nothing; drop-shadow adds
+   coverage instead of diluting it, which is the closest CSS gets to
+   the shader's strokeAA(...) * 4.0 saturation.
+   ::after, cards only: the filled inner glow from the first build.
+
+   Desktop only, gated the same way the script gates itself: a
+   hover-capable, fine pointer on a viewport at least 64rem wide.
+
+   Three non-obvious things a future edit will otherwise break:
+   - mask-repeat must stay no-repeat. Its initial value is repeat, and
+     with mask-clip: no-clip enlarging the painting area, a repeated
+     tile shows a second copy of the gradient glowing on the opposite
+     edge of the element.
+   - The mask gradient's visible stop must be #fff, not #000. This
+     engine luminance-masks by default; #000 has zero luminance and
+     reads as fully hidden even though it's opaque, so the stroke
+     silently stops rendering.
+   - The stroke uses filter: drop-shadow(), never filter: blur().
+     blur() conserves alpha: it spreads a thin line's alpha across its
+     whole radius and dilutes it to nearly nothing, right at the
+     moment (pointer on the element, strength at 1) it should be
+     brightest. drop-shadow() draws a separate blurred copy behind the
+     still-crisp source instead, so the base stroke can't wash out. */
+
+@media (hover: hover) and (pointer: fine) and (min-width: 64rem) {
+  .project,
+  .button-group .button {
+    isolation: isolate; /* contains both layers' z-index to this
+                            element's own stacking context */
+    /* Declared here, on the real element, not inside the ::before/
+       ::after rules below: a custom property declared directly on a
+       pseudo-element's own rule overrides anything inherited from
+       the element, including an inline-style override meant to tune
+       it. Declaring the defaults up here is what makes overriding
+       one from outside (e.g. card.style.setProperty(...)) actually
+       work. */
+    --glow-bleed: -12px; /* how far the stroke sits outside the
+                             element's own box. Negative because
+                             inset pushes the edges outward. */
+    --glow-size: 90px;   /* circleSize: mask radius that stays fully
+                             opaque */
+    --glow-edge: 70px;   /* circleEdge: how far past --glow-size it
+                             takes the mask to fade to nothing */
+  }
+
+  /* .project already gets position: relative from main.css (the
+     border/click-target change). .button never does elsewhere, so the
+     glow layer needs its own containing block here or inset resolves
+     against the initial containing block instead of the button. */
+  .button-group .button {
+    position: relative;
+  }
+
+  .project {
+    --glow-bloom-max: 8px; /* widest the bloom radius gets, at the pointer */
+    --glow-colour: var(--signal);
+  }
+
+  /* ---------- Stroke (::before), cards and buttons ---------- */
+
+  .project::before,
+  .button-group .button::before {
+    content: "";
+    position: absolute;
+    inset: var(--glow-bleed);
+    /* Above the card's own text (see the stacking order in
+       REVERT-pointer-glow.md): a bloom that spreads back in past the
+       box edge reads as a light bloom in front, not something tucked
+       behind the letters. pointer-events: none below means this
+       never costs the text its click/focus behaviour. */
+    z-index: 1;
+    pointer-events: none;
+    border-radius: inherit;
+    border-style: solid;
+    border-width: 1.5px;
+    border-color: var(--signal);
+    /* #fff, not #000: CSS mask gradients are luminance-masked by
+       default in some engines, alpha-masked in others. White reads
+       as "fully visible" either way; black reads as "fully visible"
+       under alpha masking but "fully hidden" under luminance masking. */
+    -webkit-mask-image: radial-gradient(circle at var(--glow-x, 50%) var(--glow-y, 50%),
+      #fff 0, #fff var(--glow-size),
+      transparent calc(var(--glow-size) + var(--glow-edge)));
+    mask-image: radial-gradient(circle at var(--glow-x, 50%) var(--glow-y, 50%),
+      #fff 0, #fff var(--glow-size),
+      transparent calc(var(--glow-size) + var(--glow-edge)));
+    /* A filter that paints outside the border-box (the card's bloom
+       below) would get cut off in a dead straight line by the
+       default border-box mask-clip. no-clip removes that clip
+       instead of growing --glow-bleed, so the bleed distance stays
+       exactly what the button-gap math was checked against. Harmless
+       on buttons, which have no such filter to protect. */
+    -webkit-mask-clip: no-clip;
+    mask-clip: no-clip;
+    /* mask-repeat's initial value is repeat: with the painting area
+       enlarged by no-clip above, the gradient tiled across it, so as
+       the pointer neared one edge a second copy of the gradient
+       showed up tile-width away, on the opposite edge. no-repeat
+       stops the tiling; mask-size then has to be set explicitly wide
+       enough that the one remaining tile still covers the whole
+       enlarged painting area, or the single gradient gets cut off
+       before the bloom around it does. 300% is comfortably past any
+       real extent the bleed, mask radius and bloom add up to. */
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-size: 300% 300%;
+    mask-size: 300% 300%;
+    transition: opacity 300ms ease-out;
+  }
+
+  .project::before {
+    /* Base stroke opacity: constant at the peak while hovering,
+       never driven down by the bloom. This is what Part 1 of this
+       pass fixes — the stroke must not disappear under the pointer. */
+    opacity: calc(var(--glow-strength, 0) * 0.35);
+    --glow-bloom: calc(var(--glow-strength, 0) * var(--glow-bloom-max));
+    /* Three passes at increasing radii: each drop-shadow keeps the
+       previous result's crisp source and adds another blurred,
+       tinted copy behind it, building up coverage near the pointer
+       rather than spreading the existing alpha thinner. */
+    filter:
+      drop-shadow(0 0 calc(var(--glow-bloom) * 0.3) var(--glow-colour))
+      drop-shadow(0 0 calc(var(--glow-bloom) * 0.65) var(--glow-colour))
+      drop-shadow(0 0 var(--glow-bloom) var(--glow-colour));
+  }
+
+  .button-group .button::before {
+    /* No blur, no bloom, no fill. The plain masked stroke, bled
+       outside the button, is the whole effect here. */
+    opacity: calc(var(--glow-strength, 0) * 0.5);
+  }
+
+  /* ---------- Inner fill (::after), cards only ----------
+     Not on buttons: a filled layer behind a button's own label was
+     never the point. */
+
+  .project::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1; /* below the card's own text, above its background */
+    pointer-events: none;
+    background: radial-gradient(260px circle at var(--glow-x, 50%) var(--glow-y, 50%),
+      color-mix(in srgb, var(--signal) 45%, transparent),
+      transparent 70%);
+    opacity: calc(var(--glow-strength, 0) * 0.35); /* checked against 4.5:1, see REVERT-pointer-glow.md */
+    transition: opacity 300ms ease-out;
+  }
+
+  /* Two stroke layers, bled -12px outward, still land 8px apart at
+     the closest approach inside this gap: 32px - 12px - 12px = 8px.
+     No overlap. See REVERT-pointer-glow.md for the full check. */
+  .button-group {
+    gap: 2rem;
+  }
+}

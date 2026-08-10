@@ -385,7 +385,11 @@ a:hover {
 }
 
 .project {
+  position: relative;
   margin-block-end: 3rem;
+  padding: 1.25rem;
+  border: 1px solid var(--muted);
+  border-radius: 0.5rem;
 }
 
 .project-meta {
@@ -398,6 +402,14 @@ a:hover {
   max-width: 100%;
   height: auto;
   border-radius: 0.5rem;
+}
+
+/* Stretches the title link over the whole card, so the card is the
+   click target while staying one link with one accessible name. */
+.project h3 a::after {
+  content: "";
+  position: absolute;
+  inset: 0;
 }
 
 /* motion moment 3: scroll reveal. js/motion.js adds .will-reveal only

@@ -21,8 +21,8 @@ Portfolio site for Mathias Sætersdal, interaction designer in Bergen. His speci
 
 - The signature is the travelling keyboard focus indicator. Do not weaken it, do not hide it, do not let a redesign quietly remove it.
 - Everything else stays quiet. One column, generous margins, hierarchy from type and space rather than boxes and borders.
-- Four motion moments only: the focus ring transit, the hero stagger on load, the scroll reveal on cards, and card hover. Do not add a fifth.
-- `prefers-reduced-motion: reduce` disables all four, checked in CSS and in `matchMedia`.
+- Seven motion moments only: the focus ring transit, the hero stagger on load, the scroll reveal on cards, card hover, the collapsing hero on scroll, the pointer-tracked stroke on cards and buttons, and the pointer-tracked fill on cards. Do not add an eighth.
+- `prefers-reduced-motion: reduce` disables all seven, checked in CSS and in `matchMedia`.
 - Colors are tokens in `css/main.css`, each commented with its measured contrast ratio. Never hardcode a hex outside the token block.
 - Do not use Bricolage Grotesque, Atkinson Hyperlegible or JetBrains Mono. Those belong to his other site.
 
