@@ -68,17 +68,58 @@
     }
   }
 
+  /* place() reads the target's rect once, synchronously, when focus
+     arrives. If an ancestor is still off its resting position at that
+     exact moment - the scroll-reveal on .project cards (motion moment
+     3) is the one case of this on the site today - that rect is
+     stale. transitionend looked like the right hook for catching the
+     moment it settles, but is not reliable here: when the reveal
+     happens while the document is backgrounded or otherwise
+     frame-throttled, Chromium has been observed to apply the end
+     state without ever dispatching transitionend, so a corrective
+     listener for it silently never runs. Polling with
+     requestAnimationFrame for a bounded window after every focus
+     move costs a handful of cheap reads and needs no cooperation from
+     the transition system: it re-syncs to whatever the true rect is,
+     every frame, however that rect got there. */
+  var settleUntil = 0;
+  var settleRaf = null;
+
+  function stopSettle() {
+    if (settleRaf !== null) {
+      cancelAnimationFrame(settleRaf);
+      settleRaf = null;
+    }
+  }
+
+  function settleTick(el) {
+    settleRaf = null;
+    if (document.activeElement !== el || !focusVisible(el)) {
+      return;
+    }
+    place(el, false);
+    if (performance.now() < settleUntil) {
+      settleRaf = requestAnimationFrame(function () { settleTick(el); });
+    }
+  }
+
   document.addEventListener('focusin', function (e) {
     var t = e.target;
+    stopSettle();
     if (!(t instanceof Element) || !focusVisible(t)) {
       hide(); /* mouse and touch focus keep the page quiet */
       return;
     }
     place(t, true);
+    /* Comfortably past the 450ms reveal transition, with margin for
+       a throttled frame or two. */
+    settleUntil = performance.now() + 700;
+    settleRaf = requestAnimationFrame(function () { settleTick(t); });
   });
 
   document.addEventListener('focusout', function (e) {
     if (!e.relatedTarget) {
+      stopSettle();
       hide(); /* blur with nothing focused */
     }
   });
