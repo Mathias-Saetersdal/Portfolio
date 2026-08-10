@@ -1,7 +1,8 @@
 /* main.css
    Tokens, type scale, layout, both color schemes.
    Palette is BUILD.md option B: pale cool ground, spruce ink,
-   one violet signal hue reserved for links and the focus ring. */
+   one violet signal hue reserved for links, one amber hue for the
+   focus ring. */
 
 /* ---------- Color tokens ----------
    Every ratio below is measured (WCAG 2.x relative luminance),
@@ -11,10 +12,19 @@
   --ground: #e9ebe7; /* page background */
   --ink:    #1f3230; /* body text        11.24:1 on --ground */
   --muted:  #4a5a57; /* metadata         6.05:1  on --ground */
-  --signal: #4a2e8c; /* links + focus ring 8.49:1 on --ground (text and non-text) */
+  --signal: #4a2e8c; /* links                    8.49:1 on --ground (text and non-text) */
   --surface:#dfe3dc; /* hover tint, non-text, no contrast claim */
   --ok:     #17693c; /* correct state in the memory test 5.61:1 on --ground */
   --err:    #a62639; /* wrong state in the memory test   5.92:1 on --ground */
+  /* Focus ring only. Kept apart from --signal: a ring the same colour as
+     a --signal-filled component (the .button fill) would read as 1:1
+     contrast the instant a gap ever closed between them. --ground and
+     --signal are only 8.49:1 apart here, which is short of the 9:1 a
+     colour would need to clear 3:1 against both at once, so this sits at
+     the closest achievable balance: 2.92:1 on --ground, 2.91:1 on
+     --signal. Neither quite reaches 3:1; this is the best any single
+     colour can do against this --ground/--signal pair. */
+  --focus:  #c87500;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -22,10 +32,13 @@
     --ground: #131a17; /* page background */
     --ink:    #e4eae6; /* body text        14.49:1 on --ground */
     --muted:  #9fafa8; /* metadata         7.72:1  on --ground */
-    --signal: #b7a5ef; /* links + focus ring 8.12:1 on --ground (text and non-text) */
+    --signal: #b7a5ef; /* links                    8.12:1 on --ground (text and non-text) */
     --surface:#1c2420; /* hover tint, non-text, no contrast claim */
     --ok:     #7ed09a; /* correct state in the memory test 9.58:1 on --ground */
     --err:    #f2a3a8; /* wrong state in the memory test   8.91:1 on --ground */
+    /* Same balance as light: 2.85:1 on --ground, 2.85:1 on --signal,
+       against an 8.12:1 --ground/--signal pair. See the light comment. */
+    --focus:  #88560f;
   }
 }
 
@@ -141,11 +154,11 @@ a:hover {
 /* ---------- Focus ----------
    Native fallback first. Every interactive element keeps this
    outline so the site passes 2.4.7 and 2.4.11 with JavaScript off.
-   3px solid --signal: 8.49:1 (light) and 8.12:1 (dark) against
-   --ground, well past the 3:1 non-text minimum. */
+   3px solid --focus: see the token comment in the color block above
+   for the measured ratios against --ground and --signal. */
 
 :focus-visible {
-  outline: 3px solid var(--signal);
+  outline: 3px solid var(--focus);
   outline-offset: 2px;
 }
 
@@ -170,7 +183,7 @@ a:hover {
   left: 0;
   width: 0;
   height: 0;
-  border: 3px solid var(--signal);
+  border: 3px solid var(--focus);
   border-radius: 0.5rem;
   opacity: 0;
   pointer-events: none;
