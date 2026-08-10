@@ -510,28 +510,31 @@ a:hover {
 }
 
 /* ---------- About page (about.html, en/about.html) ----------
-   The portrait sits beside the first paragraph only, not the whole
-   section, so .about-intro wraps just that pair. One column by
-   default (image above text), two columns from the same 40rem
-   breakpoint the rest of the site uses once space allows it. */
+   The portrait floats left of the paragraphs that follow it, so
+   every paragraph wraps it, not just the first, each continuing
+   full width once it clears the image's bottom edge. flow-root on
+   the section keeps the float contained inside it: without it, a
+   section can end no further down than its last in-flow line,
+   leaving a floated child poking out past that edge, and the
+   Kontakt section right after would render beside the leftover
+   part of it instead of below it. */
 
-.about-intro {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1rem;
-  align-items: start;
+.about-body {
+  display: flow-root;
 }
 
-.about-intro img {
-  width: 100%;
+.about-body img {
+  float: left;
   max-width: 220px;
   height: auto;
+  margin: 0 1.5rem 1rem 0;
 }
 
-@media (min-width: 40rem) {
-  .about-intro {
-    grid-template-columns: 220px 1fr;
-    gap: 1.5rem;
+@media (max-width: 40rem) {
+  .about-body img {
+    float: none;
+    display: block;
+    margin-inline-end: 0;
   }
 }
 
