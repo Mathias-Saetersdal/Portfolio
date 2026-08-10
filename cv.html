@@ -9,6 +9,9 @@
   <link rel="icon" href="img/icon-32.png" sizes="32x32">
   <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
   <link rel="stylesheet" href="css/main.css">
+  <link rel="alternate" hreflang="nb" href="cv.html">
+  <link rel="alternate" hreflang="en" href="en/cv.html">
+  <link rel="alternate" hreflang="x-default" href="cv.html">
 </head>
 <body>
   <a class="skip-link" href="#main">Hopp til innholdet</a>
@@ -18,6 +21,7 @@
     <nav aria-label="Hovednavigasjon">
       <a href="index.html">Hjem</a>
       <a href="about.html">Om meg</a>
+      <a href="en/cv.html" lang="en" hreflang="en">English</a>
     </nav>
   </header>
 
@@ -95,9 +99,9 @@
 
       <section aria-labelledby="skills-heading">
         <h2 id="skills-heading">Kompetanse</h2>
-        <div class="cv-table-wrap">
+        <div class="cv-table-wrap" tabindex="0" role="region" aria-labelledby="cv-skills-caption">
           <table>
-            <caption>Kompetanse etter kategori</caption>
+            <caption id="cv-skills-caption">Kompetanse etter kategori</caption>
             <tbody>
               <tr>
                 <th scope="row">Programmeringsspråk og rammeverk</th>
@@ -181,7 +185,8 @@
   </main>
 
   <footer class="site-footer wrap">
-    <p>Mathias Sætersdal · <a href="https://github.com/Mathias-Saetersdal">GitHub</a></p>
+    <p>Mathias Sætersdal · <a href="en/cv.html" lang="en" hreflang="en">English</a> ·
+       <a href="https://github.com/Mathias-Saetersdal">GitHub</a></p>
   </footer>
 
   <script src="js/focus-ring.js" defer></script>
