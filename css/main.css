@@ -1,8 +1,8 @@
 /* main.css
    Tokens, type scale, layout, both color schemes.
    Palette is BUILD.md option B: pale cool ground, spruce ink,
-   one violet signal hue reserved for links, one amber hue for the
-   focus ring. */
+   one violet signal hue reserved for links and, via --focus, the
+   focus ring too. */
 
 /* ---------- Color tokens ----------
    Every ratio below is measured (WCAG 2.x relative luminance),
@@ -16,15 +16,19 @@
   --surface:#dfe3dc; /* hover tint, non-text, no contrast claim */
   --ok:     #17693c; /* correct state in the memory test 5.61:1 on --ground */
   --err:    #a62639; /* wrong state in the memory test   5.92:1 on --ground */
-  /* Focus ring only. Kept apart from --signal: a ring the same colour as
-     a --signal-filled component (the .button fill) would read as 1:1
-     contrast the instant a gap ever closed between them. --ground and
-     --signal are only 8.49:1 apart here, which is short of the 9:1 a
-     colour would need to clear 3:1 against both at once, so this sits at
-     the closest achievable balance: 2.92:1 on --ground, 2.91:1 on
-     --signal. Neither quite reaches 3:1; this is the best any single
-     colour can do against this --ground/--signal pair. */
-  --focus:  #c87500;
+  /* Focus ring. Measured 8.49:1 against --ground, same pair as --signal
+     below, because --focus and --signal are deliberately the same
+     value here. A distinct third colour that clears 3:1 against both
+     --ground and --signal is arithmetically impossible with this
+     palette: those two tokens are only 8.49:1 apart, and an
+     intermediate colour splits that ratio multiplicatively between its
+     distance to each end, so the two resulting ratios can never both
+     reach 3:1 (that would need the endpoints to be at least 9:1 apart).
+     Kept as its own token, not replaced with var(--signal), so the two
+     can diverge later if the palette changes. The band painted inside
+     the offset gap (see the :focus-visible rule) is what actually
+     guarantees the ring's contrast now, not this hex choice. */
+  --focus:  #4a2e8c;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -36,9 +40,9 @@
     --surface:#1c2420; /* hover tint, non-text, no contrast claim */
     --ok:     #7ed09a; /* correct state in the memory test 9.58:1 on --ground */
     --err:    #f2a3a8; /* wrong state in the memory test   8.91:1 on --ground */
-    /* Same balance as light: 2.85:1 on --ground, 2.85:1 on --signal,
-       against an 8.12:1 --ground/--signal pair. See the light comment. */
-    --focus:  #88560f;
+    /* Same as light: --focus equals --signal, measured 8.12:1 against
+       --ground here. See the light scheme comment above. */
+    --focus:  #b7a5ef;
   }
 }
 
@@ -155,11 +159,22 @@ a:hover {
    Native fallback first. Every interactive element keeps this
    outline so the site passes 2.4.7 and 2.4.11 with JavaScript off.
    3px solid --focus: see the token comment in the color block above
-   for the measured ratios against --ground and --signal. */
+   for the measured ratio against --ground.
+
+   The box-shadow paints --ground into the outline-offset gap itself,
+   at the same 2px the offset uses. Without it, that gap shows
+   whatever sits behind the focused element (page background almost
+   everywhere, but a --signal fill on a .button), so the ring's
+   contrast against its inner edge would depend on what happened to be
+   there rather than being guaranteed. box-shadow paints to the
+   border box, not into the offset, which is exactly why the gap was
+   ever ambiguous. spread must equal outline-offset, or the painted
+   band and the visible gap stop lining up. */
 
 :focus-visible {
   outline: 3px solid var(--focus);
   outline-offset: 2px;
+  box-shadow: 0 0 0 2px var(--ground);
 }
 
 /* js/focus-ring.js adds .focus-ring-active to <html> only after it
@@ -176,7 +191,14 @@ a:hover {
   scroll-margin-top: calc(var(--bar-height) + 0.5rem);
 }
 
-/* The travelling ring itself (created by js/focus-ring.js). */
+/* The travelling ring itself (created by js/focus-ring.js). Sized in
+   focus-ring.js to the target's rect plus PAD (4px) on every side, so
+   the ring's own border sits PAD away from the target it surrounds.
+   The inset box-shadow paints --ground into that PAD band, from the
+   inside of this element's own border box, for the same reason the
+   :focus-visible box-shadow does: without it, the band shows whatever
+   is under the target, not a guaranteed colour. spread must equal
+   PAD, or the painted band stops matching the visible gap. */
 .focus-ring {
   position: absolute;
   top: 0;
@@ -185,6 +207,7 @@ a:hover {
   height: 0;
   border: 3px solid var(--focus);
   border-radius: 0.5rem;
+  box-shadow: inset 0 0 0 4px var(--ground);
   opacity: 0;
   pointer-events: none;
   z-index: 100;
