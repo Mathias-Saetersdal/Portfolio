@@ -502,6 +502,32 @@ a:hover {
   font-size: var(--t-1);
 }
 
+/* ---------- About page (about.html, en/about.html) ----------
+   The portrait sits beside the first paragraph only, not the whole
+   section, so .about-intro wraps just that pair. One column by
+   default (image above text), two columns from the same 40rem
+   breakpoint the rest of the site uses once space allows it. */
+
+.about-intro {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  align-items: start;
+}
+
+.about-intro img {
+  width: 100%;
+  max-width: 220px;
+  height: auto;
+}
+
+@media (min-width: 40rem) {
+  .about-intro {
+    grid-template-columns: 220px 1fr;
+    gap: 1.5rem;
+  }
+}
+
 /* ---------- CV (cv.html) ---------- */
 
 .cv > section {
