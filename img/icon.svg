@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true">
+  <!-- The site's travelling keyboard focus ring, reduced to one mark.
+       Colours are the ground and signal tokens from css/main.css, hard
+       coded as hex since a favicon has no inherited colour context.
+       Measured contrast, stroke against background: 8.49:1 light, 8.12:1
+       dark (same pairing documented in css/main.css), both past the 3:1
+       non-text floor. -->
+  <style>
+    .bg { fill: #e9ebe7; }
+    .ring { stroke: #4a2e8c; }
+    @media (prefers-color-scheme: dark) {
+      .bg { fill: #131a17; }
+      .ring { stroke: #b7a5ef; }
+    }
+  </style>
+  <rect class="bg" x="0" y="0" width="32" height="32" rx="6"/>
+  <rect class="ring" x="5.5" y="5.5" width="21" height="21" rx="3" stroke-width="5" fill="none"/>
+</svg>

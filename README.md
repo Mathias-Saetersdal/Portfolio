@@ -31,6 +31,55 @@ That is the whole workflow. Nothing else changes.
 3. Replace every `TODO-TITLE`/`TODO-TITTEL` and `TODO-ID` in both files.
 4. Fill the six sections. Cut a section rather than pad it.
 
+## Favicon
+
+`img/icon.svg` is the site's keyboard focus ring, reduced to one shape:
+a filled rounded square with a centred rounded square outline in the
+same stroke width as the real focus indicator. Colours are the
+`--ground` and `--signal` tokens from `css/main.css`, hard coded as hex
+since a favicon has no inherited colour context. It has its own
+`prefers-color-scheme: dark` media query and swaps the same way the
+site does. Contrast between background and stroke is 8.49:1 in light
+mode and 8.12:1 in dark mode, both measured in the SVG's own comment
+and far past the 3:1 non-text floor.
+
+Two PNGs are generated from it, both committed since there is no build
+step to make them on the fly:
+
+- `img/icon-32.png`, a plain 32×32 raster of `img/icon.svg`.
+- `img/apple-touch-icon.png`, 180×180. iOS ignores alpha and applies
+  its own corner mask, so this variant uses a full-bleed square
+  background (no rounded corners baked in, no transparency) and about
+  10% more padding around the ring than the SVG has, so the ring does
+  not sit too close to whatever mask iOS applies. It is fixed to the
+  light palette; touch icons have no theme context to switch on.
+
+To regenerate after an edit to `img/icon.svg`:
+
+```
+sips -s format png img/icon.svg --out img/icon-32.png
+```
+
+For the apple touch icon, `sips` will not add padding or flatten
+corners on its own, so build a small variant first (values below match
+the current mark; recompute if the ring geometry changes):
+
+```
+cat > /tmp/icon-apple-source.svg <<'EOF'
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <rect x="0" y="0" width="32" height="32" fill="#e9ebe7"/>
+  <rect x="5.8" y="5.8" width="20.4" height="20.4" rx="3"
+        stroke-width="5" fill="none" stroke="#4a2e8c"/>
+</svg>
+EOF
+sips -s format png -z 180 180 /tmp/icon-apple-source.svg \
+  --out img/apple-touch-icon.png
+```
+
+Verify afterwards that both PNGs are the right pixel size
+(`sips -g pixelWidth -g pixelHeight img/icon-32.png`) and that the
+touch icon has no transparent pixels.
+
 ## Fonts
 
 The recommended faces are not in the repo yet. The site runs on
