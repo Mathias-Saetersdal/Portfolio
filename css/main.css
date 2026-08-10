@@ -194,11 +194,18 @@ a:hover {
 /* The travelling ring itself (created by js/focus-ring.js). Sized in
    focus-ring.js to the target's rect plus PAD (4px) on every side, so
    the ring's own border sits PAD away from the target it surrounds.
-   The inset box-shadow paints --ground into that PAD band, from the
-   inside of this element's own border box, for the same reason the
-   :focus-visible box-shadow does: without it, the band shows whatever
-   is under the target, not a guaranteed colour. spread must equal
-   PAD, or the painted band stops matching the visible gap. */
+   The inset box-shadow paints --ground into that PAD band, for the
+   same reason the :focus-visible box-shadow does: without it, the
+   band shows whatever is under the target, not a guaranteed colour.
+
+   The spread is 1px, not PAD's 4px: an inset shadow's shape is based
+   on the padding box, not the border box, so it starts at the
+   border's inner edge, already 3px in from PAD, and only the
+   remaining 1px (PAD minus the 3px border) is left to fill before
+   reaching the target. Spreading it the full 4px from that inner
+   starting point painted 3px onto the target itself. spread must
+   equal PAD minus the border width, or the band either overlaps the
+   target or leaves part of the gap unpainted. */
 .focus-ring {
   position: absolute;
   top: 0;
@@ -207,7 +214,7 @@ a:hover {
   height: 0;
   border: 3px solid var(--focus);
   border-radius: 0.5rem;
-  box-shadow: inset 0 0 0 4px var(--ground);
+  box-shadow: inset 0 0 0 1px var(--ground);
   opacity: 0;
   pointer-events: none;
   z-index: 100;
