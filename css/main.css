@@ -378,6 +378,15 @@ a:hover {
   margin-block-end: 5rem;
 }
 
+/* False on a touchscreen: there is no Tab key to press. A narrow
+   desktop window still has a keyboard, so this gates on pointer type,
+   not viewport width. */
+@media (pointer: coarse) {
+  .tab-hint {
+    display: none;
+  }
+}
+
 .tab-hint button {
   font: inherit;
   color: var(--signal);
