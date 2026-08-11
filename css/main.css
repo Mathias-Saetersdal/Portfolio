@@ -582,6 +582,13 @@ a:hover {
   }
 }
 
+/* One line of extra air above the last paragraph, roughly the body
+   line-height (1.125rem at 1.6), instead of the plain 1em every
+   other paragraph gets from the base p rule. */
+.about-body > p:last-child {
+  margin-block-start: 1.8rem;
+}
+
 /* ---------- CV (cv.html) ---------- */
 
 .cv > section {
