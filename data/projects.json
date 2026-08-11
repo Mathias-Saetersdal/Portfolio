@@ -112,6 +112,32 @@
       "liveUrl": "https://mathias-saetersdal.github.io/diskette/",
       "repoUrl": "https://github.com/Mathias-Saetersdal/diskette",
       "status": "published"
+    },
+    {
+      "id": "trust-signals",
+      "title": {
+        "nb": "Layered Trust Signals in E-Commerce Interfaces",
+        "en": "Layered Trust Signals in E-Commerce Interfaces"
+      },
+      "year": 2026,
+      "role": {
+        "nb": "",
+        "en": ""
+      },
+      "summary": {
+        "nb": "",
+        "en": ""
+      },
+      "tags": [],
+      "thumb": "",
+      "alt": {
+        "nb": "",
+        "en": ""
+      },
+      "href": "work/trust-signals.html",
+      "liveUrl": "",
+      "repoUrl": "",
+      "status": "published"
     }
   ]
 }
