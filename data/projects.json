@@ -14,7 +14,10 @@
       "nb": "",
       "en": ""
     },
-    "tags": [],
+    "tags": {
+      "nb": [],
+      "en": []
+    },
     "thumb": "",
     "alt": {
       "nb": "",
@@ -41,11 +44,10 @@
         "nb": "Et personlig kunnskapsbibliotek for designarbeid. Én JSON-fil vises som fem visninger: hylle, graf, ferdighetstre, bok og indeks.",
         "en": "A personal knowledge library for design work. One JSON file rendered as five views: shelf, graph, skill tree, book and index."
       },
-      "tags": [
-        "accessibility",
-        "information architecture",
-        "frontend"
-      ],
+      "tags": {
+        "nb": ["universell utforming", "informasjonsarkitektur", "frontend"],
+        "en": ["accessibility", "information architecture", "frontend"]
+      },
       "thumb": "",
       "alt": {
         "nb": "",
@@ -71,9 +73,10 @@
         "nb": "Et eksperiment på om farge gjør det lettere å huske hverdagsobjekter. Semesteroppgave ved NTNU, valgt ut til AIC 2025 og presentert i Taipei.",
         "en": "An experiment on whether colour makes everyday objects easier to remember. A course paper at NTNU, selected for AIC 2025 and presented in Taipei."
       },
-      "tags": [
-        "color"
-      ],
+      "tags": {
+        "nb": ["fargeforskning", "brukertesting", "konferansepublikasjon"],
+        "en": ["colour research", "user testing", "conference paper"]
+      },
       "thumb": "",
       "alt": {
         "nb": "",
@@ -99,11 +102,10 @@
         "nb": "Fire lister på ti oppføringer, der hver oppføring vises som gjenstanden den ble utgitt som. Kassen åpnes, platen løftes ut og snurrer.",
         "en": "Four lists of ten entries, where each entry appears as the object it was released as. The case opens, the disc lifts out and spins."
       },
-      "tags": [
-        "frontend",
-        "interaction design",
-        "accessibility"
-      ],
+      "tags": {
+        "nb": ["frontend", "interaksjonsdesign", "universell utforming"],
+        "en": ["frontend", "interaction design", "accessibility"]
+      },
       "alt": {
         "nb": "",
         "en": ""
@@ -128,11 +130,10 @@
         "nb": "Masteroppgave i interaksjonsdesign. Sammenlignende analyse av hvordan Amazon, Temu, eBay og Apple bygger tillit gjennom design.",
         "en": "Master's thesis in interaction design. A comparative analysis of how Amazon, Temu, eBay and Apple build trust through design."
       },
-      "tags": [
-        "master's thesis",
-        "interaction design",
-        "e-commerce"
-      ],
+      "tags": {
+        "nb": ["masteroppgave", "interaksjonsdesign", "netthandel"],
+        "en": ["master's thesis", "interaction design", "e-commerce"]
+      },
       "thumb": "",
       "alt": {
         "nb": "",

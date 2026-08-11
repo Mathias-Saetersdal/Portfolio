@@ -17,12 +17,14 @@
     nb: {
       empty: 'Ingen publiserte prosjekter ennå.',
       failed: 'Prosjektlisten kunne ikke lastes. Last siden på nytt.',
-      file: 'Prosjektlisten kan ikke lastes rett fra en fil. Kjør en lokal server i mappen, for eksempel python3 -m http.server, og åpne siden derfra.'
+      file: 'Prosjektlisten kan ikke lastes rett fra en fil. Kjør en lokal server i mappen, for eksempel python3 -m http.server, og åpne siden derfra.',
+      tags: 'Emneord'
     },
     en: {
       empty: 'No published projects yet.',
       failed: 'The project list could not be loaded. Reload the page.',
-      file: 'The project list cannot load straight from a file. Run a local server in the folder, for example python3 -m http.server, and open the page from there.'
+      file: 'The project list cannot load straight from a file. Run a local server in the folder, for example python3 -m http.server, and open the page from there.',
+      tags: 'Tags'
     }
   };
 
@@ -80,6 +82,19 @@
       var summary = document.createElement('p');
       summary.textContent = t(p.summary);
       li.appendChild(summary);
+    }
+
+    var tags = t(p.tags);
+    if (tags && tags.length) {
+      var tagList = document.createElement('ul');
+      tagList.className = 'project-tags';
+      tagList.setAttribute('aria-label', STR[lang].tags);
+      tags.forEach(function (tag) {
+        var tagItem = document.createElement('li');
+        tagItem.textContent = tag;
+        tagList.appendChild(tagItem);
+      });
+      li.appendChild(tagList);
     }
 
     return li;
