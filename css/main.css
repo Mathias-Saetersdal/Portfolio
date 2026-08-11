@@ -571,6 +571,17 @@ a:hover {
   }
 }
 
+/* The frontend paragraph starts beside the float and wraps under it,
+   leaving a short orphaned first line. clear: left drops it below
+   the image entirely instead. Scoped to the same 40rem breakpoint
+   the float itself is active above, so it does nothing once the
+   image is already full width and there is no float left to clear. */
+@media (min-width: 40rem) {
+  .about-clear {
+    clear: left;
+  }
+}
+
 /* ---------- CV (cv.html) ---------- */
 
 .cv > section {
