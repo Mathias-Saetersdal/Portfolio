@@ -88,6 +88,7 @@
     if (tags && tags.length) {
       var tagList = document.createElement('ul');
       tagList.className = 'project-tags';
+      tagList.setAttribute('role', 'list');
       tagList.setAttribute('aria-label', STR[lang].tags);
       tags.forEach(function (tag) {
         var tagItem = document.createElement('li');

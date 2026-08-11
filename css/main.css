@@ -456,12 +456,21 @@ a:hover {
   border-radius: 0.5rem;
 }
 
-/* Not links, not filters, so no pill, no border, no colour fill: the
-   same quiet middle-dot separator .project-meta and the header and
-   footer already use, not a new visual device. */
+/* Not links, not filters, so no pill, no border, no colour fill: a
+   quiet dot between items, echoing the middle dot .project-meta and
+   the header and footer use, without being one. A real "·" character
+   in generated content is text, and some screen readers (Safari with
+   VoiceOver among them) speak ::after content, so with the list's own
+   aria-label that would read as "Emneord, list, frontend, middle dot,
+   accessibility, middle dot, ...". Spacing comes from gap on the flex
+   container, not from margin on the separator, and the separator
+   itself is a drawn shape with no content string at all, so there is
+   nothing left for assistive tech to announce. */
 .project-tags {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5em;
   list-style: none;
   margin: 0.5em 0 0;
   padding: 0;
@@ -470,8 +479,14 @@ a:hover {
 }
 
 .project-tags li:not(:last-child)::after {
-  content: "·";
-  margin-inline: 0.5em;
+  content: "";
+  display: inline-block;
+  width: 0.25em;
+  height: 0.25em;
+  margin-inline-start: 0.5em;
+  border-radius: 50%;
+  background: currentColor;
+  vertical-align: middle;
 }
 
 /* Stretches the title link over the whole card, so the card is the
