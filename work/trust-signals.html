@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Layered Trust Signals in E-Commerce Interfaces · Mathias Sætersdal</title>
-  <meta name="description" content="TODO: én setning i førsteperson om hva jeg bygde.">
+  <meta name="description" content="Min masteroppgave om tillit i netthandel: hvordan Amazon, Temu, eBay og Apple bygger tillit i grensesnittet.">
   <link rel="icon" href="../img/icon.svg" type="image/svg+xml">
   <link rel="icon" href="../img/icon-32.png" sizes="32x32">
   <link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
@@ -35,7 +35,18 @@
 
       <section aria-labelledby="what-heading">
         <h2 id="what-heading">Hva det er</h2>
-        <!-- TODO: to setninger, deretter et bilde med alt-tekst fra Mathias. -->
+        <p>Masteroppgaven min i interaksjonsdesign, levert ved NTNU i juni
+           2026. Den analyserer hvordan fire netthandelsplattformer bygger
+           tillit gjennom design.</p>
+        <p>Oppgaven utvikler et rammeverk jeg kaller Layered Trust Signals.
+           Det deler tilliten i grensesnittet i tre lag. Lag 1 er det
+           regulatoriske: samtykkedialogen for informasjonskapsler. Lag 2 er
+           det institusjonelle: betalingslogoer, kjøpsgarantier og
+           selgeromdømme. Lag 3 er grensesnittet selv, altså visuell
+           tetthet, informasjonshierarki og virkemidler som knapphet og
+           sosialt bevis.</p>
+        <p>Rammeverket brukes til å sammenligne Amazon, Temu, eBay og
+           Apples nettbutikk.</p>
       </section>
 
       <!-- Dette prosjektet har ingen live-side og ingen kildekode.
@@ -46,23 +57,78 @@
 
       <section aria-labelledby="brief-heading">
         <h2 id="brief-heading">Oppdraget</h2>
-        <!-- TODO: hva som ble bedt om, av hvem, under hvilke rammer. -->
+        <p>Oppdraget var mitt eget. Veileder var Aliaksei Miniukovich.</p>
+        <p>Forskning på tillit i netthandel finnes i flere fagfelt:
+           personvernjus, informasjonssystemer, visuell troverdighet og
+           forskning på mørke mønstre. Feltene siterer sjelden hverandre.
+           Ingen av dem beskriver hvordan signalene i de ulike lagene
+           virker sammen i ett og samme grensesnitt.</p>
+        <p>En bruker som møter en manipulerende samtykkedialog, deretter en
+           troverdig betalingsside, deretter en visuelt overbevisende
+           produktside, har ikke vært gjennom tre uavhengige vurderinger.
+           Oppgaven er bygget for å beskrive det samspillet.</p>
       </section>
 
       <section aria-labelledby="did-heading">
         <h2 id="did-heading">Hva jeg gjorde</h2>
-        <!-- TODO: beslutningene i rekkefølge. For hver: problemet,
-             alternativene, valget og grunnen. -->
+        <p>Jeg laget en observasjonsprotokoll med 18 spørsmål, seks per
+           lag, og brukte den likt på alle fire plattformene.</p>
+        <p>Hver plattform ble observert to ganger, 19. og 26. mai 2026, i
+           Chrome på desktop, fra norsk IP-adresse og uten innlogging der
+           det lot seg gjøre. Samme produktkategori ble brukt overalt: en
+           bærbar Bluetooth-høyttaler. All knappetekst, garantitekst og
+           knapphetsformulering ble skrevet av ordrett. Der de to øktene
+           ga ulike svar, beholdt jeg begge.</p>
+        <p>To økter var ikke planlagt som replikasjon. Temu endret
+           samtykkeflyten sin mellom dem, og det var grunnen til at jeg
+           gikk tilbake og sjekket de tre andre.</p>
+        <p>Temu hadde den mest regelrette samtykkedialogen av de fire.
+           Symmetriske knapper, avvisning på ett klikk, annonsekapsler
+           slått av i utgangspunktet. Samme plattform hadde flest
+           overtalende virkemidler på produktsiden: sju i første
+           skjermbilde, blant dem knapphetsvarsel og overstreket
+           veiledende pris. De to lagene er utformet etter hver sin
+           logikk.</p>
+        <p>Amazon og Apple viste ingen samtykkedialog i det hele tatt til
+           en norsk besøkende. Hos Amazon ligger eneste avmelding bak
+           innlogging.</p>
+        <p>På tre av fire plattformer var den juridisk bindende garantien
+           ikke det mest synlige tillitssignalet ved kjøpsøyeblikket. Det
+           som lå øverst var svakere: algoritmiske merker, salgstall og
+           selvformulerte påstander.</p>
+        <p>Apple brøt med det forskningen ville forutsagt. Produktsiden
+           følger ikke standarden for netthandel, har ingen anmeldelser og
+           ingen hastesignaler, og oppfattes likevel som den mest
+           troverdige. Merkevaren gjør jobben før grensesnittet får
+           sjansen.</p>
+        <p>Begrepet jeg foreslår for mønsteret er tillitskompensasjon: en
+           svakhet i ett lag kan dekkes av styrke i et annet. Grensen går
+           der bruken fortsetter uten at tilliten gjør det.</p>
       </section>
 
       <section aria-labelledby="looks-heading">
         <h2 id="looks-heading">Hvordan det ser ut</h2>
-        <!-- TODO: bilder med bildetekster som sier noe bildet ikke kan. -->
+        <!-- TODO: Mathias vurderer om tabell 3 fra oppgaven, visuell tetthet og
+             prototypikalitet per plattform, skal gjengis her som en HTML-tabell.
+             Ingenting skrives før det er avklart. -->
       </section>
 
       <section aria-labelledby="change-heading">
         <h2 id="change-heading">Hva jeg ville endret</h2>
-        <!-- TODO: to eller tre konkrete ting. -->
+        <p>Oppgaven måler ikke tillit. Den beskriver hvordan tillit er
+           utformet. Det var et valg, og det er også den største
+           begrensningen: jeg kan si hva plattformene gjør, ikke hva
+           brukerne sitter igjen med.</p>
+        <p>Med mer tid ville jeg lagt til en empirisk del. Brukertesting
+           der deltakere går gjennom de samme fire flytene og vurderer
+           tillit underveis ville gjort det mulig å teste påstandene i
+           stedet for å utlede dem fra litteraturen. Målinger av blikk
+           eller pupill ville lagt et lag til på produktsidene.</p>
+        <p>Det enkleste tiltaket ville vært en observatør til. Kvalitativ
+           grensesnittanalyse er tolkende, og protokollen ble bare brukt av
+           meg. En andre koder på et utvalg av observasjonene ville vist
+           hvor mye av funnene som ligger i protokollen og hvor mye som
+           ligger i meg.</p>
       </section>
 
       <section aria-labelledby="facts-heading">
