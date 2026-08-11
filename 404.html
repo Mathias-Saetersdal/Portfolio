@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<!-- This page breaks the project's relative-path rule on purpose. GitHub
+     Pages serves 404.html for any missing URL anywhere on the site, at
+     whatever depth that URL happened to be, including under /en/. A
+     relative path resolves against the URL the browser actually
+     requested, not against where this file sits on disk, so a relative
+     link here would point somewhere different depending on where the
+     visitor came from, or would break outright a level deep. Every
+     link and every asset below is an absolute https://saetersdal.no/
+     URL instead, and nothing external is loaded: no stylesheet, no
+     script, no image, so this page never depends on a relative path
+     resolving correctly in the first place. -->
+<html lang="nb">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>404 · Mathias Sætersdal</title>
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="https://saetersdal.no/img/icon.svg" type="image/svg+xml">
+  <link rel="icon" href="https://saetersdal.no/img/icon-32.png" sizes="32x32">
+  <link rel="apple-touch-icon" href="https://saetersdal.no/img/apple-touch-icon.png">
+  <style>
+    :root {
+      --ground: #e9ebe7;
+      --ink: #1f3230;
+      --muted: #4a5a57;
+      --signal: #4a2e8c;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --ground: #131a17;
+        --ink: #e4eae6;
+        --muted: #9fafa8;
+        --signal: #b7a5ef;
+      }
+    }
+    * {
+      box-sizing: border-box;
+    }
+    html {
+      color-scheme: light dark;
+    }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      background: var(--ground);
+      color: var(--ink);
+      font-family: Charter, "Bitstream Charter", "Sitka Text", Cambria, Georgia, serif;
+      font-size: 1.125rem;
+      line-height: 1.6;
+    }
+    .wrap {
+      max-width: 42rem;
+      margin-inline: auto;
+      padding-inline: clamp(1rem, 4vw, 2rem);
+    }
+    h1, h2 {
+      font-family: "Avenir Next", Avenir, Seravek, "Segoe UI", system-ui, sans-serif;
+      font-weight: 650;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      margin-block: 0 0.5em;
+    }
+    h1 {
+      font-size: clamp(2.197rem, 1.4rem + 3.5vw, 2.747rem);
+    }
+    h2 {
+      font-size: 1.406rem;
+      margin-block-start: 2em;
+    }
+    p {
+      color: var(--muted);
+      margin-block: 0 1em;
+    }
+    a {
+      color: var(--signal);
+      text-decoration-thickness: 0.06em;
+      text-underline-offset: 0.15em;
+    }
+    :focus-visible {
+      outline: 3px solid var(--signal);
+      outline-offset: 2px;
+    }
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem 1.5rem;
+      font-family: "Avenir Next", Avenir, Seravek, "Segoe UI", system-ui, sans-serif;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Siden finnes ikke</h1>
+    <p>Lenken er feil, eller siden er flyttet.</p>
+    <nav aria-label="Hovednavigasjon">
+      <a href="https://saetersdal.no/index.html">Forsiden</a>
+      <a href="https://saetersdal.no/about.html">Om meg</a>
+      <a href="https://saetersdal.no/cv.html">CV</a>
+    </nav>
+
+    <div lang="en">
+      <h2>Page not found</h2>
+      <p>The link is wrong, or the page has moved.</p>
+      <nav aria-label="Main navigation">
+        <a href="https://saetersdal.no/en/index.html">Home</a>
+        <a href="https://saetersdal.no/en/about.html">About</a>
+        <a href="https://saetersdal.no/en/cv.html">CV</a>
+      </nav>
+    </div>
+  </div>
+</body>
+</html>
