@@ -93,6 +93,13 @@
       font-family: "Avenir Next", Avenir, Seravek, "Segoe UI", system-ui, sans-serif;
       font-size: 0.9rem;
     }
+    /* 2.5.8: same 1px block padding and 24px minimum inline size as
+       .site-header nav a in css/main.css, lifting the 23.04px line
+       box past 24px and widening the narrow "CV" link's box. */
+    nav a {
+      padding-block: 1px;
+      min-inline-size: 24px;
+    }
   </style>
 </head>
 <body>

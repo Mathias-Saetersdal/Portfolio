@@ -352,6 +352,17 @@ a:hover {
   font-size: var(--t-1);
 }
 
+/* 2.5.8 Target Size: the links' line box is 23.04px (0.9rem at 1.6).
+   1px of block padding lifts the target to 25.04px, past the 24px
+   floor, without leaning on the spacing exception. The bar's height
+   is fixed by --bar-height, so this does not move it. min-inline-size
+   covers the one link whose text is narrower than 24px ("CV" measures
+   19.3px); the box widens, the text and underline do not. */
+.site-header nav a {
+  padding-block: 1px;
+  min-inline-size: 24px;
+}
+
 /* 1.4.10 Reflow: on a short viewport a fixed sticky bar costs too much
    vertical space. Drop back to a static, in-flow bar. */
 @media (max-height: 26rem) {
