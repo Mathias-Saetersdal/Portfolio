@@ -1,0 +1,6 @@
+:root{
+  /* Three radii are the entire vocabulary */
+  --radius-control:6px;  /* buttons, inputs, badges, subtle cards */
+  --radius-card:12px;    /* cards, framed product captures */
+  --radius-pill:9999px;  /* pills, tags */
+}

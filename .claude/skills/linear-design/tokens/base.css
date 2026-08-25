@@ -1,0 +1,20 @@
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+body{margin:0;background:var(--bg-canvas);color:var(--text-secondary);font-family:var(--font-core);font-size:var(--size-body);line-height:var(--lh-body);letter-spacing:var(--track-body);font-weight:var(--weight-regular);font-feature-settings:var(--font-features);font-variant-numeric:tabular-nums slashed-zero}
+h1,h2,h3,h4,h5,h6{margin:0;color:var(--text-primary);font-weight:var(--weight-medium)}
+h1{font-size:var(--size-hero);line-height:var(--lh-hero);letter-spacing:var(--track-hero)}
+h2{font-size:var(--size-section);line-height:var(--lh-section);letter-spacing:var(--track-section)}
+h3{font-size:var(--size-subheading);line-height:var(--lh-subheading);letter-spacing:var(--track-subheading);font-weight:var(--weight-regular)}
+h4{font-size:var(--size-heading);line-height:var(--lh-heading);letter-spacing:var(--track-heading);font-weight:var(--weight-regular)}
+p{margin:0;text-wrap:pretty}
+code,kbd,pre,samp{font-family:var(--font-mono)}
+a{color:var(--text-secondary);text-decoration:none;transition:color var(--dur-fast) var(--ease-state)}
+a:hover{color:var(--text-primary)}
+p a,li a{text-decoration:underline;text-underline-offset:2px} /* links in prose carry a non-color affordance */
+:focus-visible{outline:var(--focus-ring-width) solid var(--focus-ring);outline-offset:var(--focus-ring-offset)}
+hr{border:0;border-top:var(--hairline-separator);margin:0}
+::selection{background:var(--accent);color:var(--accent-ink)}
+img{max-width:100%;display:block}
+@media (max-width:900px){
+  h1{font-size:var(--size-display-md)}
+}

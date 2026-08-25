@@ -1,0 +1,11 @@
+:root{
+  --dur-fast:120ms; /* @kind other */
+  --dur-medium:180ms; /* @kind other */
+  --dur-slow:240ms; /* @kind other */
+  --ease-entrance:ease-out; /* @kind other */
+  --ease-state:ease-in-out; /* @kind other */
+  --transition-state:background-color var(--dur-fast) var(--ease-state),border-color var(--dur-fast) var(--ease-state),color var(--dur-fast) var(--ease-state); /* @kind other */
+}
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{transition:none!important;animation:none!important}
+}

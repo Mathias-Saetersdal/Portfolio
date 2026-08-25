@@ -1,0 +1,53 @@
+:root{
+  /* Neutral ladder, darkest to lightest (linear.md names are the token names) */
+  --void:#08090a;      /* page canvas, full-bleed backgrounds */
+  --carbon:#0f1011;    /* card surfaces, nav bars */
+  --obsidian:#161718;  /* elevated surfaces, deeper panels */
+  --graphite:#23252a;  /* subtle borders, dividers, ghost outlines */
+  --smoke:#383b3f;     /* higher-contrast hairlines, section separators */
+  --ash:#62666d;       /* control borders (3.5:1 on Void). Prohibited as a text color */
+  --steel:#6d7076;     /* control border when the control sits on Graphite (3.1:1) */
+  --fog:#8a8f98;       /* tertiary text, placeholders, icon fills */
+  --mist:#d0d6e0;      /* secondary headings, body text, focus ring */
+  --bone:#e5e5e6;      /* near-white fills, high-contrast button text */
+  --paper:#ffffff;     /* primary headings, hero type */
+
+  /* The single accent. There is no second accent in this system. */
+  --acid-lime:#e4f222;
+  --accent:var(--acid-lime);
+  --accent-hover:rgba(228,242,34,.86);   /* same hex, alpha state only */
+  --accent-active:rgba(228,242,34,.74);
+  --accent-ink:var(--void);              /* black label on acid lime */
+
+  /* Translucent whites — the only transparency in the system */
+  --white-02:rgba(255,255,255,.02);      /* subtle card, input fill */
+  --white-05:rgba(255,255,255,.05);      /* pill button, badge fill */
+  --white-08:rgba(255,255,255,.08);      /* input border */
+
+  /* System feedback only. Never an action, never a heading, never a section background.
+     Text variants are >= 4.5:1 on Void and Carbon. Fills are the same hue at low alpha,
+     paired with a line variant for banner and badge borders. */
+  --success:#5bb98c;   --success-fill:rgba(91,185,140,.12);  --success-line:rgba(91,185,140,.32);
+  --warning:#d1a54f;   --warning-fill:rgba(209,165,79,.12);  --warning-line:rgba(209,165,79,.32);
+  --danger:#e0736b;    --danger-fill:rgba(224,115,107,.12);  --danger-line:rgba(224,115,107,.32);
+
+  /* Semantic aliases */
+  --bg-canvas:var(--void);
+  --surface-card:var(--carbon);
+  --surface-raised:var(--obsidian);
+  --surface-subtle:var(--white-02);
+  --text-primary:var(--paper);
+  --text-secondary:var(--mist);
+  --text-tertiary:var(--fog);
+  --text-muted:var(--ash);
+  --text-on-accent:var(--void);
+  --border-hairline:var(--graphite);
+  --border-separator:var(--smoke);
+  --control-edge:var(--ash);            /* every control boundary: input, select, checkbox, radio, nav edge */
+  --border-input:var(--control-edge);
+  --border-input-refine:var(--white-08);
+  --focus-ring:var(--mist);
+  --text-success:var(--success);
+  --text-warning:var(--warning);
+  --text-danger:var(--danger);
+}

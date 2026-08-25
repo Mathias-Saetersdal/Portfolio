@@ -1,0 +1,5 @@
+/* Inter Variable + JetBrains Mono.
+   No font binaries were supplied. linear.md names Berkeley Mono first with
+   "JetBrains Mono / ui-monospace" as the sanctioned fallback, so JetBrains Mono is used.
+   Drop licensed .woff2 files into assets/fonts/ and replace this @import with @font-face rules. */
+@import url("https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,100..590&family=JetBrains+Mono:wght@400;500&display=swap");
