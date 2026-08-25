@@ -2,14 +2,14 @@
   <!-- The site's travelling keyboard focus ring, reduced to one mark.
        Colours are the ground and signal tokens from css/main.css, hard
        coded as hex since a favicon has no inherited colour context.
-       Measured contrast, stroke against background: 8.49:1 light, 8.12:1
+       Measured contrast, stroke against background: 8.49:1 light, 9.15:1
        dark (same pairing documented in css/main.css), both past the 3:1
        non-text floor. -->
   <style>
     .bg { fill: #e9ebe7; }
     .ring { stroke: #4a2e8c; }
     @media (prefers-color-scheme: dark) {
-      .bg { fill: #131a17; }
+      .bg { fill: #08090a; }
       .ring { stroke: #b7a5ef; }
     }
   </style>
