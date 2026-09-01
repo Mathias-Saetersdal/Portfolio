@@ -614,6 +614,135 @@ a:hover {
   margin: 0 0 0.75em;
 }
 
+/* ---------- Case study figures (work/color.html) ----------
+   Two figures built from markup and CSS, no image files. The trial
+   sequence is an ordered list laid out as a grid whose column widths
+   are the phase lengths in seconds. The correlation chart is a table
+   whose last column draws a bar out from a zero line at 50%; half
+   that column equals a correlation of 0,6, so one unit is 83,33% of
+   half the column. Hairline borders and rules only: no fill, no
+   shadow, no gradient, no animation. */
+
+.phases-figure,
+.corr-figure {
+  margin: 0 0 1.5rem;
+}
+
+.phases-figure figcaption,
+.corr-figure figcaption {
+  font-size: var(--t-1);
+  color: var(--muted); /* 6.05:1 light, 6.13:1 dark on --ground */
+  margin-block-start: 0.5rem;
+}
+
+/* list-style: none makes VoiceOver in Safari stop announcing the ol
+   as a list, so the markup carries role="list" as well. */
+.phases {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 15fr 10fr 60fr;
+  gap: var(--s-8);
+  margin: 0;
+  padding: 0;
+}
+
+.phases li {
+  border: 1px solid var(--hairline);
+  border-radius: var(--r-control);
+  padding: var(--s-12);
+}
+
+.phases-time {
+  margin: 0 0 0.25em;
+}
+
+.phases-what {
+  font-size: var(--t-1);
+  color: var(--muted);
+  margin: 0;
+}
+
+/* Below 40rem the proportional widths are unreadable, so the boxes
+   stack full width and the proportion is dropped, not squeezed.
+   Same breakpoint the rest of the site uses. */
+@media (max-width: 40rem) {
+  .phases {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Same pattern as the .cv table styles above. */
+.corr {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.corr caption {
+  text-align: left;
+  font-size: var(--t-1);
+  color: var(--muted);
+  margin-block-end: 0.5rem;
+}
+
+.corr th,
+.corr td {
+  text-align: left;
+  vertical-align: middle;
+  padding: 0.5rem 1rem 0.5rem 0;
+  border-block-end: 1px solid var(--hairline);
+}
+
+.corr th {
+  font-family: var(--font-display);
+  font-weight: var(--w-medium);
+}
+
+/* No font-variant-numeric: tabular-nums here. Measured in the
+   rendered body font: digit widths are already uniform and the
+   property changes nothing. td in the selector so this outweighs
+   the text-align: left on .corr td above. */
+.corr td.corr-num {
+  text-align: right;
+}
+
+/* The zero line sits at 50% of the cell; bars grow left for negative
+   and right for positive from --x/--w set inline per row. The fill
+   is currentColor, so it is --ink in both schemes. */
+.corr-bar {
+  position: relative;
+  width: 45%;
+  height: 1.25rem;
+}
+
+.corr-bar::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 1px;
+  background: var(--hairline);
+}
+
+.corr-bar .bar {
+  position: absolute;
+  top: 0.2rem;
+  bottom: 0.2rem;
+  left: var(--x);
+  width: var(--w);
+  min-width: 2px;
+  background: currentColor;
+}
+
+/* Below 30rem the bar column goes away entirely; the numbers carry
+   the whole meaning on their own. */
+@media (max-width: 30rem) {
+  .corr thead th:nth-child(3),
+  .corr td.corr-bar {
+    display: none;
+  }
+}
+
 /* Marked scaffolding for unfinished content. Deliberately looks like
    a placeholder, not like the site's design. */
 .placeholder {
