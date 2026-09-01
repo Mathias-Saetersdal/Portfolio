@@ -1,0 +1,25 @@
+:root{
+  /* Single ladder. Base unit 4px. No values outside this list. */
+  --space-4:4px;
+  --space-8:8px;    /* element gap */
+  --space-12:12px;
+  --space-16:16px;
+  --space-24:24px;  /* card padding */
+  --space-32:32px;
+  --space-48:48px;
+  --space-64:64px;
+  --space-96:96px;  /* section gap */
+
+  --container:1200px;
+  --section-gap:96px;
+  --section-gap-mobile:64px;
+  --card-padding:24px;
+  --element-gap:8px;
+
+  --nav-height:64px;
+  --control-padding-y:10px;
+  --control-padding-x:16px;
+  --input-padding-y:12px;
+  --input-padding-x:14px;
+  --tap-target:44px; /* accessibility floor for touch */
+}

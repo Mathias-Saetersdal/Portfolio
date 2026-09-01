@@ -2,18 +2,40 @@
    Tokens, type scale, layout, both color schemes.
    Palette is BUILD.md option B: pale cool ground, spruce ink,
    one violet signal hue reserved for links and, via --focus, the
-   focus ring too. */
+   focus ring too. The structure (surface ladder, hairlines, radii,
+   spacing, weights, tracking) follows the Linear design system in
+   .claude/skills/linear-design/; its hues and fonts do not apply
+   here. Dark uses the ladder's own values, light inverts the ladder
+   over the existing palette. */
 
 /* ---------- Color tokens ----------
    Every ratio below is measured (WCAG 2.x relative luminance),
-   not estimated. Light scheme is canonical. */
+   not estimated. Light scheme is canonical.
+
+   Two border roles, deliberately distinct:
+   - --edge marks boundaries that identify a component: form fields,
+     and project cards, which sit adjacent on the front page and use
+     the border for separation. Floor is 3:1 in both schemes.
+   - --hairline is a non-semantic divider (table row rules). It is a
+     hairline on purpose and sits below 3:1; nothing it separates
+     depends on it alone. */
 
 :root {
   --ground: #e9ebe7; /* page background */
-  --ink:    #1f3230; /* body text        11.24:1 on --ground */
-  --muted:  #4a5a57; /* metadata         6.05:1  on --ground */
-  --signal: #4a2e8c; /* links                    8.49:1 on --ground (text and non-text) */
-  --surface:#dfe3dc; /* hover tint, non-text, no contrast claim */
+  --ink:    #1f3230; /* body text        11.24:1 on --ground, 10.38:1 on --surface */
+  --muted:  #4a5a57; /* metadata         6.05:1  on --ground, 5.59:1  on --surface */
+  --signal: #4a2e8c; /* links                    8.49:1 on --ground, 7.84:1 on --surface (text and non-text) */
+  --surface:#dfe3dc; /* card and panel fill, one step down the
+                        inverted ladder. Text ratios on it are on
+                        --ink, --muted and --signal above. */
+  --edge:   #4a5a57; /* component boundaries: cards, inputs. Same hex
+                        as --muted, kept as its own token so the two
+                        can diverge. 6.05:1 vs --ground, 5.59:1 vs
+                        --surface, floor is 3:1. */
+  --hairline:#ccd1c8; /* divider hairline. 1.29:1 vs --ground: the
+                         light analog of the ladder's Graphite-on-Void
+                         1.30:1, and deliberately below the 3:1 floor,
+                         see the border roles note above. */
   --ok:     #17693c; /* correct state in the memory test 5.61:1 on --ground */
   --err:    #a62639; /* wrong state in the memory test   5.92:1 on --ground */
   /* Focus ring. Measured 8.49:1 against --ground, same pair as --signal
@@ -33,14 +55,24 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --ground: #131a17; /* page background */
-    --ink:    #e4eae6; /* body text        14.49:1 on --ground */
-    --muted:  #9fafa8; /* metadata         7.72:1  on --ground */
-    --signal: #b7a5ef; /* links                    8.12:1 on --ground (text and non-text) */
-    --surface:#1c2420; /* hover tint, non-text, no contrast claim */
-    --ok:     #7ed09a; /* correct state in the memory test 9.58:1 on --ground */
-    --err:    #f2a3a8; /* wrong state in the memory test   8.91:1 on --ground */
-    /* Same as light: --focus equals --signal, measured 8.12:1 against
+    /* The Linear surface ladder, values as in the source system:
+       Void canvas, Carbon card fill, Graphite and Ash borders,
+       Fog and Mist text. The violet signal is this site's own and
+       replaces the ladder's accent. */
+    --ground: #08090a; /* page background (Void) */
+    --ink:    #d0d6e0; /* body text (Mist)  13.64:1 on --ground, 13.04:1 on --surface */
+    --muted:  #8a8f98; /* metadata (Fog)    6.13:1  on --ground, 5.86:1  on --surface */
+    --signal: #b7a5ef; /* links                     9.15:1 on --ground, 8.75:1 on --surface (text and non-text) */
+    --surface:#0f1011; /* card and panel fill (Carbon). Text ratios on
+                          it are on --ink, --muted and --signal above. */
+    --edge:   #62666d; /* component boundaries (Ash). 3.45:1 vs
+                          --ground, 3.30:1 vs --surface, floor is 3:1. */
+    --hairline:#23252a; /* divider hairline (Graphite). 1.30:1 vs
+                           --ground, deliberately below the 3:1 floor,
+                           see the border roles note above. */
+    --ok:     #7ed09a; /* correct state in the memory test 10.80:1 on --ground */
+    --err:    #f2a3a8; /* wrong state in the memory test   10.04:1 on --ground */
+    /* Same as light: --focus equals --signal, measured 9.15:1 against
        --ground here. See the light scheme comment above. */
     --focus:  #b7a5ef;
   }
@@ -58,7 +90,35 @@
   --t3:  2.197rem;  /* large display */
   --t4:  clamp(2.197rem, 1.4rem + 3.5vw, 2.747rem); /* h1, fluid */
 
-  --bar-height: 3.5rem; /* sticky bar, all viewport widths */
+  /* Weight band from the Linear system: 400 body, 510 display and
+     labels, 590 as the cap. Nothing on the site goes above 590; the
+     b/strong rule below pins browser-default 700 back to the cap.
+     Static fallback fonts snap 510 to their nearest real weight. */
+  --w-medium: 510;
+  --w-strong: 590;
+
+  /* Radius vocabulary, 6/12/9999px: controls, cards, pills. Nothing
+     else. --r-pill has no user yet and exists to complete the
+     vocabulary. */
+  --r-control: 0.375rem;
+  --r-card:    0.75rem;
+  --r-pill:    9999px;
+
+  /* Spacing ladder, 8/12/16/24/32/48/64/96px in rem. Layout spacing
+     uses these steps and nothing between them. Micro-spacing that
+     tracks the text (em values, the two 1.8rem line-height-derived
+     margins on the about page) stays off the ladder on purpose. */
+  --s-8:  0.5rem;
+  --s-12: 0.75rem;
+  --s-16: 1rem;
+  --s-24: 1.5rem;
+  --s-32: 2rem;
+  --s-48: 3rem;
+  --s-64: 4rem;
+  --s-96: 6rem;
+
+  --bar-height: 4rem; /* sticky bar, all viewport widths. 64px, the
+                         ladder's nav height. */
 
   /* Recommended faces (see README.md): Familjen Grotesk for display,
      Literata for body. Both OFL. Until the files exist in fonts/,
@@ -123,24 +183,31 @@ body {
   padding-inline: clamp(1rem, 4vw, 2rem);
 }
 
+/* Tracking tightens with size: -0.022em on the display size, -0.012em
+   on the smaller headings, matching the ladder's type roles. */
 h1, h2, h3 {
   font-family: var(--font-display);
-  font-weight: 650;
+  font-weight: var(--w-medium);
   line-height: 1.15;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.012em;
   margin-block: 0 0.5em;
 }
 
-h1 { font-size: var(--t4); }
+h1 { font-size: var(--t4); letter-spacing: -0.022em; }
 h2 { font-size: var(--t2); margin-block-start: 0; }
 h3 { font-size: var(--t1); }
+
+/* Browser-default bold is 700, above the 590 weight cap. */
+b, strong {
+  font-weight: var(--w-strong);
+}
 
 p {
   margin-block: 0 1em;
 }
 
 main > section {
-  margin-block-end: 5rem;
+  margin-block-end: var(--s-96);
 }
 
 /* ---------- Links ---------- */
@@ -213,7 +280,7 @@ a:hover {
   width: 0;
   height: 0;
   border: 3px solid var(--focus);
-  border-radius: 0.5rem;
+  border-radius: var(--r-control);
   box-shadow: inset 0 0 0 1px var(--ground);
   opacity: 0;
   pointer-events: none;
@@ -239,8 +306,8 @@ a:hover {
   z-index: 20; /* above .site-header (10): a focused skip link is never covered */
   padding: 0.5rem 1rem;
   background: var(--signal);
-  color: var(--ground); /* 8.49:1 light, 8.12:1 dark */
-  border-radius: 0.25rem;
+  color: var(--ground); /* 8.49:1 light, 9.15:1 dark */
+  border-radius: var(--r-control);
   transform: translateY(-300%);
 }
 
@@ -252,7 +319,7 @@ a:hover {
    Sticky bar: fixed height, opaque background, always present in the
    DOM whether or not the handoff animation runs. .bar-title sits on
    --ink over --ground, the same measured pair as body text: 11.24:1
-   light, 14.49:1 dark. */
+   light, 13.64:1 dark. */
 
 .site-header {
   position: sticky;
@@ -269,7 +336,7 @@ a:hover {
 .bar-title {
   margin: 0;
   font-family: var(--font-display);
-  font-weight: 650;
+  font-weight: var(--w-medium);
   font-size: var(--t-1);
   color: var(--ink);
   opacity: 1; /* baseline: always visible without view-timeline support */
@@ -285,6 +352,17 @@ a:hover {
   font-size: var(--t-1);
 }
 
+/* 2.5.8 Target Size: the links' line box is 23.04px (0.9rem at 1.6).
+   1px of block padding lifts the target to 25.04px, past the 24px
+   floor, without leaning on the spacing exception. The bar's height
+   is fixed by --bar-height, so this does not move it. min-inline-size
+   covers the one link whose text is narrower than 24px ("CV" measures
+   19.3px); the box widens, the text and underline do not. */
+.site-header nav a {
+  padding-block: 1px;
+  min-inline-size: 24px;
+}
+
 /* 1.4.10 Reflow: on a short viewport a fixed sticky bar costs too much
    vertical space. Drop back to a static, in-flow bar. */
 @media (max-height: 26rem) {
@@ -294,13 +372,13 @@ a:hover {
 }
 
 #main {
-  padding-block-start: 3.5rem; /* replaces the space the old header padding gave the hero */
+  padding-block-start: var(--s-64); /* replaces the space the old header padding gave the hero */
 }
 
 /* ---------- Hero ---------- */
 
 .hero {
-  margin-block-end: 3rem;
+  margin-block-end: var(--s-48);
 }
 
 .hero .lede {
@@ -405,7 +483,7 @@ a:hover {
 .tab-hint {
   font-size: var(--t-1);
   color: var(--muted);
-  margin-block-end: 5rem;
+  margin-block-end: var(--s-96);
 }
 
 /* False on a touchscreen: there is no Tab key to press. A narrow
@@ -436,12 +514,16 @@ a:hover {
   padding: 0;
 }
 
+/* Cards are --surface with an --edge border: adjacent cards on the
+   front page rely on the border for separation, so it is a component
+   boundary (3:1 floor), not a divider hairline. */
 .project {
   position: relative;
-  margin-block-end: 3rem;
-  padding: 1.25rem;
-  border: 1px solid var(--muted);
-  border-radius: 0.5rem;
+  margin-block-end: var(--s-48);
+  padding: var(--s-24);
+  background: var(--surface);
+  border: 1px solid var(--edge);
+  border-radius: var(--r-card);
 }
 
 .project-meta {
@@ -453,7 +535,7 @@ a:hover {
 .project img {
   max-width: 100%;
   height: auto;
-  border-radius: 0.5rem;
+  border-radius: var(--r-control);
 }
 
 /* Not links, not filters, so no pill, no border, no colour fill: a
@@ -520,23 +602,152 @@ a:hover {
 }
 
 .case-study > section {
-  margin-block-end: 3.5rem;
+  margin-block-end: var(--s-64);
 }
 
 .facts dt {
   font-family: var(--font-display);
-  font-weight: 650;
+  font-weight: var(--w-medium);
 }
 
 .facts dd {
   margin: 0 0 0.75em;
 }
 
+/* ---------- Case study figures (work/color.html) ----------
+   Two figures built from markup and CSS, no image files. The trial
+   sequence is an ordered list laid out as a grid whose column widths
+   are the phase lengths in seconds. The correlation chart is a table
+   whose last column draws a bar out from a zero line at 50%; half
+   that column equals a correlation of 0,6, so one unit is 83,33% of
+   half the column. Hairline borders and rules only: no fill, no
+   shadow, no gradient, no animation. */
+
+.phases-figure,
+.corr-figure {
+  margin: 0 0 1.5rem;
+}
+
+.phases-figure figcaption,
+.corr-figure figcaption {
+  font-size: var(--t-1);
+  color: var(--muted); /* 6.05:1 light, 6.13:1 dark on --ground */
+  margin-block-start: 0.5rem;
+}
+
+/* list-style: none makes VoiceOver in Safari stop announcing the ol
+   as a list, so the markup carries role="list" as well. */
+.phases {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 15fr 10fr 60fr;
+  gap: var(--s-8);
+  margin: 0;
+  padding: 0;
+}
+
+.phases li {
+  border: 1px solid var(--hairline);
+  border-radius: var(--r-control);
+  padding: var(--s-12);
+}
+
+.phases-time {
+  margin: 0 0 0.25em;
+}
+
+.phases-what {
+  font-size: var(--t-1);
+  color: var(--muted);
+  margin: 0;
+}
+
+/* Below 40rem the proportional widths are unreadable, so the boxes
+   stack full width and the proportion is dropped, not squeezed.
+   Same breakpoint the rest of the site uses. */
+@media (max-width: 40rem) {
+  .phases {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Same pattern as the .cv table styles above. */
+.corr {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.corr caption {
+  text-align: left;
+  font-size: var(--t-1);
+  color: var(--muted);
+  margin-block-end: 0.5rem;
+}
+
+.corr th,
+.corr td {
+  text-align: left;
+  vertical-align: middle;
+  padding: 0.5rem 1rem 0.5rem 0;
+  border-block-end: 1px solid var(--hairline);
+}
+
+.corr th {
+  font-family: var(--font-display);
+  font-weight: var(--w-medium);
+}
+
+/* No font-variant-numeric: tabular-nums here. Measured in the
+   rendered body font: digit widths are already uniform and the
+   property changes nothing. td in the selector so this outweighs
+   the text-align: left on .corr td above. */
+.corr td.corr-num {
+  text-align: right;
+}
+
+/* The zero line sits at 50% of the cell; bars grow left for negative
+   and right for positive from --x/--w set inline per row. The fill
+   is currentColor, so it is --ink in both schemes. */
+.corr-bar {
+  position: relative;
+  width: 45%;
+  height: 1.25rem;
+}
+
+.corr-bar::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 1px;
+  background: var(--hairline);
+}
+
+.corr-bar .bar {
+  position: absolute;
+  top: 0.2rem;
+  bottom: 0.2rem;
+  left: var(--x);
+  width: var(--w);
+  min-width: 2px;
+  background: currentColor;
+}
+
+/* Below 30rem the bar column goes away entirely; the numbers carry
+   the whole meaning on their own. */
+@media (max-width: 30rem) {
+  .corr thead th:nth-child(3),
+  .corr td.corr-bar {
+    display: none;
+  }
+}
+
 /* Marked scaffolding for unfinished content. Deliberately looks like
    a placeholder, not like the site's design. */
 .placeholder {
   border: 2px dashed var(--muted);
-  border-radius: 0.5rem;
+  border-radius: var(--r-control);
   padding: 0.75rem 1rem;
   color: var(--muted);
   font-size: var(--t-1);
@@ -593,7 +804,7 @@ a:hover {
 /* ---------- CV (cv.html) ---------- */
 
 .cv > section {
-  margin-block-end: 3.5rem;
+  margin-block-end: var(--s-64);
 }
 
 .cv-list {
@@ -660,17 +871,21 @@ a:hover {
   margin-block-end: 0.5rem;
 }
 
+/* Row rules are divider hairlines: the rows read from their own text
+   and padding, so the line carries no meaning alone. th is a row
+   header (scope="row", first column), so it shares the row's rule;
+   a different color here would split each rule in two. */
 .cv th,
 .cv td {
   text-align: left;
   vertical-align: top;
   padding: 0.5rem 1rem 0.5rem 0;
-  border-block-end: 1px solid var(--muted);
+  border-block-end: 1px solid var(--hairline);
 }
 
 .cv th {
   font-family: var(--font-display);
-  font-weight: 650;
+  font-weight: var(--w-medium);
 }
 
 /* ---------- Forms (new-project.html) ---------- */
@@ -678,15 +893,15 @@ a:hover {
 fieldset {
   border: none;
   padding: 0;
-  margin: 0 0 2.5rem;
+  margin: 0 0 var(--s-32);
 }
 
 legend {
   font-family: var(--font-display);
-  font-weight: 650;
+  font-weight: var(--w-medium);
   font-size: var(--t1);
   padding: 0;
-  margin-block-end: 0.75rem;
+  margin-block-end: var(--s-12);
 }
 
 .field {
@@ -706,6 +921,8 @@ legend {
   margin-block: 0.25rem 0;
 }
 
+/* A field is identified by its border, so it uses --edge, never the
+   divider hairline. */
 input,
 select,
 textarea {
@@ -714,8 +931,8 @@ textarea {
   padding: 0.5rem;
   color: var(--ink);
   background: var(--ground);
-  border: 1px solid var(--muted);
-  border-radius: 0.25rem;
+  border: 1px solid var(--edge);
+  border-radius: var(--r-control);
 }
 
 .form-grid {
@@ -741,8 +958,8 @@ a.button {
 .button-group {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.75rem;
-  margin-block: 0 3.5rem;
+  gap: var(--s-12);
+  margin-block: 0 var(--s-64);
 }
 
 .button-group .button {
@@ -752,13 +969,13 @@ a.button {
 .button {
   font: inherit;
   font-family: var(--font-display);
-  font-weight: 650;
+  font-weight: var(--w-medium);
   width: auto;
   background: var(--signal);
-  color: var(--ground); /* 8.49:1 light, 8.12:1 dark */
+  color: var(--ground); /* 8.49:1 light, 9.15:1 dark */
   border: none;
-  border-radius: 0.25rem;
-  padding: 0.5rem 1.25rem;
+  border-radius: var(--r-control);
+  padding: var(--s-8) var(--s-16);
   cursor: pointer;
 }
 
@@ -769,8 +986,8 @@ a.button {
 
 .json-out {
   background: var(--surface);
-  padding: 1rem;
-  border-radius: 0.5rem;
+  padding: var(--s-16);
+  border-radius: var(--r-control);
   overflow-x: auto;
   font-family: ui-monospace, Menlo, Consolas, monospace;
   font-size: var(--t-1);
@@ -801,14 +1018,14 @@ a.button {
 
 .mt-timer {
   font-family: var(--font-display);
-  font-weight: 650;
+  font-weight: var(--w-medium);
   font-size: var(--t1);
 }
 
 .mt-image {
   max-width: 100%;
   height: auto;
-  border-radius: 0.5rem;
+  border-radius: var(--r-card);
 }
 
 .mt-controls {
@@ -825,7 +1042,7 @@ a.button {
 
 .button.mt-quiet {
   background: transparent;
-  color: var(--signal); /* 8.49:1 light, 8.12:1 dark */
+  color: var(--signal); /* 8.49:1 light, 9.15:1 dark */
   text-decoration: underline;
   text-underline-offset: 0.15em;
   padding-inline: 0.25rem;
@@ -858,7 +1075,7 @@ a.button {
   flex-wrap: wrap;
   gap: 0.25rem 0.75rem;
   font-family: var(--font-display);
-  font-weight: 650;
+  font-weight: var(--w-medium);
   font-size: var(--t1);
 }
 

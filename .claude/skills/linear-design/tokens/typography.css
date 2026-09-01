@@ -1,0 +1,58 @@
+:root{
+  --font-core:"Inter","Inter Variable",system-ui,sans-serif;
+  --font-mono:"JetBrains Mono",ui-monospace,monospace; /* IDs, shortcuts, metadata only */
+  --font-features:"cv01" 1,"ss03" 1,"zero" 1; /* @kind font */
+
+  /* Weight band 400-590. 590 is the cap; nothing above it exists. */
+  --weight-regular:400; /* @kind other */
+  --weight-medium:510; /* @kind other */
+  --weight-strong:590; /* @kind other */
+
+  /* Type scale. These nine roles are the entire scale. */
+  --size-display:72px;
+  --lh-display:1; /* @kind other */
+  --track-display:-0.022em; /* @kind other */
+  --weight-display:510; /* @kind other */
+
+  --size-hero:64px;
+  --lh-hero:1; /* @kind other */
+  --track-hero:-0.022em; /* @kind other */
+  --weight-hero:510; /* @kind other */
+
+  --size-section:48px;
+  --lh-section:1; /* @kind other */
+  --track-section:-0.022em; /* @kind other */
+  --weight-section:510; /* @kind other */
+
+  --size-subheading:32px;
+  --lh-subheading:1.13; /* @kind other */
+  --track-subheading:-0.022em; /* @kind other */
+  --weight-subheading:400; /* @kind other */
+
+  --size-heading:24px;
+  --lh-heading:1.33; /* @kind other */
+  --track-heading:-0.012em; /* @kind other */
+  --weight-heading:400; /* @kind other */
+
+  --size-body-emphasis:20px;
+  --lh-body-emphasis:1.33; /* @kind other */
+  --track-body-emphasis:-0.012em; /* @kind other */
+  --weight-body-emphasis:590; /* @kind other */
+
+  --size-body:16px;
+  --lh-body:1.5; /* @kind other */
+  --track-body:-0.010em; /* @kind other */
+
+  --size-body-small:15px;
+  --lh-body-small:1.6; /* @kind other */
+  --track-body-small:-0.011em; /* @kind other */
+
+  --size-caption:13px;
+  --lh-caption:1.2; /* @kind other */
+  --track-caption:-0.010em; /* @kind other */
+
+  /* Responsive display steps: 72 -> 48 -> 36, tracking unchanged */
+  --size-display-md:48px;
+  --size-display-sm:36px;
+  --measure:75ch; /* @kind other */
+}

@@ -44,8 +44,6 @@
         <p>AIC, International Colour Association, samler de nasjonale
            fargevitenskapelige foreningene. AIC 2025 var organisasjonens
            16. kongress, arrangert av Color Association of Taiwan.</p>
-        <!-- Bilde: fargestimuliet fra artikkelen.
-             Alt-tekst skrives når bildet er valgt. -->
       </section>
 
       <!-- Dette prosjektet har ingen live-side og ingen kildekode.
@@ -105,21 +103,70 @@
            plass mer enn farge.</p>
       </section>
 
-      <!-- Seksjonen "Hvordan det ser ut" blir synlig når figurene er
-           hentet ut av artikkelen. De tre bildeplassene fra utkastet:
-
-           Bilde: fargestimuliet, figur 1 i artikkelen.
-           Bildetekst: Tjue hverdagsobjekter generert med KI, uten
-           innbyrdes sammenheng, slik at ingen kan gjettes ut fra de andre.
-
-           Bilde: gråtonestimuliet, figur 2.
-           Bildetekst: Gråtonebildet endte med 17 unike objekter mot
-           fargebildets 20. Den skjevheten er omtalt under.
-
-           Bilde: figur 3, gjenkalling per fargetone.
-           Bildetekst: Ingen sammenheng mellom fargetone og gjenkalling.
-           Tomaten var unntaket som peker mot diagnostisk farge, farge som
-           hører til objektet. -->
+      <section aria-labelledby="looks-heading">
+        <h2 id="looks-heading">Hvordan det ser ut</h2>
+        <figure class="phases-figure">
+          <ol class="phases" role="list">
+            <li>
+              <p class="phases-time">15 sekunder</p>
+              <p class="phases-what">Eksponering for bildet</p>
+            </li>
+            <li>
+              <p class="phases-time">10 sekunder</p>
+              <p class="phases-what">Baklengs telling</p>
+            </li>
+            <li>
+              <p class="phases-time">60 sekunder</p>
+              <p class="phases-what">Muntlig gjenkalling</p>
+            </li>
+          </ol>
+          <figcaption>Hver runde fulgte samme løp. Tellingen blokkerte indre repetisjon mellom eksponering og gjenkalling.</figcaption>
+        </figure>
+        <figure class="corr-figure">
+          <table class="corr">
+            <caption>Korrelasjon mellom bildeegenskap og andel som husket objektet</caption>
+            <thead>
+              <tr>
+                <th scope="col">Egenskap</th>
+                <th scope="col">Korrelasjon</th>
+                <th scope="col"><span class="visually-hidden">Grafisk framstilling</span></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Lyshet (L*)</th>
+                <td class="corr-num">&minus;0,032</td>
+                <td class="corr-bar"><span class="bar" style="--w:2.67%;--x:47.33%"></span></td>
+              </tr>
+              <tr>
+                <th scope="row">Kroma (C*<sub>ab</sub>)</th>
+                <td class="corr-num">&minus;0,199</td>
+                <td class="corr-bar"><span class="bar" style="--w:16.58%;--x:33.42%"></span></td>
+              </tr>
+              <tr>
+                <th scope="row">Fargetone (h<sub>ab</sub>)</th>
+                <td class="corr-num">0,046</td>
+                <td class="corr-bar"><span class="bar" style="--w:3.83%;--x:50%"></span></td>
+              </tr>
+              <tr>
+                <th scope="row">Entropi</th>
+                <td class="corr-num">&minus;0,122</td>
+                <td class="corr-bar"><span class="bar" style="--w:10.17%;--x:39.83%"></span></td>
+              </tr>
+              <tr>
+                <th scope="row">Relativ størrelse</th>
+                <td class="corr-num">0,531</td>
+                <td class="corr-bar"><span class="bar" style="--w:44.25%;--x:50%"></span></td>
+              </tr>
+            </tbody>
+          </table>
+          <figcaption>Bare relativ størrelse har en tydelig sammenheng med gjenkalling. Halve bredden i kolonnen til høyre svarer til en korrelasjon på 0,6. Streken i midten er null.</figcaption>
+        </figure>
+        <!-- Bilde: figur 3, gjenkalling per fargetone.
+             Bildetekst: Ingen sammenheng mellom fargetone og gjenkalling.
+             Tomaten var unntaket som peker mot diagnostisk farge, farge som
+             hører til objektet. -->
+      </section>
 
       <section aria-labelledby="change-heading">
         <h2 id="change-heading">Hva jeg ville endret</h2>

@@ -28,9 +28,11 @@
     }
     @media (prefers-color-scheme: dark) {
       :root {
-        --ground: #131a17;
-        --ink: #e4eae6;
-        --muted: #9fafa8;
+        /* Same values as css/main.css: the Linear surface ladder,
+           measured there. */
+        --ground: #08090a;
+        --ink: #d0d6e0;
+        --muted: #8a8f98;
         --signal: #b7a5ef;
       }
     }
@@ -58,13 +60,14 @@
     }
     h1, h2 {
       font-family: "Avenir Next", Avenir, Seravek, "Segoe UI", system-ui, sans-serif;
-      font-weight: 650;
+      font-weight: 510;
       line-height: 1.15;
-      letter-spacing: -0.01em;
+      letter-spacing: -0.012em;
       margin-block: 0 0.5em;
     }
     h1 {
       font-size: clamp(2.197rem, 1.4rem + 3.5vw, 2.747rem);
+      letter-spacing: -0.022em;
     }
     h2 {
       font-size: 1.406rem;
@@ -89,6 +92,13 @@
       gap: 0.5rem 1.5rem;
       font-family: "Avenir Next", Avenir, Seravek, "Segoe UI", system-ui, sans-serif;
       font-size: 0.9rem;
+    }
+    /* 2.5.8: same 1px block padding and 24px minimum inline size as
+       .site-header nav a in css/main.css, lifting the 23.04px line
+       box past 24px and widening the narrow "CV" link's box. */
+    nav a {
+      padding-block: 1px;
+      min-inline-size: 24px;
     }
   </style>
 </head>

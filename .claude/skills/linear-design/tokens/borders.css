@@ -1,0 +1,9 @@
+:root{
+  /* Structure is hairlines. This system contains no box-shadow of any kind,
+     including inset: linear.md's inset border is expressed as a real 1px border. */
+  --hairline:1px solid var(--graphite);
+  --hairline-separator:1px solid var(--smoke);
+  --hairline-input:1px solid var(--white-08);
+  --focus-ring-width:2px;
+  --focus-ring-offset:2px;
+}

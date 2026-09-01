@@ -40,7 +40,7 @@ same stroke width as the real focus indicator. Colours are the
 since a favicon has no inherited colour context. It has its own
 `prefers-color-scheme: dark` media query and swaps the same way the
 site does. Contrast between background and stroke is 8.49:1 in light
-mode and 8.12:1 in dark mode, both measured in the SVG's own comment
+mode and 9.15:1 in dark mode, both measured in the SVG's own comment
 and far past the 3:1 non-text floor.
 
 Two PNGs are generated from it, both committed since there is no build
