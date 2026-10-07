@@ -22,6 +22,17 @@ list is fetched from `data/projects.json`; opened straight from
 3. Keep `"status": "draft"` until the project is ready. Drafts never
    render on the front page. Set `"published"` to go live.
 
+A project can go live in Norwegian before the English case study is
+written, by giving `status` one value per language instead of one
+string:
+
+```json
+"status": { "nb": "published", "en": "draft" }
+```
+
+A language with no value of its own counts as a draft, so the card
+stays off that front page until you say otherwise.
+
 That is the whole workflow. Nothing else changes.
 
 ## Add a case study

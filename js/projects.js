@@ -43,6 +43,22 @@
     return field || '';
   }
 
+  /* status is either a string, which applies to every language, or an
+     object with one value per language, so a case study can go live in
+     Norwegian before the English one is written.
+
+     Unlike t() above, a missing key is NOT filled in from Norwegian.
+     Falling back here would publish a language whose case study does
+     not exist yet, which is the exact failure this replaces, so the
+     rule is fail closed: no value for this language means draft. */
+  function isPublished(project, language) {
+    var status = project && project.status;
+    if (status && typeof status === 'object') {
+      return status[language] === 'published';
+    }
+    return status === 'published';
+  }
+
   function render(p) {
     var li = document.createElement('li');
     li.className = 'project';
@@ -116,7 +132,7 @@
     .then(function (data) {
       var projects = data && Array.isArray(data.projects) ? data.projects : [];
       var published = projects.filter(function (p) {
-        return p.status === 'published';
+        return isPublished(p, lang);
       });
 
       if (published.length === 0) {

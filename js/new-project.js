@@ -1,7 +1,11 @@
 /* new-project.js
    Turns the form in new-project.html into a valid object for
    data/projects.json. Validates required fields and the status enum,
-   warns on a duplicate id. Writes nothing anywhere. */
+   warns on a duplicate id. Writes nothing anywhere.
+
+   Status is written either as one string for both languages or as
+   {nb, en}, matching the two forms isPublished() reads in
+   js/projects.js. */
 
 (function () {
   'use strict';
@@ -32,6 +36,48 @@
     return form.elements[name].value.trim();
   }
 
+  var STATUSES = ['draft', 'published'];
+
+  /* The two per-language selects only exist when the author asks for
+     them, so the simple case stays one control. Toggling hidden also
+     takes them out of the tab order, which is why nothing here
+     touches tabindex. */
+  var modeSelect = document.getElementById('f-status-mode');
+  var sharedField = document.getElementById('status-shared-field');
+  var perLangFields = document.getElementById('status-per-language-fields');
+
+  function syncStatusMode() {
+    var perLanguage = modeSelect.value === 'per-language';
+    sharedField.hidden = perLanguage;
+    perLangFields.hidden = !perLanguage;
+  }
+
+  modeSelect.addEventListener('change', syncStatusMode);
+  syncStatusMode();
+
+  /* Returns the status value for the project object: a plain string in
+     shared mode, {nb, en} when the two languages are set apart. Both
+     branches validate against the same enum. */
+  function readStatus(errors) {
+    if (modeSelect.value !== 'per-language') {
+      var shared = val('status');
+      if (STATUSES.indexOf(shared) === -1) {
+        errors.push('Status må være draft eller published.');
+      }
+      return shared;
+    }
+
+    var nb = val('status_nb');
+    var en = val('status_en');
+    if (STATUSES.indexOf(nb) === -1) {
+      errors.push('Norsk status må være draft eller published.');
+    }
+    if (STATUSES.indexOf(en) === -1) {
+      errors.push('Engelsk status må være draft eller published.');
+    }
+    return { nb: nb, en: en };
+  }
+
   form.addEventListener('submit', function (e) {
     e.preventDefault();
 
@@ -54,10 +100,7 @@
       errors.push('År må være fire sifre.');
     }
 
-    var status = val('status');
-    if (status !== 'draft' && status !== 'published') {
-      errors.push('Status må være draft eller published.');
-    }
+    var status = readStatus(errors);
 
     if (!val('title_nb')) { errors.push('Norsk tittel mangler.'); }
     if (!val('title_en')) { errors.push('Engelsk tittel mangler.'); }

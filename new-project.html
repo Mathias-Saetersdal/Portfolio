@@ -38,13 +38,45 @@
           <label for="f-year">År</label>
           <input id="f-year" name="year" type="number" inputmode="numeric" required>
         </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Status</legend>
+        <p class="hint" id="status-hint">draft holder prosjektet borte fra forsiden.
+           Et prosjekt kan stå published på norsk mens den engelske
+           kasusstudien ennå ikke finnes. Et språk uten verdi regnes
+           som draft.</p>
         <div class="field">
-          <label for="f-status">Status</label>
-          <p class="hint" id="status-hint">draft holder prosjektet borte fra forsiden.</p>
-          <select id="f-status" name="status" aria-describedby="status-hint">
+          <label for="f-status-mode">Hvordan status settes</label>
+          <select id="f-status-mode" name="status_mode" aria-describedby="status-hint">
+            <option value="shared">Én status for begge språk</option>
+            <option value="per-language">Ulik status per språk</option>
+          </select>
+        </div>
+        <div class="field" id="status-shared-field">
+          <label for="f-status">Status, begge språk</label>
+          <select id="f-status" name="status">
             <option value="draft">draft</option>
             <option value="published">published</option>
           </select>
+        </div>
+        <div id="status-per-language-fields" hidden>
+          <div class="form-grid">
+            <div class="field">
+              <label for="f-status-nb">Status, norsk</label>
+              <select id="f-status-nb" name="status_nb">
+                <option value="draft">draft</option>
+                <option value="published">published</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="f-status-en">Status, engelsk</label>
+              <select id="f-status-en" name="status_en">
+                <option value="draft">draft</option>
+                <option value="published">published</option>
+              </select>
+            </div>
+          </div>
         </div>
       </fieldset>
 
