@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="nb">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Løfteloggen · Mathias Sætersdal</title>
+  <meta name="description" content="Kasusstudie: en treningslogg for meg og to venner. Øktene føres sett for sett i pausene på telefonen.">
+  <link rel="icon" href="../img/icon.svg" type="image/svg+xml">
+  <link rel="icon" href="../img/icon-32.png" sizes="32x32">
+  <link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/pointer-glow.css">
+  <link rel="alternate" hreflang="nb" href="loefteloggen.html">
+  <!-- TODO: link en/work/loefteloggen.html when the English case study exists -->
+  <link rel="alternate" hreflang="x-default" href="loefteloggen.html">
+</head>
+<body>
+  <a class="skip-link" href="#main">Hopp til innholdet</a>
+
+  <header class="site-header wrap">
+    <p class="bar-title" aria-hidden="true">Løfteloggen</p>
+    <nav aria-label="Hovednavigasjon">
+      <a href="../index.html">Hjem</a>
+      <a href="../about.html">Om meg</a>
+      <!-- TODO: link en/work/loefteloggen.html when the English case study exists -->
+      <a href="../en/index.html" lang="en" hreflang="en">English</a>
+    </nav>
+  </header>
+
+  <main id="main" class="wrap">
+    <article class="case-study">
+      <h1>Løfteloggen</h1>
+      <p class="project-meta">2026 · Konsept, krav og design</p>
+
+      <section aria-labelledby="what-heading">
+        <h2 id="what-heading">Hva det er</h2>
+        <p>En treningslogg for meg og to venner. Øktene føres sett for sett
+           i pausene på telefonen. Fremgangen vises som en muskelfigur
+           forfra og bakfra, der hver muskelgruppe er farget etter hvor mye
+           sterkere den har blitt de siste fire ukene.</p>
+      </section>
+
+      <div class="button-group" role="group" aria-label="Prosjektlenker">
+        <a class="button" href="https://loefteloggen.saetersdal.no" target="_blank" rel="noopener noreferrer">Åpne demoversjonen (åpnes i ny fane)</a>
+        <a class="button" href="https://github.com/Mathias-Saetersdal/loefteloggen" target="_blank" rel="noopener noreferrer">Se kilden på GitHub (åpnes i ny fane)</a>
+      </div>
+
+      <section aria-labelledby="brief-heading">
+        <h2 id="brief-heading">Oppdraget</h2>
+        <p>Oppdraget var mitt eget. Jeg trente styrke tre til fem ganger i
+           uka uten å føre noe. Apple Watch registrerte at jeg trente, men
+           ikke hva jeg løftet. Gratisversjonen av Hevy har plass til fire
+           økter, og jeg har fem, og grafene går bare tre måneder
+           tilbake.</p>
+        <p>Rammene var faste fra start. Det skulle gå an å føre et sett på
+           under ti sekunder med én hånd. Tre personer skulle dele appen.
+           Ingen skulle se hva de andre løfter. Det holder i grensesnittet,
+           ikke i dataene.</p>
+      </section>
+
+      <section aria-labelledby="did-heading">
+        <h2 id="did-heading">Hva jeg gjorde</h2>
+
+        <h3>Forrige økt som grå tekst</h3>
+        <p>Første versjon fylte inn forrige økts tall som verdier, og et
+           sett telte bare når det var huket av. Den første økta jeg førte,
+           ble lagret med alle tallene og null sett, fordi jeg aldri trykket
+           på haken. Nå står forrige økts tall i grått. Ett trykk godtar
+           dem, og et låst sett har en egen knapp for å redigere.</p>
+
+        <h3>Ett tall per løft</h3>
+        <p>Det beste settet i hver øvelse regnes om til en beregnet maks på
+           én repetisjon: vekt × (1 + reps/30). Da kan 60 kg × 10 og 65 kg ×
+           8 sammenlignes direkte. Kroppsvektøvelser uten ekstra vekt bruker
+           flest reps i stedet.</p>
+
+        <h3>Prosent i stedet for kilo</h3>
+        <p>Den sosiale delen viser endring i prosent, siste fire uker mot de
+           fire før. Vekter vises aldri. Den som løfter minst, kan ha størst
+           fremgang.</p>
+
+        <h3>Hovedmuskel og sekundærmuskel</h3>
+        <p>Hver øvelse har en hovedmuskel som teller fullt og
+           sekundærmuskler som teller halvt. Smith skråbenk teller for
+           bryst, og litt for skuldre og triceps. Katalogen har 69 øvelser.
+           Egne øvelser får muskler valgt fra en liste.</p>
+
+        <h3>Status uten farge alene</h3>
+        <p>Grønn, grå og rød har hver sitt tegn, ▲, – og ▼, og tallet står
+           skrevet ut. Hver muskelgruppe har tall i bare én visning, så
+           tallene ikke kolliderer på en smal skjerm.</p>
+
+        <h3>Figuren</h3>
+        <p>Første versjon var bygd av avrundede rektangler og så ut som en
+           leketøysfigur. Den er byttet ut med et åpent muskelkart med
+           kanter mellom musklene. I den sosiale delen har hver person sin
+           hårfarge og en valgt kroppsform, slik at figurene skiller seg fra
+           hverandre.</p>
+
+        <h3>Kondisjon som egen type</h3>
+        <p>Løping, sykling og svømming føres med tid og distanse, og tempo
+           regnes ut mens du skriver. Kondisjon påvirker ikke muskelfiguren,
+           fordi prosentene bygger på styrkeløft.</p>
+
+        <h3>Demo uten ekte brukere</h3>
+        <p>Appen deles bare med dem jeg har invitert. Demoversjonen er en
+           egen side med oppdiktede brukere. Den viser appen uten å gi
+           tilgang til de ekte dataene. Det du gjør i demoen, lagres bare i
+           din egen nettleser.</p>
+      </section>
+
+      <section aria-labelledby="looks-heading">
+        <h2 id="looks-heading">Hva det ser ut som</h2>
+        <p>Tre faner: Økt, Min side og Sosialt.</p>
+        <figure class="shot">
+          <img src="../img/loefteloggen-okt.png" width="390" height="844" alt="Økt-fanen i Løfteloggen. Øvelsen Seated dips (maskin) har tre sett. Sett 1 er låst på 55 kg og 11 repetisjoner. Sett 2 og 3 viser forrige økts tall i grått.">
+          <figcaption>Forrige økts tall står i grått til settet er godtatt. Et låst sett redigeres med blyanten.</figcaption>
+        </figure>
+        <p>Min side har figuren, en liste over muskelgrupper sortert etter
+           fremgang, en månedsrapport og kurver per øvelse.</p>
+        <figure class="shot">
+          <img src="../img/loefteloggen-min-side.png" width="390" height="844" alt="Min side i Løfteloggen. En muskelfigur forfra og bakfra der musklene er farget grønne, grå eller røde. Tall på hver muskelgruppe viser endring i prosent. Under står forklaringen og en liste med Rygg øverst, 11,2 prosent opp.">
+          <figcaption>Hver muskelgruppe har tall i bare én av de to visningene.</figcaption>
+        </figure>
+        <p>Sosialt viser økter denne uken som stolper, med styrke mørkt og
+           kondisjon lyst, og en rekordfeed der man kan reagere med
+           emoji.</p>
+        <figure class="shot">
+          <img src="../img/loefteloggen-sosialt.png" width="390" height="844" alt="Sosialt-fanen i Løfteloggen. Øverst står antall økter denne uken som stolper: Deg 2, Even 1, Kari 1 og Ola 0. Under står kilometer i oktober per person, delt etter aktivitet. Kari ligger øverst med 58 km, fra sykling og spinning.">
+          <figcaption>Vekter vises aldri her, bare antall økter og kilometer.</figcaption>
+        </figure>
+      </section>
+
+      <section aria-labelledby="change-heading">
+        <h2 id="change-heading">Hva jeg ville endret</h2>
+        <p><strong>Åtte uker før figuren sier noe.</strong> Prosenten
+           trenger fire uker å sammenligne med. De to første månedene er
+           figuren grå for alle.</p>
+        <p><strong>Apple Watch må skrives av.</strong> Apple Helse har ingen
+           kobling en nettside kan bruke, så kondisjonsøkter føres for
+           hånd.</p>
+        <p><strong>Halv vekt er et anslag.</strong> At sekundærmuskler
+           teller halvt, er en regel jeg satte, ikke noe jeg har målt.</p>
+        <p><strong>Formelen blir mindre presis jo flere repetisjoner.</strong>
+           Et sett på 20 kabelcrunch sier mindre om styrke enn et sett på 6
+           knebøy, men begge teller like mye.</p>
+        <p><strong>Øktene er ikke låst ned.</strong> Appen viser bare
+           prosent til de andre, men alle med tilgang kan teknisk sett lese
+           hverandres økter.</p>
+      </section>
+
+      <section aria-labelledby="facts-heading">
+        <h2 id="facts-heading">Fakta</h2>
+        <dl class="facts">
+          <dt>Rolle</dt>
+          <dd>Konsept, krav, designvalg og testing. Koden er skrevet med
+              Claude.</dd>
+          <dt>År</dt>
+          <dd>2026</dd>
+          <dt>Verktøy</dt>
+          <dd>HTML, CSS og JavaScript. Data lagres i databasen til en
+              publisert Claude-artefakt. Muskelkartet er fra
+              react-muscle-highlighter, MIT-lisens. Fontene er Barlow
+              Condensed og Atkinson Hyperlegible.</dd>
+        </dl>
+      </section>
+
+      <div class="button-group" role="group" aria-label="Flere lenker">
+        <a class="button" href="../index.html">Alle prosjekter</a>
+        <a class="button" href="https://loefteloggen.saetersdal.no" target="_blank" rel="noopener">Se prosjektet</a>
+      </div>
+    </article>
+  </main>
+
+  <footer class="site-footer wrap">
+    <!-- TODO: link en/work/loefteloggen.html when the English case study exists -->
+    <p>Mathias Sætersdal · <a href="../en/index.html" lang="en" hreflang="en">English</a> ·
+       <a href="../cv.html">CV</a> ·
+       <a href="https://github.com/Mathias-Saetersdal">GitHub</a></p>
+  </footer>
+
+  <script src="../js/focus-ring.js" defer></script>
+  <script src="../js/pointer-glow.js" defer></script>
+</body>
+</html>

@@ -628,8 +628,12 @@ a:hover {
   margin: 0 0 1.5rem;
 }
 
+/* One caption treatment for every case study figure, this page's two
+   and the screenshot figures further down, so the two sections cannot
+   drift apart. */
 .phases-figure figcaption,
-.corr-figure figcaption {
+.corr-figure figcaption,
+.shot figcaption {
   font-size: var(--t-1);
   color: var(--muted); /* 6.05:1 light, 6.13:1 dark on --ground */
   margin-block-start: 0.5rem;
@@ -751,6 +755,36 @@ a:hover {
   padding: 0.75rem 1rem;
   color: var(--muted);
   font-size: var(--t-1);
+}
+
+/* ---------- Case study screenshots (work/loefteloggen.html) ----------
+   Phone screenshots, 780 x 1688 px files meant for 390 x 844 CSS
+   pixels. max-width pins them to that 390 px so they never upscale
+   past 1x on the 42rem column, and 100% lets them shrink below it:
+   at 320 px wide and 400% zoom the figure reflows instead of forcing
+   a horizontal scrollbar. The intrinsic width and height attributes
+   on the img reserve the aspect ratio before the file arrives, so
+   nothing below jumps when it loads. Radius matches .project img.
+   Captions are styled with the other case study figcaptions above,
+   not here, so all three figure kinds share one caption treatment.
+
+   The margin reset is not cosmetic. The browser default for figure
+   is margin: 1em 40px, and those 40 px pull the figure out of line
+   with the text column: measured at a 320 px viewport, the figure
+   starts at x=56 while the paragraphs start at x=16, and the 80 px
+   of inline margin cost the screenshot a quarter of its width, 288
+   px down to 208. .phases-figure and .corr-figure zero it for the
+   same reason. */
+
+.shot {
+  margin: 0 0 1.5rem;
+}
+
+.shot img {
+  display: block;
+  max-width: min(390px, 100%);
+  height: auto;
+  border-radius: var(--r-control);
 }
 
 /* ---------- About page (about.html, en/about.html) ----------

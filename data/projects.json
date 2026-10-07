@@ -143,6 +143,34 @@
       "liveUrl": "",
       "repoUrl": "",
       "status": "published"
+    },
+    {
+      "id": "loefteloggen",
+      "title": {
+        "nb": "Løfteloggen",
+        "en": "Løfteloggen"
+      },
+      "year": 2026,
+      "role": {
+        "nb": "Konsept, krav, designvalg og testing",
+        "en": "TODO"
+      },
+      "summary": {
+        "nb": "En treningslogg for meg og to venner. Fremgangen vises som en muskelfigur, farget etter hvor mye sterkere hver muskelgruppe har blitt.",
+        "en": "TODO"
+      },
+      "tags": {
+        "nb": ["universell utforming", "interaksjonsdesign", "frontend"],
+        "en": ["accessibility", "interaction design", "frontend"]
+      },
+      "alt": {
+        "nb": "",
+        "en": "TODO"
+      },
+      "href": "work/loefteloggen.html",
+      "liveUrl": "https://loefteloggen.saetersdal.no",
+      "repoUrl": "https://github.com/Mathias-Saetersdal/loefteloggen",
+      "status": "draft"
     }
   ]
 }
