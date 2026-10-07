@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Løfteloggen · Mathias Sætersdal</title>
+  <meta name="description" content="Case study: a training log for me and two friends. Workouts are logged set by set on the phone, during the rests between sets.">
+  <link rel="icon" href="../../img/icon.svg" type="image/svg+xml">
+  <link rel="icon" href="../../img/icon-32.png" sizes="32x32">
+  <link rel="apple-touch-icon" href="../../img/apple-touch-icon.png">
+  <link rel="stylesheet" href="../../css/main.css">
+  <link rel="stylesheet" href="../../css/pointer-glow.css">
+  <link rel="alternate" hreflang="nb" href="../../work/loefteloggen.html">
+  <link rel="alternate" hreflang="en" href="loefteloggen.html">
+  <link rel="alternate" hreflang="x-default" href="../../work/loefteloggen.html">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header wrap">
+    <p class="bar-title" aria-hidden="true">Løfteloggen</p>
+    <nav aria-label="Main navigation">
+      <a href="../index.html">Home</a>
+      <a href="../about.html">About</a>
+      <a href="../../work/loefteloggen.html" lang="nb" hreflang="nb">Norsk</a>
+    </nav>
+  </header>
+
+  <main id="main" class="wrap">
+    <article class="case-study">
+      <h1>Løfteloggen</h1>
+      <p class="project-meta">2026 · Concept, requirements and design</p>
+
+      <section aria-labelledby="what-heading">
+        <h2 id="what-heading">What it is</h2>
+        <p>A training log for me and two friends. Workouts are logged set
+           by set on the phone, during the rests between sets. Progress
+           shows as a muscle figure from the front and back, where each
+           muscle group is coloured by how much stronger it has become
+           over the last four weeks.</p>
+      </section>
+
+      <div class="button-group" role="group" aria-label="Project links">
+        <a class="button" href="https://loefteloggen.saetersdal.no/?lang=en" target="_blank" rel="noopener noreferrer">Open the demo (opens in a new tab)</a>
+        <a class="button" href="https://github.com/Mathias-Saetersdal/loefteloggen" target="_blank" rel="noopener noreferrer">View the source on GitHub (opens in a new tab)</a>
+      </div>
+
+      <section aria-labelledby="brief-heading">
+        <h2 id="brief-heading">The brief</h2>
+        <p>The brief was my own. I did strength training three to five
+           times a week without logging anything. My Apple Watch recorded
+           that I trained, but not what I lifted. The free version of Hevy
+           has room for four routines, I have five, and its graphs only go
+           back three months.</p>
+        <p>The constraints were fixed from the start. Logging a set had to
+           take under ten seconds, with one hand. Three people would share
+           the app. No one would see what the others lift. That holds in
+           the interface, not in the data.</p>
+      </section>
+
+      <section aria-labelledby="did-heading">
+        <h2 id="did-heading">What I did</h2>
+
+        <h3>Last session as grey text</h3>
+        <p>The first version filled in the previous session's numbers as
+           values, and a set only counted once it was ticked. The first
+           session I logged was saved with all the numbers and zero sets,
+           because I never tapped the tick. Now the previous session's
+           numbers show in grey. One tap accepts them, and a locked set has
+           its own button for editing.</p>
+
+        <h3>One number per lift</h3>
+        <p>The best set of each exercise is converted to an estimated
+           one-rep max: weight × (1 + reps/30). That way 60 kg × 10 and
+           65 kg × 8 can be compared directly. Bodyweight exercises without
+           added weight use the most reps instead.</p>
+
+        <h3>Percentages instead of kilos</h3>
+        <p>The social part shows change in percent, the last four weeks
+           against the four before. Weights are never shown. Whoever lifts
+           the least can make the most progress.</p>
+
+        <h3>Primary and secondary muscles</h3>
+        <p>Each exercise has a primary muscle that counts in full and
+           secondary muscles that count half. Smith incline press counts
+           for chest, and a little for shoulders and triceps. The catalogue
+           has 69 exercises. Custom exercises get their muscles picked from
+           a list.</p>
+
+        <h3>Status without colour alone</h3>
+        <p>Green, grey and red each have their own sign, ▲, – and ▼, and
+           the number is written out. Each muscle group has a number in
+           only one view, so the numbers do not collide on a narrow
+           screen.</p>
+
+        <h3>The figure</h3>
+        <p>The first version was built from rounded rectangles and looked
+           like a toy. It has been replaced with an open muscle map with
+           outlines between the muscles. In the social part each person has
+           their own hair colour and a chosen body shape, so the figures
+           can be told apart.</p>
+
+        <h3>Cardio as its own type</h3>
+        <p>Running, cycling and swimming are logged with time and distance,
+           and pace is calculated as you type. Cardio does not affect the
+           muscle figure, because the percentages are based on strength
+           lifts.</p>
+
+        <h3>A demo without real users</h3>
+        <p>The app is shared only with people I have invited. The demo is a
+           separate site with made-up users. It shows the app without
+           giving access to the real data. What you do in the demo is
+           stored only in your own browser.</p>
+      </section>
+
+      <section aria-labelledby="looks-heading">
+        <h2 id="looks-heading">What it looks like</h2>
+        <p>Three tabs: Workout, My page and Social.</p>
+        <figure class="shot">
+          <img src="../../img/loefteloggen-okt-en.png" width="390" height="844" alt="The Workout tab in Løfteloggen. The exercise Seated dips (machine) has three sets. Set 1 is locked at 55 kg and 11 reps. Sets 2 and 3 show last time's numbers in grey.">
+          <figcaption>Last session's numbers stay grey until the set is accepted. A locked set is edited with the pencil.</figcaption>
+        </figure>
+        <p>My page has the figure, a list of muscle groups sorted by
+           progress, a monthly report and curves for each exercise.</p>
+        <figure class="shot">
+          <img src="../../img/loefteloggen-min-side-en.png" width="390" height="844" alt="My page in Løfteloggen. A muscle figure from the front and back, with the muscles coloured green, grey or red. A number on each muscle group shows the change in percent. Below are the key and a list with Back at the top, up 11.2 percent.">
+          <figcaption>Each muscle group has a number in only one of the two views.</figcaption>
+        </figure>
+        <p>Social shows this week's workouts as bars, with strength dark
+           and cardio light, and a feed of records that people can react to
+           with emoji.</p>
+        <figure class="shot">
+          <img src="../../img/loefteloggen-sosialt-en.png" width="390" height="844" alt="The Social tab in Løfteloggen. At the top, this week's workouts as bars: You 3, Even 1, Kari 1 and Ola 1. Below, kilometres in October per person, split by activity. Kari is at the top with 58 km, from outdoor cycling and spinning.">
+          <figcaption>Weights are never shown here, only the number of workouts and kilometres.</figcaption>
+        </figure>
+      </section>
+
+      <section aria-labelledby="change-heading">
+        <h2 id="change-heading">What I would change</h2>
+        <p><strong>Eight weeks before the figure says anything.</strong> The
+           percentage needs four weeks to compare against. For the first
+           two months the figure is grey for everyone.</p>
+        <p><strong>Apple Watch data is typed in by hand.</strong> Apple
+           Health has no connection a website can use, so cardio sessions
+           are logged manually.</p>
+        <p><strong>Half weight is an estimate.</strong> That secondary
+           muscles count half is a rule I set, not something I have
+           measured.</p>
+        <p><strong>The formula gets less precise as reps go up.</strong> A
+           set of 20 cable crunches says less about strength than a set of
+           6 squats, but both count the same.</p>
+        <p><strong>The sessions are not locked down.</strong> The app only
+           shows percentages to the others, but anyone with access can
+           technically read each other's sessions.</p>
+      </section>
+
+      <section aria-labelledby="facts-heading">
+        <h2 id="facts-heading">Facts</h2>
+        <dl class="facts">
+          <dt>Role</dt>
+          <dd>Concept, requirements, design decisions and testing. The code
+              was written with Claude.</dd>
+          <dt>Year</dt>
+          <dd>2026</dd>
+          <dt>Tools</dt>
+          <dd>HTML, CSS and JavaScript. Data is stored in the database of a
+              published Claude artifact. The muscle map is from
+              react-muscle-highlighter, MIT licence. The fonts are Barlow
+              Condensed and Atkinson Hyperlegible.</dd>
+        </dl>
+      </section>
+
+      <div class="button-group" role="group" aria-label="More links">
+        <a class="button" href="../index.html">All projects</a>
+        <a class="button" href="https://loefteloggen.saetersdal.no/?lang=en" target="_blank" rel="noopener">See the project</a>
+      </div>
+    </article>
+  </main>
+
+  <footer class="site-footer wrap">
+    <p>Mathias Sætersdal · <a href="../../work/loefteloggen.html" lang="nb" hreflang="nb">Norsk</a> ·
+       <a href="../cv.html">CV</a> ·
+       <a href="https://github.com/Mathias-Saetersdal">GitHub</a></p>
+  </footer>
+
+  <script src="../../js/focus-ring.js" defer></script>
+  <script src="../../js/pointer-glow.js" defer></script>
+</body>
+</html>

@@ -153,11 +153,11 @@
       "year": 2026,
       "role": {
         "nb": "Konsept, krav, designvalg og testing",
-        "en": "TODO"
+        "en": "Concept, requirements, design decisions and testing"
       },
       "summary": {
         "nb": "En treningslogg for meg og to venner. Fremgangen vises som en muskelfigur, farget etter hvor mye sterkere hver muskelgruppe har blitt.",
-        "en": "TODO"
+        "en": "A training log for me and two friends. Progress shows as a muscle figure, coloured by how much stronger each muscle group has become."
       },
       "tags": {
         "nb": ["universell utforming", "interaksjonsdesign", "frontend"],
@@ -165,15 +165,12 @@
       },
       "alt": {
         "nb": "",
-        "en": "TODO"
+        "en": ""
       },
       "href": "work/loefteloggen.html",
       "liveUrl": "https://loefteloggen.saetersdal.no",
       "repoUrl": "https://github.com/Mathias-Saetersdal/loefteloggen",
-      "status": {
-        "nb": "published",
-        "en": "draft"
-      }
+      "status": "published"
     }
   ]
 }
