@@ -160,9 +160,13 @@
     z-index: -1; /* below the card's own text, above its background */
     pointer-events: none;
     background: radial-gradient(260px circle at var(--glow-x, 50%) var(--glow-y, 50%),
-      color-mix(in srgb, var(--signal) 45%, transparent),
+      color-mix(in srgb, var(--signal) 36%, transparent),
       transparent 70%);
-    opacity: calc(var(--glow-strength, 0) * 0.35); /* checked against 4.5:1, see REVERT-pointer-glow.md */
+    /* Checked against 4.5:1 on --surface, the card fill, at the
+       centre of the fill where it is strongest: --muted text measures
+       4.55:1 in the light scheme and 4.78:1 in the dark. At 45% it
+       dropped to 4.31:1 and 4.48:1. */
+    opacity: calc(var(--glow-strength, 0) * 0.35);
     transition: opacity 300ms ease-out;
   }
 
