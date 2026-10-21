@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Accessibility · Mathias Sætersdal</title>
+  <meta name="description" content="How saetersdal.no is tested against WCAG 2.2 AA, what does not work yet, and how to report a problem.">
+  <link rel="icon" href="../img/icon.svg" type="image/svg+xml">
+  <link rel="icon" href="../img/icon-32.png" sizes="32x32">
+  <link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="alternate" hreflang="nb" href="../tilgjengelighet.html">
+  <link rel="alternate" hreflang="en" href="accessibility.html">
+  <link rel="alternate" hreflang="x-default" href="../tilgjengelighet.html">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header wrap">
+    <p class="bar-title" aria-hidden="true">Accessibility</p>
+    <nav aria-label="Main navigation">
+      <a href="index.html">Home</a>
+      <a href="cv.html">CV</a>
+      <a href="../tilgjengelighet.html" lang="nb" hreflang="nb">Norsk</a>
+    </nav>
+  </header>
+
+  <main id="main" class="wrap">
+    <section aria-labelledby="a11y-heading">
+      <h1 id="a11y-heading">Accessibility</h1>
+      <p>This site aims for WCAG 2.2 at level AA. This page says how it was
+         tested, what still does not work, and how to tell me if something
+         stops you.</p>
+    </section>
+
+    <section aria-labelledby="tested-heading">
+      <h2 id="tested-heading">How the site was tested</h2>
+      <p>The last test was on 21 October 2026. Every page in Norwegian and
+         English was run through axe-core. I went through each page with the
+         keyboard and viewed each one at 320 pixels wide.</p>
+      <p>The test found three problems. Text on the project cards lost
+         contrast when the pointer was over the card. An English title was
+         not marked as English. The 404 page had no main region. All three
+         were fixed the same day.</p>
+    </section>
+
+    <section aria-labelledby="known-heading">
+      <h2 id="known-heading">What does not work yet</h2>
+      <ul>
+        <li><p>The master's thesis PDF is not tagged. A screen reader reads
+            it as one long text, with no headings or lists. It will be
+            exported again with tags.</p></li>
+        <li><p>In the Diskette app at diskette.saetersdal.no, Enter and Space
+            do not open a case. Only a mouse click does
+            (WCAG 2.1.1).</p></li>
+        <li><p>In the same app, the button does not say whether a row is
+            open or closed. A screen reader user is not told that anything
+            happened (WCAG 4.1.2).</p></li>
+      </ul>
+    </section>
+
+    <section aria-labelledby="time-heading">
+      <h2 id="time-heading">The time limit in the colour test</h2>
+      <p>The colour test on the <a href="work/color.html">colour and memory
+         page</a> has fixed times: 15 seconds to look at the image, 10 to
+         count and 90 to write. The test repeats a study that used the same
+         times, so the timing is part of the task. WCAG 2.2.1 allows fixed
+         times in that case. You can stop the test at any point, and a
+         separate button reads out how much time is left.</p>
+    </section>
+
+    <section aria-labelledby="untested-heading">
+      <h2 id="untested-heading">What has not been tested</h2>
+      <ul>
+        <li><p>The site has not been read with a screen reader such as NVDA
+            or VoiceOver. Names and roles were checked in the code and by
+            axe-core.</p></li>
+        <li><p>The colour test has not been run all the way through with a
+            keyboard. It starts from the keyboard, and its fields have
+            names.</p></li>
+      </ul>
+    </section>
+
+    <section aria-labelledby="feedback-heading">
+      <h2 id="feedback-heading">Report a problem</h2>
+      <p>If something on the site stops you, email
+         <a href="mailto:mathias@saetersdal.no">mathias@saetersdal.no</a>.
+         Say which page it was and what happened.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer wrap">
+    <p>Mathias Sætersdal · <a href="../tilgjengelighet.html" lang="nb" hreflang="nb">Norsk</a> ·
+       <a href="cv.html">CV</a> ·
+       <a href="https://github.com/Mathias-Saetersdal">GitHub</a> ·
+       <a href="accessibility.html">Accessibility</a></p>
+  </footer>
+
+  <script src="../js/focus-ring.js" defer></script>
+</body>
+</html>
